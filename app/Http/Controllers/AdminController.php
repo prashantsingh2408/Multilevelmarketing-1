@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\Pin;
 use App\Models\memberlist;
+use App\Models\pin_request;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
@@ -18,6 +19,63 @@ class AdminController extends Controller
    * @return \Illuminate\Http\Response
    */
  
+  public function issuepin($id)
+  {
+     $data = pin_request::find($id);
+     // return $req;
+    $mid = $data->user_id;
+    // return $sponsor_id;
+    //convert 'GF100000' to '1'
+    $user_data = User::find($mid);
+    $no_of_pins = $data->no_of_pins;
+    //generate $no_of_pins pins for $sponsor_id random
+    if ($mid < 10) {
+      $member_id = 'GF1' . "0000" . $mid;
+    } elseif ($mid < 100) {
+      $member_id = 'GF1' . "000" . $mid;
+    } else {
+      $member_id = 'GF1' . "00" . $mid;
+    }
+    $pin_array = $this->generate_pins($no_of_pins);
+    foreach ($pin_array as $pin){
+      $pin_data = [
+         'member_id' => $member_id,
+         'pin_no' => $pin,
+         'member_name' => $user_data->name,
+         'used_by' => '',
+         'issue_date' => date('Y-m-d'),
+         'product' => $data -> product,
+         'transfer_id' => '',
+         'transfer_name' => '',
+         'report_type' => '',
+         'approvel_status' => 'Wait',
+         'total_record' => '',
+         'mobile_no' => $user_data->mobile_no,
+         'reciept' => '',
+         'amount' => '',
+      ];
+      $res = Pin::insert($pin_data);
+    }
+    //insert users table where id = $sponsor_id
+    // $User = User::where('id', $sponsor_id)->first();
+    // $User->pins = $pin_array;
+    // $User->save();
+    if($res){
+      Session::flash('success', "Pin generated success and saved");
+      return redirect('Admin/pinsrequest');
+    }
+  }
+  public function deleterequest($id)
+  {
+    $res = pin_request::where('id', $id)->delete();
+    if($res){
+      Session::flash('success', 'Pin request deleted!');
+      return redirect('Admin/pinsrequest');
+    }else{
+      Session::flash('error', 'Pin Request Not deleted!');
+      return redirect('Admin/pinsrequest');
+    }
+  }
   public function sortpins(Request $req)
   {
     $member_id = $req -> post('member_id');
@@ -284,14 +342,34 @@ class AdminController extends Controller
     }
   }
 
-
+  public function searchpins(Request $req)
+  {
+    $id = $this->convert_to_id($req -> post('track_id'));
+    // return $id;
+    $data = pin_request::where('user_id','=',$id)->join('users','pin_requests.user_id','=','users.id')
+    ->get(['pin_requests.*','users.track_id','users.mobile_no']);
+    $count = count($data);
+    return view('Admin/pinsrequest')->with('data',$data)->with('count',$count);
+  }
   public function pinsrequest()
   {
-    return view('Admin/pinsrequest');
+    $data = pin_request::join('users','pin_requests.user_id','=','users.id')
+    ->get(['pin_requests.*','users.track_id','users.mobile_no']);
+    $count = count($data);
+    return view('Admin/pinsrequest')->with('data',$data)->with('count',$count);
   }
   public function memberslist()
   {
-    return view('Admin/memberslist');
+    $data =  DB::table("users as a")
+            ->leftJoin("users as b", function($join){
+              $join->on("a.sponsor_id", "=", "b.id");
+            })
+            ->select("a.*", "b.name as parentname")
+            ->get();
+    // return $data;
+
+    // $data = User::all();
+    return view('Admin/memberslist')->with('data',$data);
   }
   public function get_detail(Request $request)
   {

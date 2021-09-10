@@ -251,6 +251,7 @@
                                                             <table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
                                                                 <tbody>
                                                                     <tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">SI No</th>
                                                                         <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Member ID</th>
                                                                         <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">MemberName</th>
                                                                         <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">PinNumber </th>
@@ -261,16 +262,18 @@
                                                                         <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">TransferDate</th>
                                                                         <th scope="col" style="color:white;background-color:#000000;font-family:verdana;font-size:12px;" align="left">TransferName</th>
                                                                     </tr>
+                                                                    @php $a = 1;  @endphp
                                                                     @foreach ($data as $value)
                                                                     <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;" align="center">
+                                                                        <td>{{$a++}}</td>
                                                                         <td>{{$value -> member_id}}</td>
                                                                         <td>{{$value -> member_name}}</td>
                                                                         <td>{{$value -> pin_no}}</td>
                                                                         <td>{{$value -> used_by}}</td>
-                                                                        <td>{{$value -> issue_date}}</td>
+                                                                        <td>{{\Carbon\Carbon::parse($value->issue_date)->format('d-m-Y')}}</td>
                                                                         <td>{{$value -> product}}</td>
                                                                         <td>{{$value -> transfer_id}}</td>
-                                                                        <td>{{$value -> transfer_date}}</td>
+                                                                        <td>{{\Carbon\Carbon::parse($value->transfer_date)->format('d-m-Y')}}</td>
                                                                         <td>{{$value -> transfer_name}}</td>
                                                                     </tr>
                                                                     @endforeach

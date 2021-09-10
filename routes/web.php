@@ -34,6 +34,10 @@ Route::prefix('Admin')->group(function () {
     Route::post('/issue_post', [AdminController::class, 'issue_post']);
     Route::get('/pinsreport', [AdminController::class, 'pinsreport']);
     Route::post('/pinsreport', [AdminController::class, 'pinsreport_post']);
+    //Search pins
+    Route::post('/searchpins', [AdminController::class, 'searchpins']);
+    Route::get('/issuepin/{id}', [AdminController::class, 'issuepin']);
+    Route::get('/deleterequest/{id}', [AdminController::class, 'deleterequest']);
     //edit and detele for pins routes
     Route::get('/editpins/{id}', [AdminController::class, 'editpins']);
     Route::get('/deletepins/{id}', [AdminController::class, 'deletepins']);
