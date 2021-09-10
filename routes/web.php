@@ -91,12 +91,11 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     Route::any('/change-my-profile', [UserController::class, 'change_my_profile']);
     Route::get('/change-password', [UserController::class, 'change_password']);
     Route::post('/update-password', [UserController::class, 'update_password']);
-    Route::get('/bank-details', [UserController::class, 'bank_details']);
+    Route::any('/bank-details', [UserController::class, 'bank_details']);
     Route::get('/kyc', [UserController::class, 'kyc']);
     Route::post('/kyc', [UserController::class, 'kyc']);
     Route::get('/welcome-letter', [UserController::class, 'welcome_letter']);
-    Route::get('/transfer-pin', [UserController::class, 'transfer_pin']);
-    Route::get('/transfer-pin', [UserController::class, 'transfer_pin']);
+    Route::any('/transfer-pin', [UserController::class, 'transfer_pin']);
     Route::post('/transferpin_show_name', [UserController::class, 'transferpin_show_name']);
     Route::post('/pin_transfer', [UserController::class, 'pin_transfer']);
     Route::post('/transfer_post', [UserController::class, 'transfer_post']);

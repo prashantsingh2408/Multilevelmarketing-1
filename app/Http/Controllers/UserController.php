@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\pin;
-use Illuminate\Http\Request;
-use Session;
 use Auth;
+use Session;
 use Validator;
+use App\Models\kyc;
+use App\Models\pin;
+use App\Models\User;
+use App\Models\bank_detail;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -119,8 +121,30 @@ class UserController extends Controller
        
 
   }
-  public function bank_details()
+  public function bank_details(Request $request)
   {
+
+    if ($request->method() == 'POST') {
+        $user_id = Session::get('id');
+
+      //updateOrCreate
+      $bank_detail = bank_detail::updateOrCreate(
+        ['id' => $user_id],
+        [
+          'bank_name' => 'dsfsd',
+          'branch_name' => $request->branch_name,
+          'ifsc' => $request->ifsc_code,
+          'account_number' => $request->account_no,
+          'account_type' => $request->account_type,
+        ],  
+      );
+
+      if ($bank_detail) {
+          Session::flash('success', 'Bank Details Added Successfully');
+          return redirect('User/bank-details');
+      }
+    }
+
     $id = Session::get('id');
     $result = User::find($id);
     return view('User/bank-details', ['result' => $result]);
@@ -128,8 +152,39 @@ class UserController extends Controller
   public function kyc(Request $request)
   {
     if ($request->method() == 'POST') {
+      //save panfile
       $result = $request->file('panfile');
-      $result->move(base_path('/'), $result->getClientOriginalName());
+      $filename = $result->getClientOriginalName();
+      $result->move(public_path('uploads'), $filename);
+
+      //save adharfile
+      $result = $request->file('adharfile');
+      $filename = $result->getClientOriginalName();
+      $result->move(public_path('uploads'), $filename);
+
+      //save photo
+      $result = $request->file('photofile');
+      $filename = $result->getClientOriginalName();
+      $result->move(public_path('uploads'), $filename);
+
+      //save chequefile
+      $result = $request->file('chequefile');
+      $filename = $result->getClientOriginalName();
+      $result->move(public_path('uploads'), $filename);
+
+      $user_id = Session::get('id');
+
+      $kyc = kyc::updateOrCreate(
+        ['id' => $user_id],
+        [
+          'pan_number' => $request->pan_no,
+          'pan_file' => $filename,
+          'adhar_file' => $filename,
+          'photo' => $filename,
+          'cheque_file' => $filename,
+          'remarks' => $request->remarks
+        ],
+      );
     }
     return view('User/kyc');
   }
@@ -159,21 +214,26 @@ class UserController extends Controller
   public function transfer_pin(Request $req)
   {
 
-    $sponsor_id = $req->member_id;
+    //if post
+    if ($req->method() == 'POST') {
+        $sponsor_id = $req->member_id;
 
-    //convert 'GF100000' to '1'
-    $sponsor_id = $this->convert_to_id($sponsor_id);
+        //convert 'GF100000' to '1'
+        $sponsor_id = $this->convert_to_id($sponsor_id);
 
-    $no_of_pins = $req->no_of_pins;
-    //generate $no_of_pins pins for $sponsor_id random
-    $pin_array = $this->transfer_pins($no_of_pins);
+        $no_of_pins = $req->no_of_pins;
+        //generate $no_of_pins pins for $sponsor_id random
+        $pin_array = $this->transfer_pins($no_of_pins);
 
-    //insert users table where id = $sponsor_id
-    $User = User::where('id', $sponsor_id)->first();
-    $User->pin = $pin_array;
-    $User->save();
-    Session::flash('success', "Pin transfer successfully");
-    return view('User/transferpin', ['pin_array' => $pin_array, 'User' => $User]);
+        //insert users table where id = $sponsor_id
+        $User = User::where('id', $sponsor_id)->first();
+        $User->pin = $pin_array;
+        $User->save();
+        Session::flash('success', "Pin transfer successfully");
+        return view('User/transferpin', ['pin_array' => $pin_array, 'User' => $User]);
+    }
+
+    return view('User/transfer-pin');
   }
   public function  convert_to_id($sponsor_id)
   {
