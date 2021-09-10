@@ -86,10 +86,11 @@ Route::post('User/auth', [UserController::class, 'auth']);
 Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
 
     Route::get('/dashboard', [UserController::class, 'dashboard']);
-    Route::get('/new-registration', [UserController::class, 'new_regisration']);
+    Route::get('/new-registration', [UserController::class, 'new_registration']);
     Route::get('/profile', [UserController::class, 'profile']);
     Route::any('/change-my-profile', [UserController::class, 'change_my_profile']);
     Route::get('/change-password', [UserController::class, 'change_password']);
+    Route::post('/update-password', [UserController::class, 'update_password']);
     Route::get('/bank-details', [UserController::class, 'bank_details']);
     Route::get('/kyc', [UserController::class, 'kyc']);
     Route::post('/kyc', [UserController::class, 'kyc']);
