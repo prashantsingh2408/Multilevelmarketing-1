@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="keywords"
-        content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
     <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
@@ -31,9 +30,9 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/style.css')}}">
     <style>
-    .col-md-2 {
-        padding: 0px 7px !important;
-    }
+        .col-md-2 {
+            padding: 0px 7px !important;
+        }
     </style>
 </head>
 
@@ -103,11 +102,9 @@
                             <div class="header-search">
                                 <div class="main-search morphsearch-search">
                                     <div class="input-group">
-                                        <span class="input-group-prepend search-close"><i
-                                                class="ti-close input-group-text"></i></span>
+                                        <span class="input-group-prepend search-close"><i class="ti-close input-group-text"></i></span>
                                         <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn"><i
-                                                class="ti-search input-group-text"></i></span>
+                                        <span class="input-group-append search-btn"><i class="ti-search input-group-text"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +143,6 @@
                     </div>
                 </div>
             </nav>
-
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
                     @include('User/sidebar')
@@ -197,77 +193,64 @@
                                                             </ul>
                                                         </div>
                                                     </div>
+                                                <form>
                                                     <div class="card-block">
                                                         <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Bank Name*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" value=" {{($result->bank_name)}}"
-                                                                    class="form-control" required
-                                                                    placeholder="Enter The Bank Name">
-                                                            </div>
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Bank Name*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{($result->bank_name)}}" class="form-control" required placeholder="Enter The Bank Name">
+                                                                </div>
                                                         </div>
                                                         <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Account Name*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" value=" {{($result->account_name)}}"
-                                                                    class="form-control" required
-                                                                    placeholder="Enter The Account Name">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Account Name*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{($result->account_name)}}" class="form-control" required placeholder="Enter The Account Name">
+                                                                </div>
+                                                        </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Branch Name*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{($result->branch_name)}}" class="form-control" required placeholder="Enter The Branch Name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Account Type*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{($result->account_type)}}" class="form-control" required placeholder="Enter The Account Type">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Account Number*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{($result->account_no)}}" class="form-control" required placeholder="Enter The Account Number">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>IFSC Code*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" value="{{($result->IFSC)}}" class="form-control" required placeholder="Enter The IFSC Code">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row d-flex justify-content-around">
+                                                                <button class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Update</button>
+                                                                <button class="btn waves-effect waves-light btn-danger" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Reset</button>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Branch Name*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" value=" {{($result->branch_name)}}"
-                                                                    class="form-control" required
-                                                                    placeholder="Enter The Branch Name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Account Type*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" value=" {{($result->account_type)}}"
-                                                                    class="form-control" required
-                                                                    placeholder="Enter The Account Type">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Account Number*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" value="{{($result->account_no)}}"
-                                                                    class="form-control" required
-                                                                    placeholder="Enter The Account Number">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>IFSC Code*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" value="{{($result->IFSC)}}"
-                                                                    class="form-control" required
-                                                                    placeholder="Enter The IFSC Code">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row d-flex justify-content-around">
-                                                            <button class="btn waves-effect waves-light btn-success"
-                                                                style="border-radius:5px;"><i
-                                                                    class="icofont icofont-check-circled"></i>Update</button>
-                                                            <button class="btn waves-effect waves-light btn-danger"
-                                                                style="border-radius:5px;"><i
-                                                                    class="icofont icofont-check-circled"></i>Reset</button>
-                                                        </div>
+                                                        </form>
                                                     </div>
-                                                </div>
+                                               
                                             </div>
                                             <!--  sale analytics end -->
                                         </div>

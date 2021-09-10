@@ -7,6 +7,7 @@ use App\Models\pin;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
+use Validator;
 
 class UserController extends Controller
 {
@@ -97,9 +98,26 @@ class UserController extends Controller
   }
   public function change_password()
   {
-    $id = Session::get('id');
-    $result = User::find($id);
-    return view('User/change-password', ['result' => $result]);
+    return view('User/change-password');
+  }
+  public function update_password(Request $request)
+  {
+    $validated = $request->validate([
+      'current_password' => 'required',
+      'new_password' => 'required|required_with:confirm_password|same:confirm_password',
+    ]);
+       $user_id = Session::get('id');
+       $old = md5($request -> post('current_password'));
+       $new = $request -> post('new_password');
+       $data = User::where('id','=',$user_id)->where('password','=',$old)->get();
+       if (count($data) == 1) {
+         
+       } else {
+         Session::flash('errormsg','Old password not matched!');
+         return redirect('User/change-password');
+       }
+       
+
   }
   public function bank_details()
   {
@@ -152,7 +170,7 @@ class UserController extends Controller
 
     //insert users table where id = $sponsor_id
     $User = User::where('id', $sponsor_id)->first();
-    $User->pins = $pin_array;
+    $User->pin = $pin_array;
     $User->save();
     Session::flash('success', "Pin transfer successfully");
     return view('User/transferpin', ['pin_array' => $pin_array, 'User' => $User]);

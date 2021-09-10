@@ -205,7 +205,7 @@
                                                     {{($result->sponsor_name)}}
                                                     {{($result->sponsor_contact)}}
                                                     {{($result->track_id)}}
-                                                    {{($result->name)}}
+                                                    
                                                     {{($result->dob)}}
                                                     {{($result->gender)}}
                                                     {{($result->marital_status)}}
@@ -231,7 +231,7 @@
                                                                             Details</h4>
                                                                     </div>
                                                                     <div class="form-group row">
-                                                                        <label class="col-sm-6 col-form-label">
+                                                                        <label class="col-sm-6 col-form-label" >
                                                                             <h6>
                                                                                 Sponsor Trackid:
                                                                             </h6>
