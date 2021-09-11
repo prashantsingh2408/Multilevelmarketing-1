@@ -22,8 +22,6 @@ class UserController extends Controller
   {
     return view('User.login');
   }
-
-
   public function auth(Request $request)
   {
     $email = $request->post('email');
@@ -108,18 +106,15 @@ class UserController extends Controller
       'current_password' => 'required',
       'new_password' => 'required|required_with:confirm_password|same:confirm_password',
     ]);
-       $user_id = Session::get('id');
-       $old = md5($request -> post('current_password'));
-       $new = $request -> post('new_password');
-       $data = User::where('id','=',$user_id)->where('password','=',$old)->get();
-       if (count($data) == 1) {
-         
-       } else {
-         Session::flash('errormsg','Old password not matched!');
-         return redirect('User/change-password');
-       }
-       
-
+    $user_id = Session::get('id');
+    $old = md5($request->post('current_password'));
+    $new = $request->post('new_password');
+    $data = User::where('id', '=', $user_id)->where('password', '=', $old)->get();
+    if (count($data) == 1) {
+    } else {
+      Session::flash('errormsg', 'Old password not matched!');
+      return redirect('User/change-password');
+    }
   }
   public function bank_details(Request $request)
   {
@@ -196,8 +191,7 @@ class UserController extends Controller
   {
     return view('User/transferpin');
   }
-
-  public function transferpin_show_name(Request $request)
+   public function transferpin_show_name(Request $request)
   {
     $sponsor_id = $request->sponsor_id;
 
@@ -314,4 +308,49 @@ class UserController extends Controller
   {
     return view('User/rank-level-tree-view-president');
   }
+  public function transaction_report()
+  {
+    return view('User/transaction-report');
+  }
+  public function direct_income()
+  {
+    return view('User/direct-income');
+  }
+  public function level_income()
+  {
+    return view('User/level-income');
+  }
+  public function rank_level_income()
+  {
+    return view('User/rank-level-income');
+  }
+  public function my_rewards()
+  {
+    return view('User/my-rewards');
+  }
+  public function cash_wallet()
+  {
+    return view('User/cash-wallet');
+  }
+  public function payout_report()
+  {
+    return view('User/payout-report');
+  }
+  public function transfer_wallet_amount()
+  {
+    return view('User/transfer-wallet-amount');
+  }
+  public function generate_ticket()
+  {
+    return view('User/generate-ticket');
+  } 
+  public function ticket_list()
+  {
+    return view('User/ticket-list');
+  }
+
+
+  
+
+
 }

@@ -11,24 +11,24 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
-      <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+      <link rel="icon" href="{{ asset('user_assets/img/favicon.png')}}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('user_assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/bootstrap/css/bootstrap.min.css')}}">
     <!-- waves.css -->
-    <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('user_assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/icon/themify-icons/themify-icons.css')}}">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/font-awesome-n.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/font-awesome.min.css')}}">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/jquery.mCustomScrollbar.css')}}">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/style.css')}}">
     <style>
       table {
       table-layout: fixed;
@@ -127,8 +127,8 @@
               <ul class="nav-right">
                 <li class="user-profile header-notification">
                   <a href="#!" class="waves-effect waves-light">
-                    <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
-                    <span>Welcome, Admin</span>
+                    
+                    <span>Welcome, User</span>
                     <i class="ti-angle-down"></i>
                   </a>
                   <ul class="show-notification profile-notification">
@@ -205,76 +205,7 @@
                                       <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Show Details</th>
                                     </tr>
 																		<tr><p>No Records Found</p></tr>
-                                    <!-- <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;" align="center">
-                                      <td>
-                                        1
-                                      </td>
-                                      <td>
-                                        <a target="_blank" href="editprofileadmin.aspx?id=GF100000"> Edit</a>
-                                      </td>
-                                      <td style="font-size:12px;height:30px;" align="left">
-                                        <span id="ContentPlaceHolder1_grd_Label2_0"> GoldenLife Foundation</span>
-                                      </td>
-                                      <td style="font-size:12px;height:30px;" align="left">
-                                        <span id="ContentPlaceHolder1_grd_Label1_0">GF100000</span>
-                                      </td>
-                                      <td style="font-size:12px;height:30px;" align="left">1</td>
-                                      <td style="font-size:12px;height:30px;" align="left">root</td>
-                                      <td style="font-size:12px;height:30px;" align="left">root</td>
-                                      <td style="font-size:12px;height:30px;" align="left">Package 500</td>
-                                      <td style="font-size:12px;height:30px;" align="left">9215310700</td>
-                                      <td style="font-size:12px;height:30px;" align="left">5/17/2021 7:02:05 PM</td>
-                                      <td style="font-size:12px;height:30px;" align="left">
-                                        <span style="font-family:sans-serif;color: #000000;"><input id="ContentPlaceHolder1_grd_chk_0" type="checkbox" name="ctl00$ContentPlaceHolder1$grd$ctl02$chk" checked="checked"></span>
-                                      </td>
-                                      <td></td>
-                                      <td>
-                                        <a href="TopupReport.aspx?id=GF100000">Topup Report</a>
-                                      </td>
-                                      <td style="font-size:12px;height:30px;" align="left">
-                                        <a id="ContentPlaceHolder1_grd_Info_0" href="javascript:openWindow('1');">More Info..</a>
-                                      </td>
-                                      <td>
-                                        <a target="_blank" href="../Member_Login/Dashboard.aspx?adminTrack=GF100000">
-                                        <i class="fa fa-users fa-2x"></i>
-                                        </a>
-                                      </td>
-                                    </tr>
-                                    <tr class="grd" style="color:#284775;background-color:White;border-color:#8B91A0;" align="center">
-                                      <td>
-                                        2
-                                      </td>
-                                      <td>
-                                        <a target="_blank" href="editprofileadmin.aspx?id=GF100001"> Edit</a>
-                                      </td>
-                                      <td style="font-size:12px;height:30px;" align="left">
-                                        <span id="ContentPlaceHolder1_grd_Label2_1"> KULDEEP SINGH CHAUHAN</span>
-                                      </td>
-                                      <td style="font-size:12px;height:30px;" align="left">
-                                        <span id="ContentPlaceHolder1_grd_Label1_1">GF100001</span>
-                                      </td>
-                                      <td style="font-size:12px;height:30px;" align="left">123</td>
-                                      <td style="font-size:12px;height:30px;" align="left">GoldenLife Foundation</td>
-                                      <td style="font-size:12px;height:30px;" align="left">GF100000</td>
-                                      <td style="font-size:12px;height:30px;" align="left">Package 500</td>
-                                      <td style="font-size:12px;height:30px;" align="left">8126996435</td>
-                                      <td style="font-size:12px;height:30px;" align="left">5/18/2021 2:04:12 PM</td>
-                                      <td style="font-size:12px;height:30px;" align="left">
-                                        <span style="font-family:sans-serif;color: #000000;"><input id="ContentPlaceHolder1_grd_chk_1" type="checkbox" name="ctl00$ContentPlaceHolder1$grd$ctl03$chk" checked="checked"></span>
-                                      </td>
-                                      <td>5/18/2021 2:15:52 PM</td>
-                                      <td>
-                                        <a href="TopupReport.aspx?id=GF100001">Topup Report</a>
-                                      </td>
-                                      <td style="font-size:12px;height:30px;" align="left">
-                                        <a id="ContentPlaceHolder1_grd_Info_1" href="javascript:openWindow('2');">More Info..</a>
-                                      </td>
-                                      <td>
-                                        <a target="_blank" href="../Member_Login/Dashboard.aspx?adminTrack=GF100000">
-                                        <i class="fa fa-users fa-2x"></i>
-                                        </a>
-                                      </td>
-                                    </tr> -->
+                                    
 																		<tr class="gridviewPager">
 																			<td colspan="17"><table></table></td>
 																		</tr>
@@ -298,20 +229,20 @@
       </div>
     </div>
     <!-- Required Jquery -->
-    <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/jquery/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/popper.js/popper.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/bootstrap/js/bootstrap.min.js')}}"></script>
     <!-- waves js -->
-    <script src="assets/pages/waves/js/waves.min.js"></script>
+    <script src="{{ asset('user_assets/pages/waves/js/waves.min.js')}}"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
     <!-- slimscroll js -->
-    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="{{ asset('user_assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
     <!-- menu js -->
-    <script src="assets/js/pcoded.min.js"></script>
-    <script src="assets/js/vertical/vertical-layout.min.js"></script>
-    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script src="{{ asset('user_assets/js/pcoded.min.js')}}"></script>
+    <script src="{{ asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/script.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
     <script>

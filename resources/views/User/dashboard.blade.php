@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="keywords"
-        content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
     <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
@@ -31,18 +30,18 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/style.css')}}">
     <style>
-    .col-md-2 {
-        padding: 0px 7px !important;
-    }
+        .col-md-2 {
+            padding: 0px 7px !important;
+        }
 
-    .avatar-preview {
-        display: flex;
-        justify-content: center;
-    }
+        .avatar-preview {
+            display: flex;
+            justify-content: center;
+        }
 
-    .h6 {
-        margin-bottom: 0px !important;
-    }
+        .h6 {
+            margin-bottom: 0px !important;
+        }
     </style>
 </head>
 
@@ -112,11 +111,9 @@
                             <div class="header-search">
                                 <div class="main-search morphsearch-search">
                                     <div class="input-group">
-                                        <span class="input-group-prepend search-close"><i
-                                                class="ti-close input-group-text"></i></span>
+                                        <span class="input-group-prepend search-close"><i class="ti-close input-group-text"></i></span>
                                         <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn"><i
-                                                class="ti-search input-group-text"></i></span>
+                                        <span class="input-group-append search-btn"><i class="ti-search input-group-text"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -214,25 +211,18 @@
                                                                     <div class="box-body box-profile">
                                                                         <div>
                                                                             <div class="avatar-preview">
-                                                                                <img class="profile-user-img img-responsive img-circle"
-                                                                                    id="imagePreview" src="#"
-                                                                                    alt="User profile picture"
-                                                                                    style="height:128px;width:128px;border:1px solid black;">
+                                                                                <img class="profile-user-img img-responsive img-circle" id="imagePreview" src="#" alt="User profile picture" style="height:128px;width:128px;border:1px solid black;">
                                                                             </div>
                                                                             <div class="avatar-upload">
                                                                                 <center>
                                                                                     <div class="avatar-edit">
-                                                                                        <form action="" method="post"
-                                                                                            id="form-image">
-                                                                                            <input type='file'
-                                                                                                id="imageUpload"
-                                                                                                accept=".png, .jpg, .jpeg" /><button>Upload</button>
+                                                                                        <form action="" method="post" id="form-image">
+                                                                                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" /><button>Upload</button>
                                                                                         </form>
                                                                                     </div>
                                                                                 </center>
                                                                             </div>
-                                                                            <ul
-                                                                                class="list-group list-group-unbordered">
+                                                                            <ul class="list-group list-group-unbordered">
                                                                                 <li class="list-group-item">
                                                                                     <h6><b>Name:</b></h6>
                                                                                     <h6 class="pull-right">
@@ -256,8 +246,7 @@
                                                                                     </h6>
                                                                                 </li>
                                                                             </ul>
-                                                                            <a href="#"
-                                                                                class="btn btn-danger btn-block"><b>Click
+                                                                            <a href="#" class="btn btn-danger btn-block"><b>Click
                                                                                     To View Plan</b></a>
                                                                         </div>
                                                                         <!-- /.box-body -->
@@ -268,8 +257,7 @@
                                                             </div>
                                                             <div class=" col-xl-9 col-md-9 col-sm-12">
                                                                 <div class="card">
-                                                                    <div class="row form-group"
-                                                                        style="margin:10px;padding:10px;border:1px solid black;">
+                                                                    <div class="row form-group" style="margin:10px;padding:10px;border:1px solid black;">
                                                                         <div class="col-xl-12 col-md-12 col-sm-12">
                                                                             <div class="row form-group">
                                                                                 <div class="col-xl-5 col-md-5 col-sm-5">
@@ -320,8 +308,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row form-group" style="margin:10px;">
-                                                                        <div class="col-xl-12 col-md-12 col-sm-12"
-                                                                            style="border:1px solid black;padding:0px">
+                                                                        <div class="col-xl-12 col-md-12 col-sm-12" style="border:1px solid black;padding:0px">
                                                                             <table class="table">
                                                                                 <thead class="thead-dark">
                                                                                     <tr>
@@ -332,10 +319,8 @@
                                                                                 </thead>
                                                                                 <tbody>
                                                                                     <tr>
-                                                                                        <td
-                                                                                            style="padding: 10px !important;">
-                                                                                            <textarea
-                                                                                                style="width:100%;height:135px;"></textarea>
+                                                                                        <td style="padding: 10px !important;">
+                                                                                            <textarea style="width:100%;height:135px;"></textarea>
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>

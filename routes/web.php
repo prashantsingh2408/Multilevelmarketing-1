@@ -112,7 +112,18 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     Route::get('/rank-level-view-ceo', [UserController::class, 'rank_level_tree_view_ceo']);
     Route::get('/rank-level-view-vice-president', [UserController::class, 'rank_level_tree_view_vice_president']);
     Route::get('/rank-level-view-president', [UserController::class, 'rank_level_tree_view_president']);
+    Route::get('/transaction-report', [UserController::class, 'transaction_report']);
+    Route::get('/direct-income', [UserController::class, 'direct_income']);
+    Route::get('/level-income', [UserController::class, 'level_income']);
+    Route::get('/rank-level-income', [UserController::class, 'rank_level_income']);
+    Route::get('/my-rewards', [UserController::class, 'my_rewards']);
+    Route::get('/cash-wallet', [UserController::class, 'cash_wallet']);
+    Route::get('/payout-report', [UserController::class, 'payout_report']);
+    Route::get('/transfer-wallet-amount', [UserController::class, 'transfer_wallet_amount']);
+    Route::get('/generate-ticket', [UserController::class, 'generate_ticket']);
+    Route::get('/ticket-list', [UserController::class, 'ticket_list']);
     Route::get('/logout', [UserController::class, 'logout']);
+
 });
 Route::group(['prefix' => 'web'], function () {
     Route::get('/register', [WebController::class, 'index']);
