@@ -134,11 +134,7 @@
 									</div>
 								</div>
 								<hr />
-								<!-- <div class="row">
-									<div class="col-md-12 col-sm-12">
-										<p class="text-inverse text-left m-b-0">Thank you.</p>
-									</div>
-								</div> -->
+								
 							</div>
 						</div>
 					</form>
