@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <head>
     <title>Golden Life Foundation </title>
     <meta charset="utf-8">
@@ -10,29 +11,29 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
-      <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{{ asset('user_assets/img/favicon.png')}}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('user_assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/bootstrap/css/bootstrap.min.css')}}">
     <!-- waves.css -->
-    <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('user_assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/icon/themify-icons/themify-icons.css')}}">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome-n.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/font-awesome-n.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/font-awesome.min.css')}}">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/jquery.mCustomScrollbar.css')}}">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/style.css')}}">
     <style>
-      table {
-      table-layout: fixed;
-      width: 100%;   
-      }
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -127,7 +128,6 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
                                     <span>Welcome, Admin</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -146,7 +146,7 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-									@include('User/sidebar')
+                    @include('User/sidebar')
                     <div class="pcoded-content">
                         <!-- Page-header start -->
                         <div class="page-header">
@@ -194,40 +194,42 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
-																											<div class="form-group row">
-																												<div class="col-xl-12 col-md-12 col-sm-12">
-																												</div>
-																											</div>
-																											<div class="table-responsive-xl" style="padding:0 10px;">
-																												<table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
-																													<tbody>
-																														<tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">S No.</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Amount</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Credit/Debit</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Narration</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Date</th>
-																														</tr>
-																														<tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;" align="center">
-																															<td>1</td>
-																															<td>200</td>
-																															<td>Cr.</td>
-																															<td>Amount transfer to GF100002</td>
-																															<td>7/2/2021 3:15:44 PM </td>
-																														</tr>
-																														<tr class="grd" style="color:#333333;background-color:White;border-color:#8B91A0;" align="center">
-																															<td>1</td>
-																															<td>200</td>
-																															<td>Cr.</td>
-																															<td>Amount transfer to GF100002</td>
-																															<td>7/2/2021 3:15:44 PM </td>
-																														</tr>
-																														<tr class="gridviewPager">
-																															<td colspan="17"><table></table></td>
-																														</tr>
-																													</tbody>
-																												</table>
-																											</div>
+                                                        <div class="form-group row">
+                                                            <div class="col-xl-12 col-md-12 col-sm-12">
+                                                            </div>
+                                                        </div>
+                                                        <div class="table-responsive-xl" style="padding:0 10px;">
+                                                            <table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
+                                                                <tbody>
+                                                                    <tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">S No.</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Amount</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Credit/Debit</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Narration</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Date</th>
+                                                                    </tr>
+                                                                    <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;" align="center">
+                                                                        <td>1</td>
+                                                                        <td>200</td>
+                                                                        <td>Cr.</td>
+                                                                        <td>Amount transfer to GF100002</td>
+                                                                        <td>7/2/2021 3:15:44 PM </td>
+                                                                    </tr>
+                                                                    <tr class="grd" style="color:#333333;background-color:White;border-color:#8B91A0;" align="center">
+                                                                        <td>1</td>
+                                                                        <td>200</td>
+                                                                        <td>Cr.</td>
+                                                                        <td>Amount transfer to GF100002</td>
+                                                                        <td>7/2/2021 3:15:44 PM </td>
+                                                                    </tr>
+                                                                    <tr class="gridviewPager">
+                                                                        <td colspan="17">
+                                                                            <table></table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,30 +247,31 @@
         </div>
     </div>
     <!-- Required Jquery -->
-    <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/jquery/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/popper.js/popper.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/bootstrap/js/bootstrap.min.js')}}"></script>
     <!-- waves js -->
-    <script src="assets/pages/waves/js/waves.min.js"></script>
+    <script src="{{ asset('user_assets/pages/waves/js/waves.min.js')}}"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
     <!-- slimscroll js -->
-    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="{{ asset('user_assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
     <!-- menu js -->
-    <script src="assets/js/pcoded.min.js"></script>
-    <script src="assets/js/vertical/vertical-layout.min.js"></script>
+    <script src="{{ asset('user_assets/js/pcoded.min.js')}}"></script>
+    <script src="{{ asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
 
-    <script type="text/javascript" src="assets/js/script.js"></script>
-		<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/script.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
     <script>
-      let button = document.querySelector("#export");
-      button.addEventListener("click", e => {
-      	let table1 = document.querySelector("#TABLE");
-      	TableToExcel.convert(table1);
-      });
+        let button = document.querySelector("#export");
+        button.addEventListener("click", e => {
+            let table1 = document.querySelector("#TABLE");
+            TableToExcel.convert(table1);
+        });
     </script>
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <head>
     <title>Golden Life Foundation </title>
     <meta charset="utf-8">
@@ -10,7 +11,7 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
-      <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
@@ -28,23 +29,24 @@
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/jquery.mCustomScrollbar.css')}}">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/style.css')}}">
-		<style>
-			.col-md-2{
-				padding:0px 7px !important;
-			}
-			.style5{
-				border:1px dotted black;
-				border-radius:5px !important;
-				padding:10px;
-			}
+    <style>
+        .col-md-2 {
+            padding: 0px 7px !important;
+        }
 
-			#form-tab-col{
-				font-size: 12px; 
-				font-family: Sans-Serif;
-				font-weight: bold;
-				text-align:left;
-			}
-		</style>
+        .style5 {
+            border: 1px dotted black;
+            border-radius: 5px !important;
+            padding: 10px;
+        }
+
+        #form-tab-col {
+            font-size: 12px;
+            font-family: Sans-Serif;
+            font-weight: bold;
+            text-align: left;
+        }
+    </style>
 </head>
 
 <body>
@@ -138,7 +140,7 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    
+
                                     <span>Welcome, Admin</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -157,7 +159,7 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-									@include('User/sidebar')
+                    @include('User/sidebar')
                     <div class="pcoded-content">
                         <!-- Page-header start -->
                         <div class="page-header">
@@ -188,23 +190,23 @@
                                 <div class="page-wrapper">
                                     <!-- Page-body start -->
                                     <div class="page-body">
-																			<div class="form-group row">
-																				<div class="col-xl-3 col-md-3 col-sm-12"></div>
-																				<div class="col-xl-6 col-md-6 col-sm-12" style="width:100%;">
-																					<div id="ContentPlaceHolder1_pnlContents" style="height: 100%; overflow: auto; background: #ffffe1 none repeat scroll 0 0">
-																						<table width="100%" style="border: 2px solid black;text-align:center;">
-																							<tbody>
-																								<tr>
-																									<td>
-																										<table width="100%">
-																											<tbody>
-																												<tr>
-																													<td>
-																														<table width="100%">
-																															<tbody>
-																																<tr>
-																																	<td>
-																																		<center> <img src="{{asset('user_assets/img/logo.png" height="120px"> </center>
+                                        <div class="form-group row">
+                                            <div class="col-xl-3 col-md-3 col-sm-12"></div>
+                                            <div class="col-xl-6 col-md-6 col-sm-12" style="width:100%;">
+                                                <div id="ContentPlaceHolder1_pnlContents" style="height: 100%; overflow: auto; background: #ffffe1 none repeat scroll 0 0">
+                                                    <table width="100%" style="border: 2px solid black;text-align:center;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <table width="100%">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <table width="100%">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>
+                                                                                                    <center> <img src="{{asset('user_assets/img/logo.png" height="120px"> </center>
 																																	</td>
 																																</tr>
 																																<tr>
@@ -299,8 +301,7 @@
 																							</tbody>
 																						</table><center style="padding:10px;">
 																						<button type="button" class="btn btn-success">
-																							<a onclick="return PrintPanel();" id="ContentPlaceHolder1_pnt" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$pnt','')" style="text-decoration:none;">Print Welcome Letter</a>
-																						</button></center>
+																							
 																					</div>
 																				</div>
 																				<div class="col-xl-3 col-md-3 col-sm-12"></div>
@@ -317,21 +318,22 @@
     </div>
     <!-- Required Jquery -->
     <script type="text/javascript" src="{{asset('user_assets/js/jquery/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('user_assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('user_assets/js/popper.js/popper.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('user_assets/js/bootstrap/js/bootstrap.min.js')}}"></script>
-    <!-- waves js -->
-    <script src="{{asset('user_assets/pages/waves/js/waves.min.js')}}"></script>
-    <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="{{asset('user_assets/js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
+                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/popper.js/popper.min.js')}}"></script>
+                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/bootstrap/js/bootstrap.min.js')}}"></script>
+                                                                                                        <!-- waves js -->
+                                                                                                        <script src="{{asset('user_assets/pages/waves/js/waves.min.js')}}"></script>
+                                                                                                        <!-- jquery slimscroll js -->
+                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
-    <!-- slimscroll js -->
-    <script src="{{asset('user_assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+                                                                                                        <!-- slimscroll js -->
+                                                                                                        <script src="{{asset('user_assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
-    <!-- menu js -->
-    <script src="{{asset('user_assets/js/pcoded.min.js')}}"></script>
-    <script src="{{asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
+                                                                                                        <!-- menu js -->
+                                                                                                        <script src="{{asset('user_assets/js/pcoded.min.js')}}"></script>
+                                                                                                        <script src="{{asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
 
-    <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
+                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
 </body>
+
 </html>

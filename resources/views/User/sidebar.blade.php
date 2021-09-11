@@ -221,64 +221,7 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- <li class="pcoded-hasmenu">
-                        <a href="javascript:void(0)" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="fa fa-money"></i><b>BC</b></span>
-                            <span class="pcoded-mtext">Auto Pool Tree Views</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                        <ul class="pcoded-submenu">
-                            <li class=" ">
-                                <a href="auto-pool-tree-views-level1" class="waves-effect waves-dark">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext">Auto Pool Tree Views (Level 1)</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class=" ">
-                                <a href="auto-pool-tree-views-level2" class="waves-effect waves-dark">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext">Auto Pool Tree Views (Level 2)</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class=" ">
-                                <a href="auto-pool-tree-views-level3" class="waves-effect waves-dark">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext">Auto Pool Tree Views (Level 3)</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class=" ">
-                                <a href="auto-pool-tree-views-level4" class="waves-effect waves-dark">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext">Auto Pool Tree Views (Level 4)</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class=" ">
-                                <a href="auto-pool-tree-views-level5" class="waves-effect waves-dark">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext">Auto Pool Tree Views (Level 5)</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class=" ">
-                                <a href="auto-pool-tree-views-level6" class="waves-effect waves-dark">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext">Auto Pool Tree Views (Level 6)</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class=" ">
-                                <a href="auto-pool-tree-views-level7" class="waves-effect waves-dark">
-                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext">Auto Pool Tree Views (Level 7)</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
+                  
                 </ul>
             </li>
         </ul>
