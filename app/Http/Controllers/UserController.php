@@ -46,8 +46,27 @@ class UserController extends Controller
       return redirect('User');
     }
   }
-  public function dashboard()
+  public function dashboard(Request $request) 
   {
+    if ($request->method() == 'POST') {
+      
+      //validation
+      $validator = Validator::make($request->all(), [ 
+        'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+      //save file
+      $image = $request->file('file');
+      $input['picname'] = time().'.'.$image->getClientOriginalExtension();
+      $destinationPath = public_path('/images');
+      $image->move($destinationPath, $input['picname']);
+
+      $user = User::find($request->session()->get('USER_ID'));
+      $user->pic = $input['picname'];
+      $user->save();
+      //save data
+      
+    }
+    
     $id = Session::get('id');
     $result = User::find($id);
     return view('User/dashboard')->with('data', $result);
@@ -185,6 +204,7 @@ class UserController extends Controller
   }
   public function welcome_letter()
   {
+    
     return view('User/welcome-letter');
   }
   public function transferpin()
@@ -215,16 +235,31 @@ class UserController extends Controller
         //convert 'GF100000' to '1'
         $sponsor_id = $this->convert_to_id($sponsor_id);
 
-        $no_of_pins = $req->no_of_pins;
-        //generate $no_of_pins pins for $sponsor_id random
-        $pin_array = $this->transfer_pins($no_of_pins);
+        //if current user pin are enough to transfer to $sponsor_id user
+        //current user form session 
+        $user_id = Session::get('id');
+        //no of pin $user_id have
+        $no_of_pin = Pin::where('member_id', $user_id)->count();
 
+        //pin to trasfer
+        $pin_to_transfer = $req->pin_to_transfer;
+
+        //if no of pin is less than pin to transfer
+        if ($no_of_pin < $pin_to_transfer) {
+            Session::flash('error', 'No of pin is less than pin to transfer');
+            return redirect('User/transferpin');
+        }
+        else{
+            //if no of pin is greater or equal to than pin to transfer
+            //update 'trasfer_pin' column to $sponser_id where member_id = $user_id
+            $pin = Pin::where('member_id', $user_id)
+                      ->update(['transfer_id' => $sponsor_id]);
+                      // ->limit($pin_to_transfer);
+            
+        }
         //insert users table where id = $sponsor_id
-        $User = User::where('id', $sponsor_id)->first();
-        $User->pin = $pin_array;
-        $User->save();
         Session::flash('success', "Pin transfer successfully");
-        return view('User/transferpin', ['pin_array' => $pin_array, 'User' => $User]);
+        return view('User/transfer-pin');  
     }
 
     return view('User/transfer-pin');
@@ -234,15 +269,6 @@ class UserController extends Controller
     $sponsor_id = substr($sponsor_id, 3);
     $sponsor_id = ltrim($sponsor_id, '0');
     return $sponsor_id;
-  }
-  public function transfer_pins($no_of_pins)
-  {
-    $pin_array = array();
-    for ($i = 0; $i < $no_of_pins; $i++) {
-      $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz{}[]$!/+';
-      $pin_array[$i] =  substr(str_shuffle($data), 0, 10);
-    }
-    return $pin_array;
   }
   public function pins_request()
   {

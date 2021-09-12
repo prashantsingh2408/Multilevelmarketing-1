@@ -85,7 +85,7 @@ Route::get('/User', [UserController::class, 'index']);
 Route::post('User/auth', [UserController::class, 'auth']);
 Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
 
-    Route::get('/dashboard', [UserController::class, 'dashboard']);
+    Route::any('/dashboard', [UserController::class, 'dashboard']);
     Route::get('/new-registration', [UserController::class, 'new_registration']);
     Route::get('/profile', [UserController::class, 'profile']);
     Route::any('/change-my-profile', [UserController::class, 'change_my_profile']);
@@ -96,6 +96,8 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     Route::post('/kyc', [UserController::class, 'kyc']);
     Route::get('/welcome-letter', [UserController::class, 'welcome_letter']);
     Route::any('/transfer-pin', [UserController::class, 'transfer_pin']);
+
+
     Route::post('/transferpin_show_name', [UserController::class, 'transferpin_show_name']);
     Route::post('/pin_transfer', [UserController::class, 'pin_transfer']);
     Route::post('/transfer_post', [UserController::class, 'transfer_post']);
