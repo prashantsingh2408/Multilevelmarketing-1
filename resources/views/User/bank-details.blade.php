@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
     <link rel="stylesheet" href="{{asset('user_assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
-    <!-- Required Fremwork -->
+    <!--  Fremwork -->
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/bootstrap/css/bootstrap.min.css')}}">
     <!-- waves.css -->
     <link rel="stylesheet" href="{{asset('user_assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
@@ -193,14 +193,15 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                <form>
+                                                <form action="{{url('User/bank-details')}}" method="post"> 
+                                                @csrf
                                                     <div class="card-block">
                                                         <div class="form-group row">
                                                                 <label class="col-sm-2 col-form-label">
                                                                     <h6>Bank Name*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" value="{{($result->bank_name)}}" class="form-control" required placeholder="Enter The Bank Name">
+                                                                    <input type="text" name='bank_name' value="{{($result->bank_name)}}" class="form-control"  placeholder="Enter The Bank Name">
                                                                 </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -208,7 +209,7 @@
                                                                     <h6>Account Name*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" value="{{($result->account_name)}}" class="form-control" required placeholder="Enter The Account Name">
+                                                                    <input type="text" name='account_name' value="{{($result->account_name)}}" class="form-control"  placeholder="Enter The Account Name">
                                                                 </div>
                                                         </div>
                                                             <div class="form-group row">
@@ -216,7 +217,7 @@
                                                                     <h6>Branch Name*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" value="{{($result->branch_name)}}" class="form-control" required placeholder="Enter The Branch Name">
+                                                                    <input type="text" name='branch_name' value="{{($result->branch_name)}}" class="form-control"  placeholder="Enter The Branch Name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -224,7 +225,7 @@
                                                                     <h6>Account Type*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" value="{{($result->account_type)}}" class="form-control" required placeholder="Enter The Account Type">
+                                                                    <input type="text" name='account_type' value="{{($result->account_type)}}" class="form-control"  placeholder="Enter The Account Type">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -232,7 +233,7 @@
                                                                     <h6>Account Number*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" value="{{($result->account_no)}}" class="form-control" required placeholder="Enter The Account Number">
+                                                                    <input type="text" name='account_no' value="{{($result->account_no)}}" class="form-control"  placeholder="Enter The Account Number">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -240,7 +241,7 @@
                                                                     <h6>IFSC Code*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" value="{{($result->IFSC)}}" class="form-control" required placeholder="Enter The IFSC Code">
+                                                                    <input type="text" name='ifsc_code' value="{{($result->IFSC)}}" class="form-control"  placeholder="Enter The IFSC Code">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row d-flex justify-content-around">
@@ -265,7 +266,7 @@
             </div>
         </div>
     </div>
-    <!-- Required Jquery -->
+    <!--  Jquery -->
     <script type="text/javascript" src="{{asset('user_assets/js/jquery/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('user_assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('user_assets/js/popper.js/popper.min.js')}}"></script>

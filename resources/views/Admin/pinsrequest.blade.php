@@ -175,10 +175,25 @@
                                     <!-- Page-body start -->
                                     <div class="page-body">
                                         <div class="row">
+                                           
                                             <!--  sale analytics start -->
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="card table-card">
                                                     <div class="card-header">
+                                                        <div class="row justify-content-center">
+                                                            @if ($message = Session::get('success'))
+                                                            <div class="col-md-6 alert alert-primary alert-block">
+                                                                <button type="button" class="close" data-dismiss="alert">×</button>    
+                                                                <strong>{{ $message }}</strong>
+                                                            </div>
+                                                            @endif
+                                                            @if ($message = Session::get('error'))
+                                                            <div class="col-md-6 alert alert-danger alert-block">
+                                                                <button type="button" class="close" data-dismiss="alert">×</button>    
+                                                                <strong>{{ $message }}</strong>
+                                                            </div>
+                                                            @endif
+                                                        </div>
                                                         <!-- <h5>Dashboard</h5> -->
                                                         <div class="card-header-right" style="padding:0px;">
                                                             <ul class="list-unstyled card-option">
@@ -192,20 +207,23 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-3 col-form-label">
-                                                                <h6>Enter TrackID:*</h6>
-                                                            </label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" required placeholder="Member ID" style="border-radius:3px;">
+                                                        <form method="post" action="{{url('Admin/searchpins')}}">
+                                                            @csrf
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-3 col-form-label">
+                                                                    <h6>Enter TrackID:*</h6>
+                                                                </label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" name="track_id" class="form-control" required placeholder="Member ID" style="border-radius:3px;">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row d-flex flex-row-reverse">
-                                                            <button type="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;margin:5px;"><i class="icofont icofont-check-circled"></i>Search</button>
-                                                        </div>
+                                                            <div class="form-group row d-flex flex-row-reverse">
+                                                                <button type="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;margin:5px;"><i class="icofont icofont-check-circled"></i>Search</button>
+                                                            </div>
+                                                        </form>
                                                         <div class="row" style="padding:10px;">
                                                             <label class="col-sm-12 col-form-label">
-                                                                <h6>Total Record :0</h6>
+                                                                <h6>Total Record : {{$count}}</h6>
                                                             </label>
                                                             <table class="table table-hover table-bordered" style="text-align:center;" id="TABLE">
                                                                 <thead class="thead-dark">
@@ -220,15 +238,24 @@
                                                                         </th>
                                                                         <th scope="col"><strong id="tabth">Reciept</strong>
                                                                         </th>
+                                                                        <th scope="col"><strong id="tabth">Action</strong>
+                                                                        </th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr>
-                                                                        <td>Mark</td>
-                                                                        <td>Otto</td>
-                                                                        <td>@mdo</td>
-                                                                    </tr>
-                                                                    <tr>
+                                                                    @foreach ($data as $value)
+                                                                        <tr>
+                                                                            <td>{{$value -> track_id}}</td>
+                                                                            <td>{{$value -> mobile_no}}</td>
+                                                                            <td>{{\Carbon\Carbon::parse($value->created_at)->format('d-m-Y')}}</td>
+                                                                            <td>{{$value -> amount}}</td>
+                                                                            <td><a target="_blank" class="btn-sm btn btn-success" href="{{ url('user_assets/upload/') }}/{{$value -> recipt}}">View</a></td>
+                                                                            <td>
+                                                                                <a href="{{ url('Admin/issuepin') }}/{{$value -> id}}" class="btn-sm btn btn-primary text-light">Issue</a>
+                                                                                <a href="{{ url('Admin/deleterequest') }}/{{$value -> id}}"  class="btn-sm btn btn-danger text-light">Delete</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
                                                                 </tbody>
                                                             </table>
                                                         </div>

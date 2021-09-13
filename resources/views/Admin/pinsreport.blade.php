@@ -192,7 +192,7 @@
                                                     </div>
 
                                                     <div class="card-block">
-                                                        <form method="POST" action={{url("Admin/pinsreport")}}>
+                                                        <form method="POST" action={{url("Admin/sortpins")}}>
                                                             @csrf
                                                             <div class="form-group row">
                                                                 <div class="col-xl-6 co-md-12 col-sm-12">
@@ -201,7 +201,7 @@
                                                                             <h6>Enter TrackID:*</h6>
                                                                         </label>
                                                                         <div class="col-sm-9">
-                                                                            <input name="member_id" type="text" class="form-control" placeholder="TackID" style="border-radius:3px;">
+                                                                            <input name="member_id" type="text" class="form-control" required placeholder="TackID" style="border-radius:3px;">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -211,7 +211,15 @@
                                                                             <h6>Enter Name:*</h6>
                                                                         </label>
                                                                         <div class="col-sm-9">
-                                                                            <input type="text" name='name' class="form-control" placeholder="Name" style="border-radius:3px;">
+                                                                            @php
+                                                                            if(Session::has('name')){
+                                                                                $name = Session::get('name');
+                                                                            }else{
+                                                                                $name = '';
+                                                                            }
+
+                                                                            @endphp
+                                                                            <input type="text" name='name' class="form-control" required placeholder="{{  $name  }}" style="border-radius:3px;">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -223,13 +231,10 @@
                                                                             <h6>Select Report Type*</h6>
                                                                         </label>
                                                                         <div class="col-sm-9">
-                                                                            <select name="report" class="form-control">
-                                                                                <option name="showall" value="all">Show
-                                                                                    All</option>
-                                                                                <option name="avail" value="available">
-                                                                                    Available
-                                                                                </option>
-                                                                                <option value="used">Used</option>
+                                                                            <select name="report" class="form-control" required>
+                                                                                <option value="Show All">Show All</option>
+                                                                                <option value="Available">Available</option>
+                                                                                <option value="Used">Used</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -240,15 +245,11 @@
                                                                             <h6>Select Approval*</h6>
                                                                         </label>
                                                                         <div class="col-sm-9">
-                                                                            <select name="approval" class="form-control">
-                                                                                <option value="all">Show All</option>
-                                                                                <option name="wait" value="wait">Wait
-                                                                                </option>
-                                                                                <option name="approvel" value="approved">Approved
-                                                                                </option>
-                                                                                <option name="reject" value="rejected">
-                                                                                    Rejected
-                                                                                </option>
+                                                                            <select name="approval" class="form-control" required>
+                                                                                <option value=''>Show All</option>
+                                                                                <option value="Wait">Wait</option>
+                                                                                <option value="Approved">Approved</option>
+                                                                                <option value="Rejected">Rejected</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -261,11 +262,9 @@
                                                                             <h6>Select Product*</h6>
                                                                         </label>
                                                                         <div class="col-sm-9">
-                                                                            <select name="select" class="form-control">
-                                                                                <option value="product">Select Product
-                                                                                </option>
-                                                                                <option value="Package 500">Package 500
-                                                                                </option>
+                                                                            <select name="package" class="form-control" required>
+                                                                                <option value=''>Select Product</option>
+                                                                                <option value="Package 500">Package 500</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -276,13 +275,13 @@
                                                                             <h6>From:*</h6>
                                                                         </label>
                                                                         <div class="col-sm-4">
-                                                                            <input type="date" name='form' class="form-control" placeholder="TrackID" style="border-radius:3px;">
+                                                                            <input type="date" name='from' class="form-control" required style="border-radius:3px;">
                                                                         </div>
                                                                         <label class="col-sm-2 col-form-label">
                                                                             <h6>To:*</h6>
                                                                         </label>
                                                                         <div class="col-sm-4">
-                                                                            <input type="date" name='to' class="form-control" placeholder="TrackID" style="border-radius:3px;">
+                                                                            <input type="date" name='to' class="form-control" required style="border-radius:3px;">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -293,10 +292,24 @@
                                                                     </button>
                                                                 </div>
                                                             </div>
-
+                                                        </form>
+                                                            <div class="row p-3 justify-content-center">
+                                                                    @if ($message = Session::get('success'))
+                                                                    <div class="col-md-6 alert alert-primary alert-block">
+                                                                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </div>
+                                                                    @endif
+                                                                    @if ($message = Session::get('error'))
+                                                                    <div class="col-md-6 alert alert-danger alert-block">
+                                                                        <button type="button" class="close" data-dismiss="alert">×</button>    
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </div>
+                                                                    @endif
+                                                            </div>
                                                             <div class="row" style="padding:10px;">
                                                                 <label class="col-sm-12 col-form-label">
-                                                                    <h6>Total Record :0</h6>
+                                                                    <h6>Total Record :{{$count}}</h6>
                                                                 </label>
                                                                 <table class="table table-hover table-bordered" style="text-align:center;" id="TABLE">
                                                                     <thead class="thead-dark">
@@ -332,9 +345,6 @@
                                                                             <th scope="col"><strong id="tabth">Transfer
                                                                                     Date</strong>
                                                                             </th>
-                                                                            <th scope="col"><strong id="tabth">Used
-                                                                                    By</strong>
-                                                                            </th>
                                                                             <th scope="col"><strong id="tabth">Status
                                                                                 </strong>
                                                                             </th>
@@ -345,27 +355,50 @@
 
                                                                     </thead>
                                                                     <tbody>
-                                                                        @foreach($data as $item)
+
+                                                                        @if(Session::has('show'))
+                                                                        @foreach($Users as $item)
                                                                         <tr>
                                                                             <td>{{$item->id}}</td>
                                                                             <td>{{$item->member_id}}</td>
                                                                             <td>{{$item->member_name}}</td>
-                                                                            <td>{{$item->pin}}</td>
-                                                                            <td>{{$item->issued_date}}</td>
-                                                                            <td>{{$item->product_name}}</td>
-                                                                            <td>{{$item->used_by}}</td>
-                                                                            <td>{{$item->transfer_to}}</td>
-                                                                            <td>{{$item->member_name_transfer}}</td>
-                                                                            <td>{{$item->transfer_date}}</td>
-                                                                            <td>{{$item->used_by_transfer}}</td>
-                                                                            <td>{{$item->status}}</td>
+                                                                            <td>{{$item->pin_no}}</td>
+                                                                            <td>{{$item->issue_date ?? 'null'}}</td>
+                                                                            <td>{{$item->product ?? 'null' }}</td>
+                                                                            <td>{{$item->used_by ?? 'null' }}</td>
+                                                                            <td>{{$item->transfer_id ?? 'null' }}</td>
+                                                                            <td>{{$item->transfer_name ?? 'null' }}</td>
+                                                                            <td>{{$item->transfer_date ?? 'null' }}</td>
+                                                                            <td>{{$item->approvel_status ?? 'null' }}</td>
                                                                             <td>
                                                                                 <a href="{{url('Admin/editpins',$item->id)}}" class="btn btn-success btn-sm">Edit</a>
                                                                                 <a href="{{url('Admin/deletepins',$item->id)}}" class="btn btn-danger btn-sm">Delete</a>
                                                                             </td>
                                                                         </tr>
+                                                                        @endforeach
+                                                                        @else
+                                                                        @foreach($Users as $item)
+                                                                        <tr>
+                                                                            <td>{{$item->id}}</td>
+                                                                            <td>{{$item->member_id}}</td>
+                                                                            <td>{{$item->member_name}}</td>
+                                                                            <td>{{$item->pin_no}}</td>
+                                                                            <td>{{$item->issue_date ?? 'null'}}</td>
+                                                                            <td>{{$item->product ?? 'null' }}</td>
+                                                                            <td>{{$item->used_by ?? 'null' }}</td>
+                                                                            <td>{{$item->transfer_id ?? 'null' }}</td>
+                                                                            <td>{{$item->transfer_name ?? 'null' }}</td>
+                                                                            <td>{{$item->transfer_date ?? 'null' }}</td>
+                                                                            <td>{{$item->approvel_status ?? 'null' }}</td>
+                                                                            <td>
+                                                                                {{-- <a href="{{url('Admin/editpins',$item->id)}}" class="btn btn-success btn-sm">Edit</a> --}}
+                                                                                <a href="{{url('Admin/deletepins',$item->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                                                                            </td>
                                                                         </tr>
                                                                         @endforeach
+                                                                        @endif
+
+
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -374,7 +407,6 @@
                                                                     <button class="btn waves-effect waves-light btn-inverse" id="export" style="border-radius:5px;margin:5px;"><i class="icofont icofont-check-circled"></i>Export</button>
                                                                 </div>
                                                             </div>
-                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

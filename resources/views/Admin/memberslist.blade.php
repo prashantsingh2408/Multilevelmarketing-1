@@ -360,9 +360,9 @@
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Member ID</th>
-                                                                        <th scope="col"
+                                                                        {{-- <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">password</th>
+                                                                            align="left">password</th> --}}
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Sponsor Name</th>
@@ -388,39 +388,41 @@
                                                                             align="left">Info..</th>
                                                                         <th scope="col">Member Login</th>
                                                                     </tr>
+                                                                    @php $a=1; @endphp
+                                                                    @foreach($data as $value)
                                                                     <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
                                                                         align="center">
                                                                         <td>
-                                                                            1
+                                                                            {{$a++}}
                                                                         </td>
                                                                         <td>
                                                                             <a target="_blank"
-                                                                                href="change-my-profile.php"> Edit</a>
+                                                                                href="change-my-profile/{{$value->id}}"> Edit</a>
                                                                         </td>
 
 
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
                                                                             <span id="ContentPlaceHolder1_grd_Label2_0">
-                                                                                GoldenLife Foundation</span>
+                                                                            {{$value->name}}
+                                                                            </span>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
                                                                             <span
-                                                                                id="ContentPlaceHolder1_grd_Label1_0">GF100000</span>
+                                                                                id="ContentPlaceHolder1_grd_Label1_0">{{$value->member_id}}</span>
                                                                         </td>
+                                                                        
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left">1</td>
+                                                                            align="left">{{$value->parentname}}</td>
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left">root</td>
+                                                                            align="left">{{$value->sponsor_id}}</td>
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left">root</td>
+                                                                            align="left">{{$value->product}}</td>
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left">Package 500</td>
+                                                                            align="left">{{$value->mobile_no}}</td>
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left">9215310700</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">5/17/2021 7:02:05 PM</td>
+                                                                            align="left">{{$value->joining_date_from}}</td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
                                                                             <span
@@ -443,65 +445,7 @@
                                                                             </a>
                                                                         </td>
                                                                     </tr>
-                                                                    <tr class="grd"
-                                                                        style="color:#284775;background-color:White;border-color:#8B91A0;"
-                                                                        align="center">
-                                                                        <td>
-                                                                            2
-                                                                        </td>
-                                                                        <td>
-                                                                            <a target="_blank"
-                                                                                href="change-my-profile.php"> Edit</a>
-                                                                        </td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">
-                                                                            <span id="ContentPlaceHolder1_grd_Label2_1">
-                                                                                KULDEEP SINGH CHAUHAN</span>
-                                                                        </td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">
-                                                                            <span
-                                                                                id="ContentPlaceHolder1_grd_Label1_1">GF100001</span>
-                                                                        </td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">123</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">GoldenLife Foundation</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">GF100000</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">Package 500</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">8126996435</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">5/18/2021 2:04:12 PM</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">
-                                                                            <span
-                                                                                style="font-family:sans-serif;color: #000000;"></span>
-                                                                        </td>
-                                                                        <td>5/18/2021 2:15:52 PM</td>
-                                                                        <td>
-                                                                            <a href="topupp">Topup Report</a>
-                                                                        </td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">
-                                                                            <a id="ContentPlaceHolder1_grd_Info_1"
-                                                                                href="javascript:openWindow('2');">More
-                                                                                Info..</a>
-                                                                        </td>
-                                                                        <td>
-                                                                            <a target="_blank"
-                                                                                href="../Member_Login/Dashboard.aspx?adminTrack=GF100000">
-                                                                                <i class="fa fa-users fa-2x"></i>
-                                                                            </a>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="gridviewPager">
-                                                                        <td colspan="17">
-                                                                            <table></table>
-                                                                        </td>
-                                                                    </tr>
+                                                                    @endforeach
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -569,7 +513,7 @@
     </script>
     <script>
     function printData() {
-        var divToPrint = document.getElementById("TABLE");
+        var divToPrint = document.getElementById("ContentPlaceHolder1_grd");
         newWin = window.open("");
         newWin.document.write(divToPrint.outerHTML);
         newWin.print();

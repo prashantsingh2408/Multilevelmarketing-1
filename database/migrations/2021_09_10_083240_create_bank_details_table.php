@@ -15,12 +15,12 @@ class CreateBankDetailsTable extends Migration
     {
         Schema::create('bank_details', function (Blueprint $table) {
             $table->id();
-            $table->string('bank_name');
-            $table->string('account_number');
-            $table->string('branch_name');
-            $table->string('account_type');
-            $table->string('account_no');
-            $table->string('ifsc');
+            $table->string('bank_name')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('branch_name')->nullable();
+            $table->string('account_type')->nullable();
+            $table->string('account_no')->nullable();
+            $table->string('ifsc')->nullable();
             $table->timestamps();
         });
     }
