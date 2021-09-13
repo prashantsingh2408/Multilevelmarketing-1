@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('salutation');
             $table->string('pic');
             $table->string('name');
+            $table->string('pic')->nullable();
             $table->string('email')->nullable();
             $table->string('password')->nullable();
             $table->string('mobile_no')->nullable();
@@ -45,6 +46,7 @@ class CreateUsersTable extends Migration
             $table->string('relationship')->nullable();
             $table->string('s_name')->nullable();
             $table->string('dob')->nullable();
+            $table->string('gardian')->nullable();
             $table->timestamps();
         });
     }

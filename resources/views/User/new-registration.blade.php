@@ -7,33 +7,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="keywords"
-        content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('admin_assets/img/favicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('user_assets/img/favicon.png') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="{{ asset('admin_assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('user_assets/pages/waves/css/waves.min.css') }}" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/bootstrap/css/bootstrap.min.css') }}">
     <!-- waves.css -->
-    <link rel="stylesheet" href="{{ asset('admin_assets/pages/waves/css/waves.min.css')}}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('user_assets/pages/waves/css/waves.min.css') }}" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/icon/themify-icons/themify-icons.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/icon/themify-icons/themify-icons.css') }}">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/font-awesome-n.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/font-awesome-n.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/font-awesome.min.css') }}">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/jquery.mCustomScrollbar.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/jquery.mCustomScrollbar.css') }}">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('user_assets/css/style.css') }}">
     <style>
-    table {
-        table-layout: fixed;
-        width: 100%;
-    }
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -103,11 +102,9 @@
                             <div class="header-search">
                                 <div class="main-search morphsearch-search">
                                     <div class="input-group">
-                                        <span class="input-group-prepend search-close"><i
-                                                class="ti-close input-group-text"></i></span>
+                                        <span class="input-group-prepend search-close"><i class="ti-close input-group-text"></i></span>
                                         <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn"><i
-                                                class="ti-search input-group-text"></i></span>
+                                        <span class="input-group-append search-btn"><i class="ti-search input-group-text"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +146,7 @@
             </nav>
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-                    @include('Admin/sidebar')
+                    @include('User/sidebar')
                     <div class="pcoded-content">
                         <!-- Page-header start -->
                         <div class="page-header">
@@ -199,35 +196,17 @@
                                                     </div>
                                                     <div class="card-block">
                                                         <div class="table-responsive-xl" style="padding:0 10px;">
-                                                            <table class="table  table-inline" rules="all"
-                                                                id="ContentPlaceHolder1_grd"
-                                                                style="width:100%;border-collapse:collapse;"
-                                                                cellspacing="0" cellpadding="4" border="1">
+                                                            <table class="table  table-inline" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
                                                                 <tbody>
-                                                                    <tr style="color:White;background-color:#000000;font-weight:bold;"
-                                                                        align="center">
+                                                                    <tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
                                                                         <th scope="col">Sr. No</th>
-                                                                        <th scope="col"
-                                                                            style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Sponsor ID</th>
-                                                                        <th scope="col"
-                                                                            style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Sponsor Name</th>
-                                                                        <th scope="col"
-                                                                            style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Full Name</th>
-                                                                        <th scope="col"
-                                                                            style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Mobile Number</th>
-                                                                        <th scope="col"
-                                                                            style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Email</th>
-                                                                        <th scope="col"
-                                                                            style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Payment Status</th>
-                                                                        <th scope="col"
-                                                                            style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Edit</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor ID</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor Name</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Full Name</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Mobile Number</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Email</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Payment Status</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Edit</th>
                                                                     </tr>
                                                                     @foreach($User as $item)
                                                                     <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
@@ -296,41 +275,41 @@
         </div>
     </div>
     <!-- Required Jquery -->
-    <script type="text/javascript" src="{{ asset('admin_assets/js/jquery/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('admin_assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('admin_assets/js/popper.js/popper.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('admin_assets/js/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/popper.js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- waves js -->
-    <script src="{{ asset('admin_assets/pages/waves/js/waves.min.js')}}"></script>
+    <script src="{{ asset('user_assets/pages/waves/js/waves.min.js') }}"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="{{ asset('admin_assets/js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
     <!-- slimscroll js -->
-    <script src="{{ asset('admin_assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+    <script src="{{ asset('user_assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <!-- menu js -->
-    <script src="{{ asset('admin_assets/js/pcoded.min.js')}}"></script>
-    <script src="{{ asset('admin_assets/js/vertical/vertical-layout.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('admin_assets/js/script.js')}}"></script>
+    <script src="{{ asset('user_assets/js/pcoded.min.js') }}"></script>
+    <script src="{{ asset('user_assets/js/vertical/vertical-layout.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('user_assets/js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
     <script>
-    let button = document.querySelector("#export");
-    button.addEventListener("click", e => {
-        let table1 = document.querySelector("#ContentPlaceHolder1_grd");
-        TableToExcel.convert(table1);
-    });
+        let button = document.querySelector("#export");
+        button.addEventListener("click", e => {
+            let table1 = document.querySelector("#ContentPlaceHolder1_grd");
+            TableToExcel.convert(table1);
+        });
     </script>
     <script>
-    function printData() {
-        var divToPrint = document.getElementById("TABLE");
-        newWin = window.open("");
-        newWin.document.write(divToPrint.outerHTML);
-        newWin.print();
-        newWin.close();
-    }
+        function printData() {
+            var divToPrint = document.getElementById("TABLE");
+            newWin = window.open("");
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
+        }
 
-    $('#print').on('click', function() {
-        printData();
-    })
+        $('#print').on('click', function() {
+            printData();
+        })
     </script>
 </body>
 

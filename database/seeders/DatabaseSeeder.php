@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PinsTableSeeder::class);
         $this->call(TdsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(BankDetailsTableSeeder::class);
+        $this->call(KycsTableSeeder::class);
+        $this->call(PinRequestsTableSeeder::class);
     }
 }

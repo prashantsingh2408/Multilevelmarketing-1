@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <head>
     <title>Golden Life Foundation </title>
     <meta charset="utf-8">
@@ -10,7 +11,7 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
-      <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
@@ -28,11 +29,11 @@
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/jquery.mCustomScrollbar.css')}}">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/style.css')}}">
-		<style>
-			.col-md-2{
-				padding:0px 7px !important;
-			}
-		</style>
+    <style>
+        .col-md-2 {
+            padding: 0px 7px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -126,8 +127,8 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                   
-                                    <span>Welcome, Admin</span>
+
+                                    <span>Welcome, User</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -145,7 +146,7 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-									@include('User/sidebar')
+                    @include('User/sidebar')
                     <div class="pcoded-content">
                         <!-- Page-header start -->
                         <div class="page-header">
@@ -192,39 +193,50 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="card-block">
-																											<div class="form-group row">
-																													<label class="col-sm-2 col-form-label"><h6>Select Product To Generate Pin*:</h6></label>
-																													<div class="col-sm-10">
-																															<select name="select" class="form-control" required>
-																																	<option value="opt1">Select Product</option>
-																																	<option value="opt2">Package 500</option>
-																															</select>
-																													</div>
-																											</div>
-																											<div class="form-group row">
-																													<label class="col-sm-2 col-form-label"><h6>Enter Number Of Pins To Generate*:</h6></label>
-																													<div class="col-sm-10">
-																															<input type="text" class="form-control" required placeholder="Enter Number Of Pins To Generate">
-																													</div>
-																											</div>
-																											<div class="form-group row">
-																													<label class="col-sm-2 col-form-label"><h6>Receipt*:</h6></label>
-																													<div class="col-sm-10">
-																															<input type="file" class="form-control" required>
-																													</div>
-																											</div>
-																											<div class="form-group row">
-																													<label class="col-sm-2 col-form-label"><h6>Amount*:</h6></label>
-																													<div class="col-sm-10">
-																															<input type="text" class="form-control" required placeholder="Rs.">
-																													</div>
-																											</div>
-																											<div class="form-group row" style="display:grid;place-items:center;">
-																												<button class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Request Pin</button>
-																											</div>
-                                                    </div>
-                                                </div>
+                                                    <form action="{{ url('User/pin-request') }}" method="POST">
+                                                    @csrf
+                                                        <div class="card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Select Product To Generate Pin*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <select name="select" class="form-control" required>
+                                                                        <option value="opt1">Select Product</option>
+                                                                        <option value="opt2">Package 500</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Enter Number Of Pins To Generate*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" required placeholder="Enter Number Of Pins To Generate">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Receipt*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="file" class="form-control" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Amount*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" required placeholder="Rs.">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row" style="display:grid;place-items:center;">
+                                                                <button action="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Request Pin</button>
+                                                            </div>
+                                                        </div>
+                                                     </div>
+                                                </form>
                                             </div>
                                             <!--  sale analytics end -->
                                         </div>
@@ -258,4 +270,5 @@
 
     <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
 </body>
+
 </html>
