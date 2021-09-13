@@ -172,18 +172,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <!-- <span>Welcome,
-                            User</span>
-                        <i class="ti-angle-down"></i>
-                        </a>
-                        <ul class="show-notification profile-notification">
-                            <li class="waves-effect waves-light">
-                                <a href={{ url('User/logout') }}>
-                                    <i class="ti-layout-sidebar-left"></i>
-                                    Logout
-                                </a>
-                            </li>
-                        </ul> -->
+
                         </li>
                         </ul>
                     </div>
@@ -348,7 +337,7 @@
                                                                                                             <tr>
                                                                                                                 <td id="form-tab-col ">
                                                                                                                     Date
-                                                                                                                    Of
+                                                                                                                    of
                                                                                                                     Joining:
                                                                                                                 </td>
                                                                                                                 <td id="form-tab-col ">

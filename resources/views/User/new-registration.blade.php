@@ -208,8 +208,6 @@
                                                                         <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Payment Status</th>
                                                                         <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Edit</th>
                                                                     </tr>
-<<<<<<< HEAD
-=======
                                                                     @foreach($User as $item)
                                                                     <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
                                                                         align="center">
@@ -256,7 +254,6 @@
                                                                         </td>
                                                                     </tr>
                                                                     @endforeach
->>>>>>> cba20ef2a3d5b31894f69990f21517d0ad68a9c3
 
                                                                 </tbody>
                                                             </table>

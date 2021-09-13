@@ -118,13 +118,14 @@ class UserController extends Controller
     return view('User/change-my-profile', ['result' => $result]);
   }
 
-    public function new_regisration()
+    public function new_registration()
   {
     $id = Session::get('id');
     $res = User::find($id);
     $result = User::where('sponsor_id','=',$res->member_id)->get();
     return view('User/new-registration')->with('User', $result);
   }
+
   public function change_password()
   {
     return view('User/change-password');
