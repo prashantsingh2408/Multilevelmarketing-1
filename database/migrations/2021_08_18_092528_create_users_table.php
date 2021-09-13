@@ -15,6 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('salutation');
+            $table->string('pic');
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('password')->nullable();
@@ -26,14 +28,11 @@ class CreateUsersTable extends Migration
             $table->string('product')->nullable();
             $table->string('joining_date_from')->nullable();
             $table->string('joining_date_to')->nullable();
-            $table->string('block_member')->nullable();
-            $table->string('unblock_member')->nullable();
             $table->string('activation_date_to')->nullable();
             $table->string('activation_date_from')->nullable();
             $table->string('top_up')->nullable();
             $table->string('referal_link')->nullable();
             $table->string('status')->nullable();
-            $table->string('pins')->nullable();
             $table->string('gender')->nullable();
             $table->string('marital_status')->nullable();
             $table->string('pincode')->nullable();

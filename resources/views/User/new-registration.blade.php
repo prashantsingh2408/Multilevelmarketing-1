@@ -255,7 +255,7 @@
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
                                                                             <span id="ContentPlaceHolder1_grd_Label1_0">
-                                                                                Foundation</span>
+                                                                                {{$item->name}}</span>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left"> {{$item->mobile_no}}</td>

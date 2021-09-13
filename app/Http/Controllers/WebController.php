@@ -23,9 +23,6 @@ class WebController extends Controller
             'confirm_password' => 'required',
         ]);
 
-        //create random sponserid
-        $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz{}[]$!/+';
-        $rendom_pin  = substr(str_shuffle($data), 0, 10);
         $mid = User::max('id');
         // return $mid+1;
         if($mid < 10){
@@ -38,7 +35,7 @@ class WebController extends Controller
             $member_id = 'GF1' . "00" . $mid+1;
         }
         $User = new User();
-        $User->track_id = $rendom_pin;
+        $User->track_id = $member_id;
         $User->member_id = $member_id;
         $User->sponsor_id = $request->sponsor_id;
         $User->sponsor_name = $request->sponsor_name;
@@ -48,12 +45,14 @@ class WebController extends Controller
         $User->top_up = "no";
         $User -> joining_date_from=date('d-m-Y H:i:s');
         $User->email = $request->email;
-        $User->password = $request->password;
+        $User->password = md5($request->password);
         $User->save();
         return redirect('User');
     }
     public function edit($id)
     {
+        // return $id;
+        // return User::find($id);
         return view('User/edit_user')->with('data',User::find($id));
     }
     public function update(Request $req)
@@ -62,7 +61,6 @@ class WebController extends Controller
         $id = $req -> post('pid');
         $sponser_id = $req -> post('sponser_id');
         $member_id = $req -> post('member_id');
-        $new_member_id = $req -> post('new_member_id');
         $data = User::find($id);
         // return $member_id;
         
@@ -70,11 +68,11 @@ class WebController extends Controller
              $result =  DB::table('users') 
              ->where('id', $id)
              ->limit(1) 
-             ->update(['member_id'=>$new_member_id,'activation_date_from'=>date('d-m-Y H:i:s')]);
+             ->update(['status'=>'Active','activation_date_from'=>date('d-m-Y H:i:s')]);
              if($result){
-                 return view('User/edit_user')->with('message','User Activated successfully!');
+                 return redirect('User/new-registration')->with('message','User Activated successfully!');
              }else{
-                 return view('User/edit_user')->with('error','User Not Activated!');
+                 return redirect('User/new-registration')->with('error','User Not Activated!');
              }
         }else{
             return "No";

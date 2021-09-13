@@ -96,20 +96,19 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="row m-b-20">
+                                {{-- <div class="row m-b-20">
                                     <div class="col-md-12">
                                         <h6 class="text-left"><u>Assign New Member ID</u></h6>
                                     </div>
 
-                                </div>
+                                </div> --}}
                                 <div class="form-group form-primary">
-                                    <input type="text" name="new_member_id" 
+                                    {{-- <input type="text" name="new_member_id" 
                                         class="form-control">
-                                    <span class="form-bar"></span>
-                                    {{-- <label class="float-label">User ID</label> --}}
-                                    @error('new_member_id')
+                                    <span class="form-bar"></span> --}}
+                                    {{-- @error('new_member_id')
                                         <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                    @enderror --}}
                                 </div>
                                 {{-- <div class="row m-t-30">
 									<div class="col-md-12 text-center">

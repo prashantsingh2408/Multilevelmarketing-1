@@ -44,10 +44,11 @@ Route::prefix('Admin')->group(function () {
     Route::get('/pinsrequest', [AdminController::class, 'pinsrequest']);
     Route::get('/memberslist', [AdminController::class, 'memberslist']);
     Route::post('/get_detail', [AdminController::class, 'get_detail']);
-    Route::get('/topup', [AdminController::class, 'topup']);
     Route::get('/topup_2', [AdminController::class, 'topup-2']);
     Route::get('/member-profile', [AdminController::class, 'member_profile']);
-    Route::get('/change-my-profile', [AdminController::class, 'change_my_profile']);
+    Route::get('/change-my-profile/{id}', [AdminController::class, 'change_my_profile']);
+    Route::get('/topupreport/{id}', [AdminController::class, 'topupreport']);
+    Route::post('/update_user_profile', [AdminController::class, 'update_user_profile']);
     Route::get('/manage-member', [AdminController::class, 'manage_member']);
     Route::get('/total-member', [AdminController::class, 'total_member']);
     Route::get('/welcome-letter', [AdminController::class, 'welcome_letter']);
@@ -79,6 +80,8 @@ Route::prefix('Admin')->group(function () {
     Route::get('/news', [AdminController::class, 'news']);
     Route::get('/volunteer-details', [AdminController::class, 'volunteer_details']);
     Route::get('/popup', [AdminController::class, 'popup']);
+    Route::post('/blockUser', [AdminController::class, 'blockUser']);
+    
     Route::get('/logout', [AdminController::class, 'logout']);
 });
 Route::get('/User', [UserController::class, 'index']);

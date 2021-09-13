@@ -264,30 +264,16 @@
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Description</th>
                                                                     </tr>
-                                                                    <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                        align="center">
-                                                                        <td>GF100001</td>
-                                                                        <td>Package 500</td>
-                                                                        <td>500</td>
-                                                                        <td>lVB1Y0neqg</td>
-                                                                        <td>5/18/2021 2:15:52 PM</td>
-                                                                        <td>Activated by GF100001</td>
-                                                                    </tr>
-                                                                    <tr class="grd"
-                                                                        style="color:#333333;background-color:White;border-color:#8B91A0;"
-                                                                        align="center">
-                                                                        <td>GF100001</td>
-                                                                        <td>Package 500</td>
-                                                                        <td>500</td>
-                                                                        <td>lVB1Y0neqg</td>
-                                                                        <td>5/18/2021 2:15:52 PM</td>
-                                                                        <td>Activated by GF100001</td>
-                                                                    </tr>
-                                                                    <tr class="gridviewPager">
-                                                                        <td colspan="17">
-                                                                            <table></table>
-                                                                        </td>
-                                                                    </tr>
+                                                                    @foreach ($data as $value)
+                                                                        <tr class="grd" style="color:#333333;background-color:White;border-color:#8B91A0;" align="center">
+                                                                            <td>GF100001</td>
+                                                                            <td>Package 500</td>
+                                                                            <td>500</td>
+                                                                            <td>lVB1Y0neqg</td>
+                                                                            <td>5/18/2021 2:15:52 PM</td>
+                                                                            <td>Activated by GF100001</td>
+                                                                        </tr>
+                                                                    @endforeach
                                                                 </tbody>
                                                             </table>
                                                         </div>
