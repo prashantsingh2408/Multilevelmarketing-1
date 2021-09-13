@@ -22,18 +22,7 @@ class UserController extends Controller
   {
     return view('User.login');
   }
-<<<<<<< HEAD
-=======
-  
-  public function new_regisration()
-  {
-    $id = Session::get('id');
-    $res = User::find($id);
-    $result = User::where('sponsor_id','=',$res->member_id)->get();
-    return view('User/new-registration')->with('User', $result);
-  }
-  
->>>>>>> cba20ef2a3d5b31894f69990f21517d0ad68a9c3
+
   public function auth(Request $request)
   {
     $email = $request->post('email');
@@ -58,6 +47,7 @@ class UserController extends Controller
       return redirect('User');
     }
   }
+
   public function dashboard(Request $request) 
   {
     if ($request->method() == 'POST') {
@@ -83,17 +73,21 @@ class UserController extends Controller
     $result = User::find($id);
     return view('User/dashboard')->with('data', $result);
   }
+
   public function logout()
   {
     Session::forget('user', false);
     return view('User/login');
   }
+
+
   public function profile()
   {
     $id = Session::get('id');
     $result = User::find($id);
     return view('User/profile', ['result' => $result]);
   }
+
   public function change_my_profile(Request $request)
   {
     if ($request->method() == 'POST') {
@@ -123,14 +117,19 @@ class UserController extends Controller
     $result = User::find($id);
     return view('User/change-my-profile', ['result' => $result]);
   }
-  public function new_registration()
+
+    public function new_regisration()
   {
-    return view('User/new-registration');
+    $id = Session::get('id');
+    $res = User::find($id);
+    $result = User::where('sponsor_id','=',$res->member_id)->get();
+    return view('User/new-registration')->with('User', $result);
   }
   public function change_password()
   {
     return view('User/change-password');
   }
+
   public function update_password(Request $request)
   {
     $validated = $request->validate([
@@ -147,6 +146,7 @@ class UserController extends Controller
       return redirect('User/change-password');
     }
   }
+
   public function bank_details(Request $request)
   {
 
@@ -175,6 +175,7 @@ class UserController extends Controller
     $result = User::find($id);
     return view('User/bank-details', ['result' => $result]);
   }
+
   public function kyc(Request $request)
   {
     if ($request->method() == 'POST') {
@@ -239,8 +240,7 @@ class UserController extends Controller
 
   public function transfer_pin(Request $req)
   {
-
-    //if post
+     //if post
     if ($req->method() == 'POST') {
         $sponsor_id = $req->member_id;
 
@@ -273,9 +273,9 @@ class UserController extends Controller
         Session::flash('success', "Pin transfer successfully");
         return view('User/transfer-pin');  
     }
-
     return view('User/transfer-pin');
   }
+
   public function  convert_to_id($sponsor_id)
   {
     $sponsor_id = substr($sponsor_id, 3);
