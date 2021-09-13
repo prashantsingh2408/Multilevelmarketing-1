@@ -272,7 +272,9 @@ class UserController extends Controller
   }
   public function pins_request()
   {
-    return view('User/pins-request');
+    $id = Session::get('id');
+    $result = User::find($id);
+    return view('User/pins-request', ['result' => $result]);
   }
   public function pins_report()
   {
@@ -374,9 +376,4 @@ class UserController extends Controller
   {
     return view('User/ticket-list');
   }
-
-
-  
-
-
 }
