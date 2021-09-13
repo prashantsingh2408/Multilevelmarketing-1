@@ -146,7 +146,7 @@
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li class="waves-effect waves-light">
-                                        <a href={{url("User/logout")}}>
+                                        <a href="auth-normal-sign-in.php">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
                                     </li>
@@ -159,7 +159,7 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-                    @include('User/sidebar')
+                    <?php include "sidebar.php"; ?>
                     <div class="pcoded-content">
                         <!-- Page-header start -->
                         <div class="page-header">
@@ -206,107 +206,111 @@
                                                                                         <tbody>
                                                                                             <tr>
                                                                                                 <td>
-                                                                                                    <center> <img src="{{asset('user_assets/img/logo.png" height="120px"> </center>
-																																	</td>
-																																</tr>
-																																<tr>
-																																	<td align="center" style="font-size: 20px; font-weight: bold; font-family: Sans-Serif;">CONGRATULATIONS</td>
-																																</tr>
-																															</tbody>
-																														</table>
-																													</td>
-																												</tr>
-																												<tr>
-																													<td>
-																														<hr>
-																													</td>
-																												</tr>
-																												<tr>
-																													<td style="font-size: 18px" align="center">
-																														Dear <span style="font-weight: bold">KULDEEP SINGH CHAUHAN</span>,<br>                                            
-																														<p></p>
-																													</td>
-																												</tr>
-																												<tr>
-																													<td>
-																														<table width="100%">
-																															<tbody>
-																																<tr>
-																																	<td class="style5">
-																																		<table style="width: 100%; height: 161px;">
-																																			<tbody>
-																																				<tr>
-																																					<td id="form-tab-col">Track ID:</td>
-																																					<td id="form-tab-col">GF100001</td>
-																																				</tr>
-																																				<tr>
-																																					<td id="form-tab-col">Member Name:</td>
-																																					<td id="form-tab-col"> KULDEEP SINGH CHAUHAN</td>
-																																				</tr>
-																																				<tr>
-																																					<td id="form-tab-col">Address:</td>
-																																					<td id="form-tab-col"> </td>
-																																				</tr>
-																																				<tr>
-																																					<td id="form-tab-col">City:</td>
-																																					<td id="form-tab-col"> </td>
-																																				</tr>
-																																				<tr>
-																																					<td id="form-tab-col">District:</td>
-																																					<td id="form-tab-col"> </td>
-																																				</tr>
-																																				<tr>
-																																					<td id="form-tab-col">State:</td>
-																																					<td id="form-tab-col"> </td>
-																																				</tr>
-																																				<tr>
-																																					<td id="form-tab-col">Sponsored By:</td>
-																																					<td id="form-tab-col"> </td>
-																																				</tr>
-																																				<tr>
-																																					<td id="form-tab-col">Date Of Joining:</td>
-																																					<td id="form-tab-col"> </td>
-																																				</tr>
-																																				<tr>
-																																					<td id="form-tab-col">Membership:</td>
-																																					<td id="form-tab-col"> </td>
-																																				</tr>
-																																			</tbody>
-																																		</table>
-																																	</td>
-																																</tr>
-																															</tbody>
-																														</table>
-																													</td>
-																												</tr>
-																												<tr>
-																													<td align="center" style="font-size: 16px;width:100%;">                                            
-																													<hr>
-																													We appreciate your decision in choosing your opportunity.With your enthusiasm and support of your sponsor. You will achieve financial freedom.<br>
-																													<span style="font-size: 13px"><b>Note:</b> This is computer generated document,no need of stamp or signature.</span>
-																												</tr>
-																												<tr>
-																													<td>                                            
-																														<br><b>THANKS &amp; REGARDS</b><br>PRESIDENT<br>Global Life Foundation<br>www.goldenlifefoundation.in</td>
-																												</tr>
-																												<tr>
-																													<td>
-																														<hr>
-																													</td>
-																												</tr>
-																											</tbody>
-																										</table>
-																									</td>
-																								</tr>
-																							</tbody>
-																						</table><center style="padding:10px;">
-																						<button type="button" class="btn btn-success">
-																							
-																					</div>
-																				</div>
-																				<div class="col-xl-3 col-md-3 col-sm-12"></div>
-																			</div>
-																		</div>
+                                                                                                    <center> <img src="{{asset('user_assets/img/logo.png')}}" height="120px"> </center>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td align="center" style="font-size: 20px; font-weight: bold; font-family: Sans-Serif;">CONGRATULATIONS</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <hr>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="font-size: 18px" align="center">
+                                                                                    Dear <span style="font-weight: bold">KULDEEP SINGH CHAUHAN</span>,<br>
+                                                                                    <p></p>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <table width="100%">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td class="style5">
+                                                                                                    <table style="width: 100%; height: 161px;">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td id="form-tab-col">Track ID:</td>
+                                                                                                                <td id="form-tab-col">GF100001</td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td id="form-tab-col">Member Name:</td>
+                                                                                                                <td id="form-tab-col"> KULDEEP SINGH CHAUHAN</td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td id="form-tab-col">Address:</td>
+                                                                                                                <td id="form-tab-col"> </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td id="form-tab-col">City:</td>
+                                                                                                                <td id="form-tab-col"> </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td id="form-tab-col">District:</td>
+                                                                                                                <td id="form-tab-col"> </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td id="form-tab-col">State:</td>
+                                                                                                                <td id="form-tab-col"> </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td id="form-tab-col">Sponsored By:</td>
+                                                                                                                <td id="form-tab-col"> </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td id="form-tab-col">Date Of Joining:</td>
+                                                                                                                <td id="form-tab-col"> </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td id="form-tab-col">Membership:</td>
+                                                                                                                <td id="form-tab-col"> </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="center" style="font-size: 16px;width:100%;">
+                                                                                    <hr>
+                                                                                    We appreciate your decision in choosing your opportunity.With your enthusiasm and support of your sponsor. You will achieve financial freedom.<br>
+                                                                                    <span style="font-size: 13px"><b>Note:</b> This is computer generated document,no need of stamp or signature.</span>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <br><b>THANKS &amp; REGARDS</b><br>PRESIDENT<br>Global Life Foundation<br>www.goldenlifefoundation.in
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <hr>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <center style="padding:10px;">
+                                                        <button type="button" class="btn btn-success">
+                                                            <a onclick="return PrintPanel();" id="ContentPlaceHolder1_pnt" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$pnt','')" style="text-decoration:none;">Print Welcome Letter</a>
+                                                        </button>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-md-3 col-sm-12"></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="styleSelector"> </div>
                             </div>
@@ -318,22 +322,22 @@
     </div>
     <!-- Required Jquery -->
     <script type="text/javascript" src="{{asset('user_assets/js/jquery/jquery.min.js')}}"></script>
-                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
-                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/popper.js/popper.min.js')}}"></script>
-                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/bootstrap/js/bootstrap.min.js')}}"></script>
-                                                                                                        <!-- waves js -->
-                                                                                                        <script src="{{asset('user_assets/pages/waves/js/waves.min.js')}}"></script>
-                                                                                                        <!-- jquery slimscroll js -->
-                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+    <script type="text/javascript" src="{{asset('user_assets/js/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('user_assets/js/popper.js/popper.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('user_assets/js/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!-- waves js -->
+    <script src="{{asset('user_assets/pages/waves/js/waves.min.js')}}"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{{asset('user_assets/js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
-                                                                                                        <!-- slimscroll js -->
-                                                                                                        <script src="{{asset('user_assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+    <!-- slimscroll js -->
+    <script src="{{asset('user_assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
-                                                                                                        <!-- menu js -->
-                                                                                                        <script src="{{asset('user_assets/js/pcoded.min.js')}}"></script>
-                                                                                                        <script src="{{asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
+    <!-- menu js -->
+    <script src="{{asset('user_assets/js/pcoded.min.js')}}"></script>
+    <script src="{{asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
 
-                                                                                                        <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
+    <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
 </body>
 
 </html>

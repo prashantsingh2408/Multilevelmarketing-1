@@ -26,8 +26,6 @@ class CreateUsersTable extends Migration
             $table->string('product')->nullable();
             $table->string('joining_date_from')->nullable();
             $table->string('joining_date_to')->nullable();
-            $table->string('block_member')->nullable();
-            $table->string('unblock_member')->nullable();
             $table->string('activation_date_to')->nullable();
             $table->string('activation_date_from')->nullable();
             $table->string('top_up')->nullable();
@@ -46,6 +44,7 @@ class CreateUsersTable extends Migration
             $table->string('relationship')->nullable();
             $table->string('s_name')->nullable();
             $table->string('dob')->nullable();
+            $table->string('gardian')->nullable();
             $table->timestamps();
         });
     }
