@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-    <meta name="author" content="Codedthemes"/>
+    <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
     <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
     <!-- Google font-->
@@ -193,47 +193,50 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Select Product To Generate Pin*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <select name="select" class="form-control" required>
-                                                                    <option value="opt1">Select Product</option>
-                                                                    <option value="opt2">Package 500</option>
-                                                                </select>
+                                                    <form action="{{ url('User/pin-request') }}" method="POST">
+                                                    @csrf
+                                                        <div class="card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Select Product To Generate Pin*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <select name="select" class="form-control" required>
+                                                                        <option value="opt1">Select Product</option>
+                                                                        <option value="opt2">Package 500</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Enter Number Of Pins To Generate*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" required placeholder="Enter Number Of Pins To Generate">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Receipt*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="file" class="form-control" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Amount*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" required placeholder="Rs.">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row" style="display:grid;place-items:center;">
+                                                                <button action="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Request Pin</button>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Enter Number Of Pins To Generate*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required placeholder="Enter Number Of Pins To Generate">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Receipt*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="file" class="form-control" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Amount*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required placeholder="Rs.">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row" style="display:grid;place-items:center;">
-                                                            <button action="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Request Pin</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                     </div>
+                                                </form>
                                             </div>
                                             <!--  sale analytics end -->
                                         </div>

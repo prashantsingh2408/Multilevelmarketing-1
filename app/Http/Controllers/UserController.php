@@ -22,6 +22,18 @@ class UserController extends Controller
   {
     return view('User.login');
   }
+<<<<<<< HEAD
+=======
+  
+  public function new_regisration()
+  {
+    $id = Session::get('id');
+    $res = User::find($id);
+    $result = User::where('sponsor_id','=',$res->member_id)->get();
+    return view('User/new-registration')->with('User', $result);
+  }
+  
+>>>>>>> cba20ef2a3d5b31894f69990f21517d0ad68a9c3
   public function auth(Request $request)
   {
     $email = $request->post('email');

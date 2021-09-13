@@ -208,6 +208,55 @@
                                                                         <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Payment Status</th>
                                                                         <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Edit</th>
                                                                     </tr>
+<<<<<<< HEAD
+=======
+                                                                    @foreach($User as $item)
+                                                                    <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
+                                                                        align="center">
+                                                                        <td>
+                                                                            {{ $loop->iteration }}
+                                                                        </td>
+                                                                        <td style="font-size:12px;height:30px;"
+                                                                            align="left">
+                                                                            <span id="ContentPlaceHolder1_grd_Label2_0">
+                                                                                {{-- @if($item->sponsor_id < 10)
+                                                                                {{ 'GF' . $item->sponsor_id . "00000" }}
+                                                                                @elseif($item->sponsor_id < 100)
+                                                                                    {{ 'GF' . $item->sponsor_id . "0000" }}
+                                                                                    @else
+                                                                                    {{ 'GF' . $item->sponsor_id . "000" }}
+                                                                                    @endif
+                                                                                    {{ 'GF' . $item->sponsor_id . "00000" }}
+                                                                                    --}} {{$item->sponsor_id}} </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a target="_blank"
+                                                                                href="editprofileadmin.aspx?id=GF100000">{{ $item->sponsor_name}}</a>
+                                                                        </td>
+                                                                        <td style="font-size:12px;height:30px;"
+                                                                            align="left">
+                                                                            <span id="ContentPlaceHolder1_grd_Label1_0">
+                                                                                {{$item->name}}</span>
+                                                                        </td>
+                                                                        <td style="font-size:12px;height:30px;"
+                                                                            align="left"> {{$item->mobile_no}}</td>
+                                                                        <td style="font-size:12px;height:30px;"
+                                                                            align="left">{{$item->email}}</td>
+                                                                        <td style="font-size:12px;height:30px;"
+                                                                            align="left">
+                                                                            @if($item->top_up == 'no')
+                                                                            Unpaid
+                                                                            @else
+                                                                            Paid
+                                                                            @endif
+                                                                        </td>
+                                                                        <td style="font-size:12px;height:30px;"
+                                                                            align="left"><a class="btn btn-primary"
+                                                                                href="../web/edit_user/{{$item->id}}">Activate</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    @endforeach
+>>>>>>> cba20ef2a3d5b31894f69990f21517d0ad68a9c3
 
                                                                 </tbody>
                                                             </table>

@@ -3,8 +3,10 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
 <head>
+    <base href="../">
     <title>Golden Life Foundation </title>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="keywords"
@@ -180,6 +182,20 @@
                                 <div class="page-wrapper">
                                     <!-- Page-body start -->
                                     <div class="page-body">
+                                        <div class="row justify-content-center">
+                                            @if ($message = Session::get('success'))
+                                            <div class="col-md-6 alert alert-primary alert-block">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>    
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @endif
+                                            @if ($message = Session::get('error'))
+                                            <div class="col-md-6 alert alert-danger alert-block">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>    
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @endif
+                                        </div>
                                         <div class="row">
                                             <!--  sale analytics start -->
                                             <div class="col-xl-12 col-md-12">
@@ -353,7 +369,6 @@
                                                                     <tr style="color:White;background-color:#000000;font-weight:bold;"
                                                                         align="center">
                                                                         <th scope="col">Sr. No</th>
-                                                                        <th scope="col">Edit</th>
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Full Name</th>
@@ -382,6 +397,7 @@
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Block/Unblock Member</th>
                                                                         <th scope="col">Activation Date</th>
+                                                                        <th scope="col">Edit</th>
                                                                         <th scope="col">Top Up</th>
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
@@ -395,10 +411,7 @@
                                                                         <td>
                                                                             {{$a++}}
                                                                         </td>
-                                                                        <td>
-                                                                            <a target="_blank"
-                                                                                href="change-my-profile/{{$value->id}}"> Edit</a>
-                                                                        </td>
+                                                                       
 
 
                                                                         <td style="font-size:12px;height:30px;"
@@ -414,7 +427,7 @@
                                                                         </td>
                                                                         
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left">{{$value->parentname}}</td>
+                                                                            align="left">{{$value->sponsor_name}}</td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">{{$value->sponsor_id}}</td>
                                                                         <td style="font-size:12px;height:30px;"
@@ -423,18 +436,26 @@
                                                                             align="left">{{$value->mobile_no}}</td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">{{$value->joining_date_from}}</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">
-                                                                            <span
-                                                                                style="font-family:sans-serif;color: #000000;"></span>
+                                                                        <td style="font-size:12px;height:30px;" align="left">
+                                                                            <span style="font-family:sans-serif;color: #000000;">
+                                                                                @if($value -> status == 'Active')
+                                                                                <button type="button" class="btn btn-sm btn-success blockBtn" id="{{$value -> id}}">{{$value -> status}}</button>
+                                                                                @elseif($value -> status == 'Inactive')
+                                                                                <button type="button" class="btn btn-sm btn-danger blockBtn" id="{{$value -> id}}">{{$value -> status}}</button>
+                                                                             @endif
+                                                                            </span>
                                                                         </td>
-                                                                        <td></td>
+                                                                        <td style="font-size:12px;height:30px;"
+                                                                            align="left">{{$value->activation_date_from}}</td>
                                                                         <td>
-                                                                            <a href="topupp">Topup Report</a>
+                                                                            <a class="btn btn-primary btn-sm" target="_blank" href="Admin/change-my-profile/{{$value->id}}"> Edit</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a class="btn btn-info btn-sm" href="{{url('Admin/topupreport')}}/{{$value->id}}">Topup Report</a>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
-                                                                            <a id="ContentPlaceHolder1_grd_Info_0"
+                                                                            <a class="btn btn-primary btn-sm" id="ContentPlaceHolder1_grd_Info_0"
                                                                                 href="javascript:openWindow('1');">More
                                                                                 Info..</a>
                                                                         </td>
@@ -482,6 +503,28 @@
     <script type="text/javascript" src="{{ asset('admin_assets/js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+    <script>
+        $(document).ready(function() {
+          $('.blockBtn').click(function(e) {
+              e.preventDefault();
+              var rowid = $(this).attr('id');
+              $.ajax({
+                type: "POST",
+                data : {id : rowid},
+                url: "Admin/blockUser",
+                dataType: "JSON",
+                headers: {
+			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			    },
+                success: function(data) {
+                   if(data.status == 'success') {
+                    window.location.reload(); 
+                   }
+                }
+              });
+          });
+        });
+    </script>
     <script>
     function sentGF() {
 

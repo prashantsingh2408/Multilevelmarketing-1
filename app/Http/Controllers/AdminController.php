@@ -7,12 +7,33 @@ use App\Models\Pin;
 use App\Models\memberlist;
 use App\Models\pin_request;
 use App\Models\User;
+use App\Models\topup;
+use App\Models\bank_detail;
 use Illuminate\Http\Request;
 use DB;
 use Session;
 
 class AdminController extends Controller
 {
+  public function blockUser(Request $req)
+  {
+    $id = $req -> id;
+    $value = User::find($id);
+    if($value -> status == "Active"){
+     $result = User::where('id','=',$id)
+        ->limit(1) 
+        ->update(['status' => 'Inactive']); 
+    }else{
+     $result = User::where('id','=', $id)
+        ->limit(1) 
+        ->update(['status' => 'Active']);
+    }
+    if($result){
+      return response()->json(['status'=>'success','message'=>"Status Changed!"]);
+    }else{
+      return response()->json(['status'=>'error','error'=>"Status Not Changed!"]);;
+    }
+  }
   /**
    * Display a listing of the resource.
    *
@@ -355,32 +376,35 @@ class AdminController extends Controller
   }
   public function pinsrequest()
   {
+    // return "Hello";
     $data = pin_request::join('users','pin_requests.user_id','=','users.id')
     ->get(['pin_requests.*','users.track_id','users.mobile_no']);
+    // return $data;
     $count = count($data);
     return view('Admin/pinsrequest')->with('data',$data)->with('count',$count);
   }
   public function memberslist()
   {
-    $data =  DB::table("users as a")
-            ->leftJoin("users as b", function($join){
-              $join->on("a.sponsor_id", "=", "b.id");
-            })
-            ->select("a.*", "b.name as parentname")
-            ->get();
-    // return $data;
-
-    // $data = User::all();
-    return view('Admin/memberslist')->with('data',$data);
+    $data =  $id = Session::get('id');
+    $res = User::find($id);
+    $result = User::get();
+    return view('Admin/memberslist')->with('data',$result);
   }
   public function get_detail(Request $request)
   {
     dd($request);
     return view('Admin/memberslist', ['memberlist' => memberlist::all()]);
   }
-  public function topup()
+  public function topupreport($mid)
   {
-    return view('Admin/topup');
+    if ($mid < 10) {
+      $id = 'GF1' . "0000" . $mid;
+    } elseif ($mid < 100) {
+      $id = 'GF1' . "000" . $mid;
+    } else {
+      $id = 'GF1' . "00" . $mid;
+    }
+    return view('Admin/topup')->with('data',topup::where('track_id','=',$id)->get());
   }
   public function topup_2()
   {
@@ -390,9 +414,56 @@ class AdminController extends Controller
   {
     return view('Admin/member-profile');
   }
-  public function change_my_profile()
+  public function change_my_profile($id)
   {
-    return view('Admin/change-my-profiles');
+    $data = User::where('id','=',$id)->join('bank_details','users.id','=','bank_details.user_id')
+    ->get(['users.*','bank_details.*']);
+    // return $data;
+    return view('Admin/edit-profile')->with('data', $data);
+  }
+  public function update_user_profile(Request $request)
+  {
+    $id = $request->post('pid');
+    // return $id;
+    // return $request;
+    $User = new User;
+    $data = [
+      'salutation' => $request->salutation,
+      's_name' => $request->s_name,
+      'guardian' => $request->guardian,
+      'name' => $request->name,
+      'password' => $request->password,
+      'dob' => $request->dob,
+      'gender' => $request->gender,
+      'marital_status' => $request->marital_status,
+      's_name' => $request->s_name,
+      'pan_no' => $request->pan_no,
+      'mobile_no' => $request->mobile,
+      'area' => $request->area,
+      'city' => $request->city,
+      'pincode' => $request->pincode,
+      'adhar_no' => $request->adhar_no,
+      'state' => $request->state,
+      'email' => $request->email,
+      'nominee_name' => $request->nominee,
+      'relationship' => $request->relationship,
+    ];
+    $user_res = User::where('id','=',$id)->update($data);
+    $Bank = new bank_detail;
+    $bank_data = [
+      'bank_name' => $request->bank_name,
+      'account_no' => $request->account_no,
+      'branch_name' => $request->branch_name,
+      'account_type' => $request->accountType,
+      'ifsc' => $request->IFSC,
+    ];
+    $bank_res = bank_detail::where('user_id','=',$id)->update($bank_data);
+    if($user_res && $bank_res){
+        Session::flash('success','User updated!');
+        return redirect('Admin/memberslist');
+    }else{
+        Session::flash('error','User Not updated!');
+    }
   }
   public function manage_member()
   {

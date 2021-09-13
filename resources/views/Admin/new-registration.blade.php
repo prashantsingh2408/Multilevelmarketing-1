@@ -255,7 +255,7 @@
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
                                                                             <span id="ContentPlaceHolder1_grd_Label1_0">
-                                                                                Foundation</span>
+                                                                                {{$item->name}}</span>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left"> {{$item->mobile_no}}</td>
@@ -269,9 +269,16 @@
                                                                             Paid
                                                                             @endif
                                                                         </td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left"><a class="btn btn-primary"
-                                                                                href="../web/edit_user/{{$item->id}}">Activate</a>
+                                                                        <td style="font-size:12px;height:30px;" align="left">
+                                                                            @if ($item->sponsor_id != '' )
+                                                                                
+                                                                            @else
+                                                                                @if ($item->status != 'Active')
+                                                                                    <a class="btn btn-primary" href="../web/edit_user/{{$item->id}}">Activate</a>
+                                                                                @else
+                                                                                    <a class="btn btn-primary disabled" href="../web/edit_user/{{$item->id}}">Activated</a>
+                                                                                @endif
+                                                                            @endif
                                                                         </td>
                                                                     </tr>
                                                                     @endforeach
