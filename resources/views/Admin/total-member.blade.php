@@ -193,81 +193,76 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="card-block">
-																											<div class="form-group row">
-																													<label class="col-sm-2 col-form-label"><h6>Select Product*</h6></label>
-																													<div class="col-sm-10">
-																															<select name="select" class="form-control" required>
-																																	<option value="opt1">Select Any</option>
-																																	<option value="opt2">Package 500</option>
-																															</select>
-																													</div>
-																											</div>
-																											<div class="form-group row">
-																												<div class="col-xl-8 co-md-12 col-sm-12">
-																													<div class="form-group row">
-																														<label class="col-sm-2 col-form-label"><h6>From:*</h6></label>
-																														<div class="col-sm-4">
-																																<input type="date" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
-																														</div>
-																														<label class="col-sm-2 col-form-label"><h6>To:*</h6></label>
-																														<div class="col-sm-4">
-																																<input type="date" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
-																														</div>
-																													</div>
-																												</div>
-																												<div class="col-xl-4 co-md-12 col-sm-12 text-center">
-																													<button class="btn waves-effect waves-light btn-success" style="border-radius:5px;margin:5px;"><i class="icofont icofont-check-circled"></i>Search</button>
-																												</div>
-																											</div>
-																											<div class="form-group row">
-																												<div class="col-xl-12 col-md-12 col-sm-12">
-																												</div>
-																											</div>
-																											<div class="table-responsive-xl" style="padding:0 10px;">
-																												<div class="row" style="flex-wrap:inherit;">
-																													<div class="col-sm-4" style="padding:0px"><h6>Total Users: 0</h6></div>
-																													<div class="col-sm-8" style="display:flex;justify-content:flex-end;padding:0px;"><h6>Total Active Users: 0</h6></div>
-																												</div>
-																												<table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
-																													<tbody>
-																														<tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Track ID</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Name</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor ID</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor Name</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Parent ID</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Parent Name</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Product Name</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">D.O.J.</th>
-																														</tr>
-																														<tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;" align="center">
-																															<td>GF100001</td>
-																															<td>Q3</td>
-																															<td>GF100001</td>
-																															<td>C1</td>
-																															<td>GF100001</td>
-																															<td>C1</td>
-																															<td>Package 500</td>
-																															<td>02 Jul 2021</td>
-																														</tr>
-																														<tr class="grd" style="color:#333333;background-color:White;border-color:#8B91A0;" align="center">
-																															<td>GF100001</td>
-																															<td>Q3</td>
-																															<td>GF100001</td>
-																															<td>C1</td>
-																															<td>GF100001</td>
-																															<td>C1</td>
-																															<td>Package 500</td>
-																															<td>02 Jul 2021</td>
-																														</tr>
-																														<tr class="gridviewPager">
-																															<td colspan="17"><table>
-																															</tbody></table></td>
-																														</tr>
-																													</tbody>
-																												</table>
-																											</div>
+                                                    <div class="card-block">                                
+                                                    <form action="{{url('Admin/memberSearch')}}" method="post">
+                                                        @csrf
+                                                    <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label"><h6>Select Product*</h6></label>
+                                                            <div class="col-sm-10">
+                                                                    <select name="package" class="form-control" required>
+                                                                            <option value="">Select Any</option>
+                                                                            <option value="Package 500">Package 500</option>
+                                                                    </select>
+                                                            </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-xl-8 co-md-12 col-sm-12">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label"><h6>From:*</h6></label>
+                                                                <div class="col-sm-4">
+                                                                        <input type="date" name="from" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
+                                                                </div>
+                                                                <label class="col-sm-2 col-form-label"><h6>To:*</h6></label>
+                                                                <div class="col-sm-4">
+                                                                        <input type="date" name="to" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4 co-md-12 col-sm-12 text-center">
+                                                            <button type="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;margin:5px;"><i class="icofont icofont-check-circled"></i>Search</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                    <div class="form-group row">
+                                                        <div class="col-xl-12 col-md-12 col-sm-12">
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-responsive-xl" style="padding:0 10px;">
+                                                        <div class="row" style="flex-wrap:inherit;">
+                                                            <div class="col-sm-4" style="padding:0px"><h6>Total Users: {{$total}}</h6></div>
+                                                            <div class="col-sm-8" style="display:flex;justify-content:flex-end;padding:0px;"><h6>Total Active Users: {{$count_active}}</h6></div>
+                                                        </div>
+                                                        <table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
+                                                            <tbody>
+                                                                <tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
+                                                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Track ID</th>
+                                                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Name</th>
+                                                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor ID</th>
+                                                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor Name</th>
+                                                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Parent ID</th>
+                                                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Parent Name</th>
+                                                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Product Name</th>
+                                                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">D.O.J.</th>
+                                                                </tr>
+                                                                @foreach ($data as $value)
+                                                                    <tr class="grd" style="color:#333333;background-color:White;border-color:#8B91A0;" align="center">
+                                                                        <td>{{$value -> track_id}}</td>
+                                                                        <td>{{$value -> name}}</td>
+                                                                        <td>{{$value -> sponsor_id}}</td>
+                                                                        <td>{{$value -> sponsor_name}}</td>
+                                                                        <td>{{$value -> sponsor_id}}</td>
+                                                                        <td>{{$value -> sponsor_name}}</td>
+                                                                        <td>{{$value -> product}}</td>
+                                                                        <td>{{$value -> joining_date_from}}</td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                <tr class="gridviewPager">
+                                                                    <td colspan="17"><table>
+                                                                    </tbody></table></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>

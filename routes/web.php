@@ -46,8 +46,13 @@ Route::prefix('Admin')->group(function () {
     Route::post('/get_detail', [AdminController::class, 'get_detail']);
     Route::get('/topup_2', [AdminController::class, 'topup-2']);
     Route::get('/member-profile', [AdminController::class, 'member_profile']);
+    Route::post('/getprofile', [AdminController::class, 'getprofile']);
     Route::get('/change-my-profile/{id}', [AdminController::class, 'change_my_profile']);
-    Route::get('/topupreport/{id}', [AdminController::class, 'topupreport']);
+    Route::get('/topupreport', [AdminController::class, 'topupreport']);
+    Route::post('/searchtopup', [AdminController::class, 'searchtopup']);
+    Route::post('/searchMember', [AdminController::class, 'searchMember']);
+    Route::post('/memberSearch', [AdminController::class, 'memberSearch']);
+    
     Route::post('/update_user_profile', [AdminController::class, 'update_user_profile']);
     Route::get('/manage-member', [AdminController::class, 'manage_member']);
     Route::get('/total-member', [AdminController::class, 'total_member']);

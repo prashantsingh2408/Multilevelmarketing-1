@@ -180,6 +180,20 @@
                                 <div class="page-wrapper">
                                     <!-- Page-body start -->
                                     <div class="page-body">
+                                        <div class="row justify-content-center">
+                                            @if ($message = Session::get('success'))
+                                            <div class="col-md-6 alert alert-primary alert-block">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>    
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @endif
+                                            @if ($message = Session::get('error'))
+                                            <div class="col-md-6 alert alert-danger alert-block">
+                                                <button type="button" class="close" data-dismiss="alert">×</button>    
+                                                <strong>{{ $message }}</strong>
+                                            </div>
+                                            @endif
+                                        </div>
                                         <div class="row">
                                             <!--  sale analytics start -->
                                             <div class="col-xl-12 col-md-12">
@@ -198,6 +212,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
+                                                     <form action="{{url('Admin/searchMember')}}" method="post">
+                                                        @csrf
                                                         <div class="form-group row">
                                                             <div class="col-xl-6 co-md-12 col-sm-12">
                                                                 <div class="form-group row">
@@ -205,7 +221,7 @@
                                                                         <h6>Enter TrackID:*</h6>
                                                                     </label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text" class="form-control" required
+                                                                        <input type="text" name="track_id" class="form-control" required
                                                                             placeholder="TrackID"
                                                                             style="border-radius:3px;">
                                                                     </div>
@@ -217,7 +233,7 @@
                                                                         <h6>Enter Name:*</h6>
                                                                     </label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text" class="form-control" required
+                                                                        <input type="text" name="name" class="form-control" required
                                                                             placeholder="Name"
                                                                             style="border-radius:3px;">
                                                                     </div>
@@ -226,17 +242,18 @@
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-xl-6 col-md-6 col-sm-6 text-center">
-                                                                <button class="btn waves-effect waves-light btn-danger"
+                                                                <button type="reset" class="btn waves-effect waves-light btn-danger"
                                                                     style="border-radius:5px;margin:5px;"><i
                                                                         class="icofont icofont-check-circled"></i>Reset</button>
                                                             </div>
                                                             <div class="col-xl-6 col-md-6 col-sm-6 text-center">
-                                                                <button class="btn waves-effect waves-light btn-success"
+                                                                <button type="submit" class="btn waves-effect waves-light btn-success"
                                                                     style="border-radius:5px;margin:5px;"><i
                                                                         class="icofont icofont-check-circled"></i>Get
                                                                     Details</button>
                                                             </div>
                                                         </div>
+                                                    </form>
                                                         <div class="form-group row"
                                                             style="display:flex;justify-content:space-between;">
                                                             <div class="col-xl-6 col-md-6 col-sm-6 text-center">
@@ -284,71 +301,40 @@
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Edit</th>
                                                                     </tr>
+                                                                    <?php $a = 1; ?>
+                                                                    @foreach($data as $value)
                                                                     <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
                                                                         align="center">
                                                                         <td>
-                                                                            1
+                                                                            {{$a++}}
                                                                         </td>
                                                                         <td>
                                                                             <a target="_blank"
-                                                                                href="editprofileadmin.aspx?id=GF100000">anu</a>
+                                                                                href="editprofileadmin.aspx?id=GF100000">{{$value -> name}}</a>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
                                                                             <span id="ContentPlaceHolder1_grd_Label2_0">
-                                                                                GF100004</span>
+                                                                                {{$value -> track_id}}</span>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
                                                                             <span
-                                                                                id="ContentPlaceHolder1_grd_Label1_0">GoldenLife
-                                                                                Foundation</span>
+                                                                                id="ContentPlaceHolder1_grd_Label1_0">{{$value -> sponsor_name}}</span>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left"> GF100000</td>
+                                                                            align="left">{{$value -> sponsor_id}}</td>
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left">GF100000</td>
+                                                                            align="left">{{$value -> sponsor_id}}</td>
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left"> GoldenLife Foundation</td>
+                                                                            align="left">{{$value -> sponsor_name}}</td>
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left">active</td>
+                                                                            align="left">{{$value -> status}}</td>
                                                                         <td style="font-size:12px;height:30px;"
-                                                                            align="left"><a href="#">Edit Profiles</a>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr class="grd"
-                                                                        style="color:#284775;background-color:White;border-color:#8B91A0;"
-                                                                        align="center">
-                                                                        <td>
-                                                                            2
-                                                                        </td>
-                                                                        <td>
-                                                                            <a target="_blank"
-                                                                                href="editprofileadmin.aspx?id=GF100000">anu</a>
-                                                                        </td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">
-                                                                            <span id="ContentPlaceHolder1_grd_Label2_0">
-                                                                                GF100004</span>
-                                                                        </td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">
-                                                                            <span
-                                                                                id="ContentPlaceHolder1_grd_Label1_0">GoldenLife
-                                                                                Foundation</span>
-                                                                        </td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left"> GF100000</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">GF100000</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left"> GoldenLife Foundation</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left">active</td>
-                                                                        <td style="font-size:12px;height:30px;"
-                                                                            align="left"><a href="#">Edit Profiles</a>
+                                                                            align="left"><a target="_blank" href="{{url('Admin/change-my-profile')}}/{{$value->id}}">Edit Profiles</a>
                                                                         </td>
                                                                     </tr>
+                                                                    @endforeach
                                                                     <tr class="gridviewPager">
                                                                         <td colspan="17">
                                                                             <table>

@@ -397,7 +397,7 @@
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Block/Unblock Member</th>
                                                                         <th scope="col">Activation Date</th>
-                                                                        <th scope="col">Edit</th>
+                                                                        {{-- <th scope="col">Edit</th> --}}
                                                                         <th scope="col">Top Up</th>
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
@@ -447,11 +447,11 @@
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">{{$value->activation_date_from}}</td>
+                                                                        {{-- <td>
+                                                                            <a class="btn btn-primary btn-sm" target="_blank" href="Admin/change-my-profile/"> Edit</a>
+                                                                        </td> --}}
                                                                         <td>
-                                                                            <a class="btn btn-primary btn-sm" target="_blank" href="Admin/change-my-profile/{{$value->id}}"> Edit</a>
-                                                                        </td>
-                                                                        <td>
-                                                                            <a class="btn btn-info btn-sm" href="{{url('Admin/topupreport')}}/{{$value->id}}">Topup Report</a>
+                                                                            <a class="btn btn-info btn-sm" href="{{url('Admin/topupreport')}}">Topup Report</a>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">

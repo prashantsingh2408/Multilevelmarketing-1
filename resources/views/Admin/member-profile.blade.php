@@ -1,3 +1,8 @@
+<?php
+if(isset($data)){
+    foreach ($data as $value){}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -203,6 +208,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
+                                                        <form action="{{url('Admin/getprofile')}}" method="post">
+                                                            @csrf
                                                         <div class="form-group row">
                                                             <div class="col-xl-10 col-md-10 col-sm-10">
                                                                 <div class="form-group row">
@@ -210,31 +217,31 @@
                                                                         <h6>Enter Track ID*:</h6>
                                                                     </label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" class="form-control" required
+                                                                        <input type="text" name="track_id" class="form-control" required
                                                                             placeholder="Enter the Track ID"
                                                                             style="border-radius:3px;">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-2 col-md-2 col-sm-2 text-center">
-                                                                <button class="btn waves-effect waves-light btn-success"
+                                                                <button type="submit" class="btn waves-effect waves-light btn-success"
                                                                     style="border-radius:5px;"><i
                                                                         class="icofont icofont-check-circled"></i>Submit</button>
                                                             </div>
                                                         </div>
+                                                    </form>
                                                         <div class="row" style="padding:10px;">
                                                             <div class="col-xl-1 col-md-1 col-sm-12"></div>
                                                             <div class="col-xl-10 col-md-10 col-sm-12">
                                                                 <div class="card" style="padding:10px;">
                                                                     <div class="form-group row"
                                                                         style="background-color:rgba(136,0,0,0.7);border:1px dotted grey;border-radius:3px;">
-                                                                        <h4 style="margin:auto 5px;color:white;">Sponser
-                                                                            Details</h4>
+                                                                        <h4 style="margin:auto 5px;color:white;">Sponser Details</h4>
                                                                     </div>
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-6 col-form-label">
                                                                             <h6>
-                                                                                Sponsor Trackid:
+                                                                                Sponsor Trackid: @if(isset($data)){{$value -> sponsor_id}} @endif
                                                                             </h6>
                                                                         </label>
                                                                         <div class="col-sm-6">
@@ -246,7 +253,7 @@
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-6 col-form-label">
                                                                             <h6>
-                                                                                Sponsor Name:
+                                                                                Sponsor Name: @if(isset($data)){{$value -> sponsor_name}} @endif
                                                                             </h6>
                                                                         </label>
                                                                         <div class="col-sm-6">
@@ -258,7 +265,7 @@
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-6 col-form-label">
                                                                             <h6>
-                                                                                Sponsor Contact:
+                                                                                Sponsor Contact: @if(isset($data)){{$value -> mobile_no}} @endif
                                                                             </h6>
                                                                         </label>
                                                                         <div class="col-sm-6">
@@ -280,7 +287,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> name}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -292,7 +299,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> dob}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -304,7 +311,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> gender}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -316,7 +323,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> marital_status}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -328,7 +335,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> s_name}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -340,7 +347,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> pincode}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -352,7 +359,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> adhar_no}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -364,7 +371,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> pan_no}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -376,7 +383,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> mobile_no}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -388,7 +395,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> area}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -400,7 +407,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> city}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -412,7 +419,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> state}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -424,7 +431,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> email}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -436,7 +443,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> nominee_name}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -448,7 +455,7 @@
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> relationship}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>

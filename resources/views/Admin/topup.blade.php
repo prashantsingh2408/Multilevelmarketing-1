@@ -201,12 +201,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
+                                                    <form action="{{url('Admin/searchtopup')}}" method="post">
+                                                        @csrf
                                                         <div class="form-group row">
                                                             <label class="col-sm-3 col-form-label">
                                                                 <h6>Enter Member ID:*</h6>
                                                             </label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" required
+                                                                <input type="text" name="member_id" class="form-control" required
                                                                     placeholder="Member ID" style="border-radius:3px;">
                                                             </div>
                                                         </div>
@@ -217,7 +219,7 @@
                                                                         <h6>From:*</h6>
                                                                     </label>
                                                                     <div class="col-sm-4">
-                                                                        <input type="date" class="form-control" required
+                                                                        <input type="date" name="from" class="form-control" required
                                                                             placeholder="TrackID"
                                                                             style="border-radius:3px;">
                                                                     </div>
@@ -225,18 +227,19 @@
                                                                         <h6>To:*</h6>
                                                                     </label>
                                                                     <div class="col-sm-4">
-                                                                        <input type="date" class="form-control" required
+                                                                        <input type="date" name="to" class="form-control" required
                                                                             placeholder="TrackID"
                                                                             style="border-radius:3px;">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-4 co-md-12 col-sm-12 text-center">
-                                                                <button class="btn waves-effect waves-light btn-success"
+                                                                <button type="submit" class="btn waves-effect waves-light btn-success"
                                                                     style="border-radius:5px;margin:5px;"><i
                                                                         class="icofont icofont-check-circled"></i>Search</button>
                                                             </div>
                                                         </div>
+                                                    </form>
                                                         <div class="table-responsive-xl" style="padding:0 10px;">
                                                             <table class="table table-responsive table-bordered"
                                                                 rules="all" id="ContentPlaceHolder1_grd"
@@ -266,14 +269,19 @@
                                                                     </tr>
                                                                     @foreach ($data as $value)
                                                                         <tr class="grd" style="color:#333333;background-color:White;border-color:#8B91A0;" align="center">
-                                                                            <td>GF100001</td>
-                                                                            <td>Package 500</td>
-                                                                            <td>500</td>
-                                                                            <td>lVB1Y0neqg</td>
-                                                                            <td>5/18/2021 2:15:52 PM</td>
-                                                                            <td>Activated by GF100001</td>
+                                                                            <td>{{$value->track_id}}</td>
+                                                                            <td>{{$value->product}}</td>
+                                                                            <td>{{$value->amount}}</td>
+                                                                            <td>{{$value->pin}}</td>
+                                                                            <td>{{$value->created_at}}</td>
+                                                                            <td>{{$value->description}}</td>
                                                                         </tr>
                                                                     @endforeach
+                                                                    <tr class="gridviewPager">
+                                                                        <td colspan="17">
+                                                                            <table></table>
+                                                                        </td>
+                                                                    </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>

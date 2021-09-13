@@ -15,6 +15,14 @@ use Session;
 
 class AdminController extends Controller
 {
+  public function searchtopup(Request $req)
+  {
+    $member_id = $req->post('member_id');
+    $from = date("Y-m-d H:i:s",strtotime($req->post('from')));
+    $to = date("Y-m-d H:i:s",strtotime($req->post('to')));
+    $data = topup::where('track_id','=',$member_id)->where('created_at','>=',$from)->where('created_at','<=',$to)->get();
+    return view('Admin/topup')->with('data',$data);
+  }
   public function blockUser(Request $req)
   {
     $id = $req -> id;
@@ -393,16 +401,9 @@ class AdminController extends Controller
     dd($request);
     return view('Admin/memberslist', ['memberlist' => memberlist::all()]);
   }
-  public function topupreport($mid)
+  public function topupreport()
   {
-    if ($mid < 10) {
-      $id = 'GF1' . "0000" . $mid;
-    } elseif ($mid < 100) {
-      $id = 'GF1' . "000" . $mid;
-    } else {
-      $id = 'GF1' . "00" . $mid;
-    }
-    return view('Admin/topup')->with('data',topup::where('track_id','=',$id)->get());
+    return view('Admin/topup')->with('data',topup::get());
   }
   public function topup_2()
   {
@@ -411,6 +412,11 @@ class AdminController extends Controller
   public function member_profile()
   {
     return view('Admin/member-profile');
+  }
+  public function getprofile(Request $req)
+  {
+    $data = User::where('track_id','=',$req->track_id)->get();
+    return view('Admin/member-profile')->with('data',$data);
   }
   public function change_my_profile($id)
   {
@@ -458,18 +464,40 @@ class AdminController extends Controller
     $bank_res = bank_detail::where('user_id','=',$id)->update($bank_data);
     if($user_res && $bank_res){
         Session::flash('success','User updated!');
-        return redirect('Admin/memberslist');
+        return redirect('Admin/manage-member');
     }else{
         Session::flash('error','User Not updated!');
     }
   }
+  public function searchMember(Request $req)
+  {
+    $track_id = $req -> post('track_id');
+    $name = $req -> post('name');
+    $data = User::where('track_id','=',$track_id)->where('name','=',$name)->get();
+    return view('Admin/manage-member')->with('data',$data);
+  }
+  public function memberSearch(Request $req)
+  {
+    // return $req;
+    $package = $req-> post('package');
+    $from = date("Y-m-d H:i:s",strtotime($req->post('from')));
+    $to = date("Y-m-d H:i:s",strtotime($req->post('to')));
+    $data = User::where('product','=',$package)->where('joining_date_from','>=',$from)->where('joining_date_from','<=',$to)->get();
+    $datas = User::where('status' , '=' , 'Active')->where('product','=',$package)->where('joining_date_from','>=',$from)->where('joining_date_from','<=',$to)->get();
+    return view('Admin/total-member')->with('data', $data)->with('count_active',count($datas))->with('total',count($data));
+  
+  }
+  
   public function manage_member()
   {
-    return view('Admin/manage-member');
+    $data = User::get();
+    return view('Admin/manage-member')->with('data', $data);
   }
   public function total_member()
   {
-    return view('Admin/total-member');
+    $data = User::get();
+    $datas = User::where('status' , '=' , 'Active')->get();
+    return view('Admin/total-member')->with('data', $data)->with('count_active',count($datas))->with('total',count($data));
   }
   public function welcome_letter()
   {
