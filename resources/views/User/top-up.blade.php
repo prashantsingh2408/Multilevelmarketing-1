@@ -134,7 +134,7 @@
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
 
-                                    <span>Welcome, Admin</span>
+                                    <span>Welcome, User</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -249,17 +249,19 @@
                                                                 </h6>
                                                             </label>
                                                             <div class="col-sm-10">
-                                                                <div class="col-sm-10">
-                                                                    <input type="text" class="form-control" required
-                                                                    placeholder="Pin" style="border-radius:3px;">
+                                                                <select name="select" class="form-control" required>
+                                                                    <option value="pins">Select Pins</option>
+                                                                    <option value="opt2">XY44dedyttyv</option>
+                                                                </select>
                                                             </div>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="form-group row"
                                                         style="display:grid;place-items:center;">
-                                                        <button class="btn waves-effect waves-light btn-success"
+                                                        <button action="submit" class="btn waves-effect waves-light btn-success"
                                                             style="border-radius:5px;"><i
-                                                                class="icofont icofont-check-circled"></i>Search</button>
+                                                                class="icofont icofont-check-circled"></i>Topup</button>
                                                     </div>
                                                 </div>
                                             </div>

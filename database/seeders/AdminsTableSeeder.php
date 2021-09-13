@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+
 class AdminsTableSeeder extends Seeder
 {
 
@@ -14,15 +14,24 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-
-        DB::table('admins')->insert([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => md5('admin'),
-        ]);
-
-        // \DB::table('admins')->delete();
         
+
+        \DB::table('admins')->delete();
+        
+        \DB::table('admins')->insert(array (
+            0 => 
+            array (
+                'id' => 1,
+                'name' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => '21232f297a57a5a743894a0e4a801fc3',
+                'mobile_no' => NULL,
+                'role' => NULL,
+                'address' => NULL,
+                'created_at' => NULL,
+                'updated_at' => NULL,
+            ),
+        ));
         
         
     }

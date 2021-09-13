@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="keywords"
-        content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
     <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
@@ -31,9 +30,9 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/style.css')}}">
     <style>
-    .col-md-2 {
-        padding: 0px 7px !important;
-    }
+        .col-md-2 {
+            padding: 0px 7px !important;
+        }
     </style>
 </head>
 
@@ -103,11 +102,9 @@
                             <div class="header-search">
                                 <div class="main-search morphsearch-search">
                                     <div class="input-group">
-                                        <span class="input-group-prepend search-close"><i
-                                                class="ti-close input-group-text"></i></span>
+                                        <span class="input-group-prepend search-close"><i class="ti-close input-group-text"></i></span>
                                         <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn"><i
-                                                class="ti-search input-group-text"></i></span>
+                                        <span class="input-group-append search-btn"><i class="ti-search input-group-text"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -197,47 +194,46 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-
-                                                    <div class="card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Old Password*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="password" value="{{($result->password)}}"
-                                                                    class="form-control" required
-                                                                    placeholder="Enter Old Password">
+                                                    <span class="text-danger">{{Session::get('errormsg')}}</span>
+                                                    <form id="change-password"  method="POST" action="{{url('User/update-password')}}">
+                                                    @csrf
+                                                        <div class="card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Old Password*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="password" name="current_password" class="form-control"  placeholder="Enter Old Password">
+                                                                    @if($errors->has('current_password'))
+                                                                        <div class="error text-danger">{{ $errors->first('current_password') }}</div>
+                                                                    @endif
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>New Password*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="password" value="{{($result->password)}}"
-                                                                    class="form-control" required
-                                                                    placeholder="Enter New Password">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>New Password*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="password" name="new_password" class="form-control"  placeholder="Enter New Password">
+                                                                    @if($errors->has('new_password'))
+                                                                        <div class="error  text-danger">{{ $errors->first('new_password') }}</div>
+                                                                    @endif
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Re-Enter New Password*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="password" class="form-control"
-                                                                    value="{{($result->password)}}" required
-                                                                    placeholder="Re-Enter New Password">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Re-Enter New Password*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="password" name="confirm_password" class="form-control"  placeholder="Re-Enter New Password">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row"
-                                                            style="display:grid;place-items:center;">
-                                                            <button type="submit"
-                                                                class="btn waves-effect waves-light btn-success"
-                                                                style="border-radius:5px;"><i
-                                                                    class="icofont icofont-check-circled"></i>Submit</button>
+                                                            <div class="form-group row" style="display:grid;place-items:center;">
+                                                                <button type="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Submit</button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </form>
                                             </div>
                                             <!--  sale analytics end -->
                                         </div>

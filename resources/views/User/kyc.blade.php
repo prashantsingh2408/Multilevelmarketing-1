@@ -131,7 +131,7 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <span>Welcome, Admin</span>
+                                    <span>Welcome, User</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -198,13 +198,14 @@
                                                         </div>
                                                     </div>
                                                     <form method="POST" action="kyc" enctype='multipart/form-data'>
+                                                        @csrf
                                                         <div class="card-block">
                                                             <div class="form-group row">
                                                                 <label class="col-sm-2 col-form-label">
                                                                     <h6>Pan Number*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" name="pan" class="form-control"
+                                                                    <input type="text" name="pan_no" class="form-control"
                                                                         required placeholder="Enter The Pan Number">
                                                                 </div>
                                                             </div>
@@ -213,7 +214,7 @@
                                                                     <h6>Photo*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="file" name="photo" class="form-control"
+                                                                    <input type="file" name="photofile" class="form-control"
                                                                         required>
                                                                 </div>
                                                             </div>
@@ -249,7 +250,7 @@
                                                                     <h6>Remarks*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <textarea class="form-control" required
+                                                                    <textarea name='remarks' class="form-control" required
                                                                         placeholder="Enter Remark"></textarea>
                                                                 </div>
                                                             </div>

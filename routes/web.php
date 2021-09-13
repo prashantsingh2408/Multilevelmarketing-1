@@ -88,17 +88,19 @@ Route::get('/User', [UserController::class, 'index']);
 Route::post('User/auth', [UserController::class, 'auth']);
 Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
 
-    Route::get('/dashboard', [UserController::class, 'dashboard']);
-    Route::get('/new-registration', [UserController::class, 'new_regisration']);
+    Route::any('/dashboard', [UserController::class, 'dashboard']);
+    Route::get('/new-registration', [UserController::class, 'new_registration']);
     Route::get('/profile', [UserController::class, 'profile']);
     Route::any('/change-my-profile', [UserController::class, 'change_my_profile']);
     Route::get('/change-password', [UserController::class, 'change_password']);
-    Route::get('/bank-details', [UserController::class, 'bank_details']);
+    Route::post('/update-password', [UserController::class, 'update_password']);
+    Route::any('/bank-details', [UserController::class, 'bank_details']);
     Route::get('/kyc', [UserController::class, 'kyc']);
     Route::post('/kyc', [UserController::class, 'kyc']);
     Route::get('/welcome-letter', [UserController::class, 'welcome_letter']);
-    Route::get('/transfer-pin', [UserController::class, 'transfer_pin']);
-    Route::get('/transfer-pin', [UserController::class, 'transfer_pin']);
+    Route::any('/transfer-pin', [UserController::class, 'transfer_pin']);
+
+
     Route::post('/transferpin_show_name', [UserController::class, 'transferpin_show_name']);
     Route::post('/pin_transfer', [UserController::class, 'pin_transfer']);
     Route::post('/transfer_post', [UserController::class, 'transfer_post']);
@@ -115,7 +117,18 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     Route::get('/rank-level-view-ceo', [UserController::class, 'rank_level_tree_view_ceo']);
     Route::get('/rank-level-view-vice-president', [UserController::class, 'rank_level_tree_view_vice_president']);
     Route::get('/rank-level-view-president', [UserController::class, 'rank_level_tree_view_president']);
+    Route::get('/transaction-report', [UserController::class, 'transaction_report']);
+    Route::get('/direct-income', [UserController::class, 'direct_income']);
+    Route::get('/level-income', [UserController::class, 'level_income']);
+    Route::get('/rank-level-income', [UserController::class, 'rank_level_income']);
+    Route::get('/my-rewards', [UserController::class, 'my_rewards']);
+    Route::get('/cash-wallet', [UserController::class, 'cash_wallet']);
+    Route::get('/payout-report', [UserController::class, 'payout_report']);
+    Route::get('/transfer-wallet-amount', [UserController::class, 'transfer_wallet_amount']);
+    Route::get('/generate-ticket', [UserController::class, 'generate_ticket']);
+    Route::get('/ticket-list', [UserController::class, 'ticket_list']);
     Route::get('/logout', [UserController::class, 'logout']);
+
 });
 Route::group(['prefix' => 'web'], function () {
     Route::get('/register', [WebController::class, 'index']);

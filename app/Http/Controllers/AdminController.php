@@ -212,7 +212,9 @@ class AdminController extends Controller
     $Name = User::select('name')
       ->where('id', $sponsor_id)
       ->first();
-
+    if($Name == null) {
+      return json_encode(null);
+    }
     return json_encode($Name);
   }
 

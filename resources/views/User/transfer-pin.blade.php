@@ -197,7 +197,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <form action="{{ url('User/transfer_pin') }}" method="post">
+                                                    <form action="{{ url('User/transfer-pin') }}" method="post">
                                                         @csrf
                                                         <div class="card-block">
                                                             <div class="form-group row">
@@ -208,6 +208,7 @@
                                                                     <input id='sponsor_id' type="text" name='member_id'
                                                                         class="form-control" required
                                                                         placeholder="Enter Track ID">
+                                                                        <p id='show_name'></p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 co-md-12 col-sm-12">
@@ -215,6 +216,7 @@
                                                                     <label class="col-sm-3 col-form-label"
                                                                         style="padding:0px;">
                                                                         <button id='show'
+                                                                            type='button'
                                                                             class="btn waves-effect waves-light btn-inverse"
                                                                             style="border-radius:5px;margin:0 5px;"><i
                                                                                 class="icofont icofont-check-circled"></i>Show</button>
@@ -229,7 +231,7 @@
                                                                     <h6>Select Product*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <select name="select" class="form-control" required>
+                                                                    <select name="select" class="form-control" required disabled>
                                                                         <option value="PACKAGE(500)">PACKAGE(500)
                                                                         </option>
                                                                     </select>
@@ -242,15 +244,27 @@
                                                                 <div class="col-sm-10">
                                                                     <input type="text" name="no_of_pins"
                                                                         class="form-control" required
-                                                                        placeholder="Enter No. Of Pins">
+                                                                        placeholder="Enter No. Of Pins" disabled>
                                                                 </div>
                                                             </div>
+                                                            @if(Session::has('success'))
+                                                            <div class="alert alert-success">
+                                                                {{ Session::get('success') }}
+                                                            </div>
+                                                            @endif
+                                                            @if(Session::has('error'))
+                                                            <div class="alert alert-danger">
+                                                                {{ Session::get('error') }}
+                                                            </div>
+                                                            @endif
                                                             <div class="form-group row"
                                                                 style="display:grid;place-items:center;">
+
+                                                                
                                                                 <button type="submit"
                                                                     class="btn waves-effect waves-light btn-success"
                                                                     style="border-radius:5px;"><i
-                                                                        class="icofont icofont-check-circled"></i>Submit</button>
+                                                                        class="icofont icofont-check-circled"></i>Transfer</button>
                                                             </div>
                                                         </div>
                                                 </div>
@@ -288,5 +302,39 @@
 
     <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
 </body>
+<script>
+    $(document).ready(function() {
+            $('#show').click(function() {
+   
+                sponsor_id = $('#sponsor_id').val();
+                $.ajax({
+                    url: "{{url('Admin/generatepindirects_show_name')}}",
+                    type: 'post',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        sponsor_id: sponsor_id
+                    },
+                    success: function(name) {
+                        if(name == 'null'){
+                            $('#name').html('User not found');
+                            //disable select product
+                            $('input[name=no_of_pins]').prop('disabled', true);
+                            $('select[name=select]').prop('disabled', true);
+                           
+                        }
+                        var obj = JSON.parse(name);
+                        $('#name').html(obj.name);
+                        //enable select product
+                        $('select[name=package]').prop('disabled', false);
+                        //enable select product
+                        $('input[name=no_of_pins]').prop('disabled', false);
+                        //enable select product
+                        $('select[name=select]').prop('disabled', false);
+                    }
+                });
+            });
+        });
+</script>
+
 
 </html>
