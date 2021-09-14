@@ -209,27 +209,19 @@
                                                                         <th scope="col">Product Name</th>
                                                                         <th scope="col">Total Users</th>
                                                                     </tr>
-                                                                    <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                        align="center">
-                                                                        <td>
-                                                                            Package 500
-                                                                        </td>
-                                                                        <td>
-                                                                            <a target="_blank"
-                                                                                href="editprofileadmin.aspx?id=GF100000">67</a>
-                                                                        </td>
-                                                                    </tr>
+                                                                    <?php foreach ($data as $value){}?>
                                                                     <tr class="grd"
                                                                         style="color:#284775;background-color:White;border-color:#8B91A0;"
                                                                         align="center">
                                                                         <td>
-                                                                            Package 500
+                                                                            {{$value -> product_name}}
                                                                         </td>
                                                                         <td>
                                                                             <a target="_blank"
-                                                                                href="editprofileadmin.aspx?id=GF100000">67</a>
+                                                                                href="editprofileadmin.aspx?id=GF100000">{{$count}}</a>
                                                                         </td>
                                                                     </tr>
+                                                                    
                                                                     <tr class="gridviewPager">
                                                                         <td colspan="17">
                                                                             <table></table>
@@ -238,6 +230,8 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
+                                                        <form id="form" value="{{url('Admin/getpackage')}}">
+                                                            @csrf
                                                         <div class="form-group row">
                                                             <div class="col-xl-12 col-md-12 col-sm-12 text-center"
                                                                 style="padding:10px 0;">
@@ -249,25 +243,26 @@
                                                                         <h6>Select Product*:</h6>
                                                                     </label>
                                                                     <div class="col-sm-10">
-                                                                        <select name="select" class="form-control"
+                                                                        <select name="package" class="form-control"
                                                                             required>
                                                                             <option value="product">Select Product
                                                                             </option>
-                                                                            <option value="Package 500">Package 500
-                                                                            </option>
+                                                                            @foreach ($package as $val)
+                                                                               <option value="{{$val -> id}}">{{$val -> product}}</option>
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-2 col-md-2 col-sm-2 text-center">
-                                                                <button class="btn waves-effect waves-light btn-success"
+                                                                <button type="submit" id="btnSubmit" class="btn waves-effect waves-light btn-success"
                                                                     style="border-radius:5px;" id="submit"><i
                                                                         class="icofont icofont-check-circled"></i>Submit</button>
                                                             </div>
-                                                            <div class="table-responsive-xl product-table"
-                                                                style="padding:0 10px;display:none;">
+                                                            <div class="table-responsive-xl product-table details d-none"
+                                                                style="padding:0 10px;">
                                                                 <table class="table table-responsive table-bordered"
-                                                                    rules="all" id="ContentPlaceHolder1_grd"
+                                                                    rules="all" id="table"
                                                                     style="width:100%;border-collapse:collapse;"
                                                                     cellspacing="0" cellpadding="4" border="1">
                                                                     <tbody>
@@ -298,50 +293,6 @@
                                                                                 style="color:White;background-color:#000000;font-family:verdana;font-size:14px;"
                                                                                 align="center">Edit</th>
                                                                         </tr>
-                                                                        <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                            align="center">
-                                                                            <td>
-                                                                                Lorem, ipsum dolor
-                                                                            </td>
-                                                                            <td>
-                                                                                <a target="_blank"
-                                                                                    href="editprofileadmin.aspx?id=GF100000">GF100000</a>
-                                                                            </td>
-                                                                            <td style="font-size:14px;height:30px;"
-                                                                                align="center">
-                                                                                <span
-                                                                                    id="ContentPlaceHolder1_grd_Label2_0">root</span>
-                                                                            </td>
-                                                                            <td style="font-size:14px;height:30px;"
-                                                                                align="center">
-                                                                                <span
-                                                                                    id="ContentPlaceHolder1_grd_Label1_0">root</span>
-                                                                            </td>
-                                                                            <td style="font-size:14px;height:30px;"
-                                                                                align="center">root</td>
-                                                                            <td style="font-size:14px;height:30px;"
-                                                                                align="center">root</td>
-                                                                            <td style="font-size:14px;height:30px;"
-                                                                                align="center">active</td>
-                                                                            <td style="font-size:14px;height:30px;"
-                                                                                align="center">
-                                                                                <a href="details.php">
-                                                                                    <svg aria-hidden="true"
-                                                                                        focusable="false"
-                                                                                        data-prefix="fas"
-                                                                                        data-icon="info-circle"
-                                                                                        class="svg-inline--fa fa-info-circle fa-w-16"
-                                                                                        role="img"
-                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                        viewBox="0 0 512 512"
-                                                                                        style="cursor: pointer;width:30px;">
-                                                                                        <path fill="currentColor"
-                                                                                            d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z">
-                                                                                        </path>
-                                                                                    </svg>
-                                                                                </a>
-                                                                            </td>
-                                                                        </tr>
                                                                         <tr class="grd"
                                                                             style="color:#284775;background-color:White;border-color:#8B91A0;"
                                                                             align="center">
@@ -355,6 +306,7 @@
                                                                 </table>
                                                             </div>
                                                         </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -387,7 +339,29 @@
     <script src="{{ asset('admin_assets/js/vertical/vertical-layout.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('admin_assets/js/script.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js')}}"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('#btnSubmit').click(function(e) {
+            var url = $('#form').attr('value');
+            e.preventDefault();
+            $.ajax({
+               url : url,
+               method : 'POST',
+               data:$('#form').serialize(),
+               dataType : 'JSON',
+               success : function(data){
+                //    console.log(data);
+                    $('.details').removeClass('d-none');
+                    $.each(data, function(key, val){
+                        alert(key);
+                        alert(val.name);
+                    });
+                    // $('#table tr:last').after('<tr><td>'+data.pan_number+'</td><td><img src="/uploads/'+data.photo+'" height="40%" width="40%"></td><td><a href="../uploads/'+data.pan_file+'" target="_blank">View</a></td><td><a href="../uploads/'+data.adhar_file+'" target="_blank">View</a></td><td><a href="../uploads/'+data.cheque_file+'" target="_blank">View</a></td><td>'+data.remarks+'</td></tr>');
+                }
+            });
+            });
+        });
+        </script>
     <script>
     $(document).ready(function() {
         $("#submit").click(function() {

@@ -177,6 +177,10 @@
                                     <!-- Page-body start -->
                                     <div class="page-body">
                                         <div class="row">
+                                            <span class="text-success">{{Session::get('success')}}</span>
+                                            <span class="text-danger">{{Session::get('error')}}</span>
+                                        </div>
+                                        <div class="row">
                                             <!--  sale analytics start -->
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="card table-card">
@@ -193,71 +197,68 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
+                                                        <form action="{{url('Admin/postWelcomeLetter')}}" method="post">
+                                                        @csrf
 														<div class="form-group row">
 																<label class="col-sm-2 col-form-label"><h6>Enter TrackID:*</h6></label>
 																<div class="col-sm-10">
-																		<input type="text" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
+																		<input type="text" name="track_id" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
 																</div>
 														</div>
 														<div class="form-group row">
 																<label class="col-sm-2 col-form-label"><h6>Enter Member Name:*</h6></label>
 																<div class="col-sm-10">
-																		<input type="text" class="form-control" required placeholder="Member Name" style="border-radius:3px;">
+																		<input type="text" name="member_name" class="form-control" required placeholder="Member Name" style="border-radius:3px;">
 																</div>
 														</div>
 														<div class="form-group row">
 																<label class="col-sm-2 col-form-label"><h6>Enter Address:*</h6></label>
 																<div class="col-sm-10">
-																		<input type="text" class="form-control" required placeholder="Address" style="border-radius:3px;">
+																		<input type="text" name="address" class="form-control" required placeholder="Address" style="border-radius:3px;">
 																</div>
 														</div>
 														<div class="form-group row">
 																<label class="col-sm-2 col-form-label"><h6>Enter City:*</h6></label>
 																<div class="col-sm-10">
-																		<select name="select" class="form-control" required>
-																				<option value="opt1">YES</option>
-																		</select>
+                                                                    <input type="text" name="city" class="form-control" required placeholder="City" style="border-radius:3px;">
 																</div>
 														</div>
 														<div class="form-group row">
 																<label class="col-sm-2 col-form-label"><h6>Enter District:*</h6></label>
 																<div class="col-sm-10">
-																		<select name="select" class="form-control" required>
-																				<option value="opt1">YES</option>
-																		</select>
+                                                                    <input type="text" name="district" class="form-control" required placeholder="District" style="border-radius:3px;">
 																</div>
 														</div>
 														<div class="form-group row">
 																<label class="col-sm-2 col-form-label"><h6>Enter State:*</h6></label>
 																<div class="col-sm-10">
-																		<select name="select" class="form-control" required>
-																				<option value="opt1">YES</option>
-																		</select>
+                                                                    <input type="text" name="state" class="form-control" required placeholder="State" style="border-radius:3px;">
 																</div>
 														</div>
 														<div class="form-group row">
 																<label class="col-sm-2 col-form-label"><h6>Sponsored By:*</h6></label>
 																<div class="col-sm-10">
-																		<input type="text" class="form-control" required placeholder="Sponsored By" style="border-radius:3px;">
+																		<input type="text" name="sponsered_by" class="form-control" required placeholder="Sponsored By" style="border-radius:3px;">
 																</div>
 														</div>
 														<div class="form-group row">
 																<label class="col-sm-2 col-form-label"><h6>Date Of Joining:*</h6></label>
 																<div class="col-sm-10">
-																		<input type="date" class="form-control" required placeholder="Date Of Joining" style="border-radius:3px;">
+																		<input type="date" name="doj" class="form-control" required placeholder="Date Of Joining" style="border-radius:3px;">
 																</div>
 														</div>
 														<div class="form-group row">
 																<label class="col-sm-2 col-form-label"><h6>Enter Membership:*</h6></label>
 																<div class="col-sm-10">
-																		<input type="text" class="form-control" required placeholder="Membership" style="border-radius:3px;">
+																		<input type="text" name="membership" class="form-control" required placeholder="Membership" style="border-radius:3px;">
 																</div>
 														</div>
 														<div class="form-group row">
 															<div class="col-xl-12 col-md-12 col-sm-12 d-flex flex-row-reverse">
-																<button class="btn waves-effect waves-light btn-success" style="border-radius:5px;margin:5px;"><i class="icofont icofont-check-circled"></i>Submit</button>
+																<button type="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;margin:5px;"><i class="icofont icofont-check-circled"></i>Submit</button>
 															</div>
 														</div>
+                                                    </form>
                                                     </div>
                                                 </div>
                                             </div>

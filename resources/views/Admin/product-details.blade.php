@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/jquery.mCustomScrollbar.css')}}">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/style.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
     table {
         table-layout: fixed;
@@ -184,6 +185,10 @@
                                             <!--  sale analytics start -->
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="card table-card">
+                                                    <div class="row justify-content-center">
+                                                        <span class="text-success">{{Session::get('message')}}</span>
+                                                        <span class="text-danger">{{Session::get('error')}}</span>
+                                                    </div>
                                                     <div class="card-header">
                                                         <!-- <h5>Dashboard</h5> -->
                                                         <div class="card-header-right" style="padding:0px;">
@@ -239,36 +244,37 @@
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:14px;"
                                                                             align="center">Action</th>
                                                                     </tr>
+                                                                    @foreach ($data as $value)
                                                                     <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
                                                                         align="center">
                                                                         <td>
-                                                                            Package 500
+                                                                            {{$value -> product}}
                                                                         </td>
                                                                         <td>
                                                                             <a target="_blank"
-                                                                                href="editprofileadmin.aspx?id=GF100000">500</a>
+                                                                                href="editprofileadmin.aspx?id=GF100000">{{$value -> investment}}</a>
                                                                         </td>
                                                                         <td style="font-size:14px;height:30px;"
                                                                             align="center">
                                                                             <span
-                                                                                id="ContentPlaceHolder1_grd_Label2_0">500</span>
+                                                                                id="ContentPlaceHolder1_grd_Label2_0">{{$value -> processing_charge}}</span>
                                                                         </td>
                                                                         <td style="font-size:14px;height:30px;"
                                                                             align="center">
                                                                             <span
-                                                                                id="ContentPlaceHolder1_grd_Label1_0">500</span>
+                                                                                id="ContentPlaceHolder1_grd_Label1_0">{{$value -> price}}</span>
                                                                         </td>
                                                                         <td style="font-size:14px;height:30px;"
-                                                                            align="center">500</td>
+                                                                            align="center">{{$value -> point}}</td>
                                                                         <td style="font-size:14px;height:30px;"
-                                                                            align="center">200</td>
+                                                                            align="center">{{$value -> sponser_value}}</td>
                                                                         <td style="font-size:14px;height:30px;"
-                                                                            align="center">10</td>
+                                                                            align="center">{{$value -> bond_value}}</td>
                                                                         <td style="font-size:14px;height:30px;"
-                                                                            align="center">10</td>
+                                                                            align="center">{{$value -> maturity_time}}</td>
                                                                         <td style="font-size:14px;height:30px;"
                                                                             align="center">
-                                                                            <svg aria-hidden="true" focusable="false"
+                                                                            <svg value="{{url('Admin/getproduct')}}" id="{{$value -> id}}" aria-hidden="true" focusable="false"
                                                                                 data-prefix="fas" data-icon="edit"
                                                                                 class="svg-inline--fa fa-edit fa-w-18"
                                                                                 role="img"
@@ -281,14 +287,11 @@
                                                                                     d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z">
                                                                                 </path>
                                                                             </svg>
-                                                                            <a href=""><i class="fas fa-trash-alt fa-2x"
+                                                                            <a href="{{url('Admin/delete_product')}}/{{$value->id}}"><i class="fas fa-trash-alt fa-2x"
                                                                                     style="margin:auto;padding:0 5px"></i></a>
                                                                         </td>
                                                                     </tr>
-                                                                    <tr class="grd"
-                                                                        style="color:#284775;background-color:White;border-color:#8B91A0;"
-                                                                        align="center">
-                                                                    </tr>
+                                                                    @endforeach
                                                                     <tr class="gridviewPager">
                                                                         <td colspan="17">
                                                                             <table></table>
@@ -310,6 +313,8 @@
                                                         <div class="modal fade" id="edit-product" tabindex="-1"
                                                             role="dialog" aria-labelledby="exampleModalCenterTitle"
                                                             aria-hidden="true">
+                                                            <form action="{{url('Admin/update_product')}}" method="post">
+                                                                @csrf
                                                             <div class="modal-dialog modal-dialog-centered"
                                                                 role="document">
                                                                 <div class="modal-content">
@@ -327,7 +332,8 @@
                                                                                 <h6>Enter Product Name:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="text" class="form-control"
+                                                                                <input type="hidden" name="pid" id="pid">
+                                                                                <input type="text" name="product" id="product" class="form-control"
                                                                                     required placeholder="Product-Name"
                                                                                     style="border-radius:3px;">
                                                                             </div>
@@ -337,7 +343,7 @@
                                                                                 <h6>Investment:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input name="investment" id="investment" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Investment"
                                                                                     style="border-radius:3px;">
@@ -348,7 +354,7 @@
                                                                                 <h6>Processing Charge*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input name="processing_charge" id="processing_charge" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Processing Charge"
                                                                                     style="border-radius:3px;">
@@ -359,7 +365,7 @@
                                                                                 <h6>Enter Price*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input name="price" id="price" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Price"
                                                                                     style="border-radius:3px;">
@@ -370,7 +376,7 @@
                                                                                 <h6>Enter Point:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input name="point" id="point" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Point"
                                                                                     style="border-radius:3px;">
@@ -381,7 +387,7 @@
                                                                                 <h6>Enter Sponsor Value:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input name="sponser_value" id="sponser_value" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Sponsor Value"
                                                                                     style="border-radius:3px;">
@@ -392,7 +398,7 @@
                                                                                 <h6>Enter Bond Value:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input name="bond_value" id="bond_value" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Bond Value"
                                                                                     style="border-radius:3px;">
@@ -403,7 +409,7 @@
                                                                                 <h6>Enter Maturity Time:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input name="maturity_time" id="maturity_time" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Maturity Time"
                                                                                     style="border-radius:3px;">
@@ -413,17 +419,19 @@
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close</button>
-                                                                        <button type="button"
-                                                                            class="btn btn-primary">Save
-                                                                            changes</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Update</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            </form>
                                                         </div>
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="ad-product" tabindex="-1"
                                                             role="dialog" aria-labelledby="exampleModalCenterTitle"
                                                             aria-hidden="true">
+                                                        <form action="{{url('Admin/add_product')}}" method="post">
+                                                            @csrf
                                                             <div class="modal-dialog modal-dialog-centered"
                                                                 role="document">
                                                                 <div class="modal-content">
@@ -441,7 +449,7 @@
                                                                                 <h6>Enter Product Name:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="text" class="form-control"
+                                                                                <input name="product" type="text" class="form-control"
                                                                                     required placeholder="Product-Name"
                                                                                     style="border-radius:3px;">
                                                                             </div>
@@ -451,7 +459,7 @@
                                                                                 <h6>Investment:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input id="investment" name="investment" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Investment"
                                                                                     style="border-radius:3px;">
@@ -462,7 +470,7 @@
                                                                                 <h6>Processing Charge*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input id="processing_charge" name="processing_charge" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Processing Charge"
                                                                                     style="border-radius:3px;">
@@ -473,7 +481,7 @@
                                                                                 <h6>Enter Price*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input id="price" name="price" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Price"
                                                                                     style="border-radius:3px;">
@@ -484,7 +492,7 @@
                                                                                 <h6>Enter Point:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input id="point" name="point" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Point"
                                                                                     style="border-radius:3px;">
@@ -495,7 +503,7 @@
                                                                                 <h6>Enter Sponsor Value:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input id="sponser_value" name="sponser_value" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Sponsor Value"
                                                                                     style="border-radius:3px;">
@@ -506,7 +514,7 @@
                                                                                 <h6>Enter Bond Value:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input id="bond_value" name="bond_value" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Bond Value"
                                                                                     style="border-radius:3px;">
@@ -517,7 +525,7 @@
                                                                                 <h6>Enter Maturity Time:*</h6>
                                                                             </label>
                                                                             <div class="col-sm-7">
-                                                                                <input type="number"
+                                                                                <input id="maturity_time" name="maturity_time" type="number"
                                                                                     class="form-control" required
                                                                                     placeholder="Maturity Time"
                                                                                     style="border-radius:3px;">
@@ -525,14 +533,15 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
+                                                                        <button type="submit" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close</button>
-                                                                        <button type="button"
+                                                                        <button type="submit"
                                                                             class="btn btn-primary">Save
                                                                             changes</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -566,7 +575,36 @@
     <script src="{{ asset('admin_assets/js/vertical/vertical-layout.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('admin_assets/js/script.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js')}}"></script>
-
+    <script>
+        $(document).ready(function(){
+           $('.fa-edit').click(function(e){
+            var url = $('.fa-edit').attr('value');
+            var id = $('.fa-edit').attr('id');
+            // alert(id);
+             e.preventDefault();
+             $.ajax({
+                url : url,
+                method : 'POST',
+                data:{id : id},
+                dataType : 'JSON',
+                headers: {
+			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			    },
+                success : function(data){
+                   $('#pid').val(data.id);
+                   $('#product').val(data.product);
+                   $('#investment').val(data.investment);
+                   $('#processing_charge').val(data.processing_charge);
+                   $('#price').val(data.price);
+                   $('#point').val(data.point);
+                   $('#bond_value').val(data.bond_value);
+                   $('#sponser_value').val(data.sponser_value);
+                   $('#maturity_time').val(data.maturity_time);
+                }
+             });
+           });
+        });
+    </script>
     <script>
     let button = document.querySelector("#export");
     button.addEventListener("click", e => {

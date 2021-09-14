@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Session;
 class WebController extends Controller
 {
     public function index(){
@@ -53,6 +54,10 @@ class WebController extends Controller
     {
         // return $id;
         // return User::find($id);
+        return view('Admin/edit_user')->with('data',User::find($id));
+    }
+    public function edit_by_user($id)
+    {
         return view('User/edit_user')->with('data',User::find($id));
     }
     public function update(Request $req)
@@ -62,17 +67,44 @@ class WebController extends Controller
         $sponser_id = $req -> post('sponser_id');
         $member_id = $req -> post('member_id');
         $data = User::find($id);
-        // return $member_id;
-        
-        if($data -> top_up == 'yes' && $data -> member_id == $member_id){
+        // return [$member_id,$sponser_id,$id];
+        // return $data -> member_id;
+        if($data -> top_up == 'Paid' && $data -> member_id == $member_id){
              $result =  DB::table('users') 
              ->where('id', $id)
              ->limit(1) 
              ->update(['status'=>'Active','activation_date_from'=>date('d-m-Y H:i:s')]);
              if($result){
-                 return redirect('User/new-registration')->with('message','User Activated successfully!');
+                 Session::flash('message','User Activated successfully!');
+                 return redirect('Admin/new-registration');
              }else{
-                 return redirect('User/new-registration')->with('error','User Not Activated!');
+                Session::flash('error','User Not Activated!');
+                 return redirect('Admin/new-registration');
+             }
+        }else{
+            return "No";
+        }
+       
+    }
+    public function update_by_user(Request $req)
+    {
+        $id = $req -> post('pid');
+        $sponser_id = $req -> post('sponsor_id');
+        $member_id = $req -> post('member_id');
+        $data = User::find($id);
+        // return [$member_id,$sponser_id,$id];
+        // return $data -> member_id;
+        if($data -> top_up == 'Paid' && $data -> member_id == $member_id){
+             $result =  DB::table('users') 
+             ->where('id', $id)
+             ->limit(1) 
+             ->update(['status'=>'Active','activation_date_from'=>date('d-m-Y H:i:s')]);
+             if($result){
+                 Session::flash('message','User Activated successfully!');
+                 return redirect('User/new-registration');
+             }else{
+                Session::flash('error','User Not Activated!');
+                 return redirect('User/new-registration');
              }
         }else{
             return "No";

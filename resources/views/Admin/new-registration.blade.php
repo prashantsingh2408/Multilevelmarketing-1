@@ -184,6 +184,10 @@
                                             <!--  sale analytics start -->
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="card table-card">
+                                                    <div class="row justify-content-center">
+                                                        <span class="text-success">{{Session::get('message')}}</span>
+                                                        <span class="text-danger">{{Session::get('error')}}</span>
+                                                    </div>
                                                     <div class="card-header">
                                                         <!-- <h5>Dashboard</h5> -->
                                                         <div class="card-header-right" style="padding:0px;">
@@ -263,17 +267,17 @@
                                                                             align="left">{{$item->email}}</td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
-                                                                            @if($item->top_up == 'no')
+                                                                            @if($item->top_up == 'Unpaid')
                                                                             Unpaid
-                                                                            @else
+                                                                            @elseif($item->top_up == 'Paid')
                                                                             Paid
                                                                             @endif
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;" align="left">
                                                                             @if ($item->sponsor_id != '' )
-                                                                                
+                                                                                {{$item->status}}
                                                                             @else
-                                                                                @if ($item->status != 'Active')
+                                                                                @if ($item->status != 'Active' && $item->top_up == 'Paid')
                                                                                     <a class="btn btn-primary" href="../web/edit_user/{{$item->id}}">Activate</a>
                                                                                 @else
                                                                                     <a class="btn btn-primary disabled" href="../web/edit_user/{{$item->id}}">Activated</a>

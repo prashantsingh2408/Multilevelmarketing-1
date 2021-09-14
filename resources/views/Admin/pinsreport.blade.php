@@ -264,7 +264,9 @@
                                                                         <div class="col-sm-9">
                                                                             <select name="package" class="form-control" required>
                                                                                 <option value=''>Select Product</option>
-                                                                                <option value="Package 500">Package 500</option>
+                                                                                @foreach ($data as $value)
+                                                                                  <option value="{{$value -> id}}">{{$value -> product}}</option>
+                                                                                @endforeach
                                                                             </select>
                                                                         </div>
                                                                     </div>

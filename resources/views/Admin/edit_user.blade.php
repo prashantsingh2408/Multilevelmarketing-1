@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
-                    <form class="md-float-material form-material" action={{ url('web/update_by_user') }} method='post'>
+                    <form class="md-float-material form-material" action={{ url('web/update') }} method='post'>
                         @csrf
                         <div class="text-center">
                             <img src="{{ asset('admin_assets/img/logo.png') }}" alt="logo.png" class="main-img">

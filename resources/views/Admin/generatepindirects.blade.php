@@ -227,8 +227,11 @@
                                                                 </label>
                                                                 <div class="col-sm-10">
                                                                     <select name="package" class="form-control" disabled>
-                                                                        <option value="PACKAGE(500)">PACKAGE(500)
+                                                                        @foreach ($data as $value)
+                                                                        <option value="{{$value->id}}">{{$value->product}}
                                                                         </option>
+                                                                        @endforeach
+                                                                        
                                                                     </select>
                                                                 </div>
                                                             </div>
