@@ -270,5 +270,37 @@
 
     <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
 </body>
+<script>
+    $(document).ready(function() {
+            $('#show').click(function() {
+                sponsor_id = $('#sponsor_id').val();
+                $.ajax({
+                    url: "{{url('Admin/generatepindirects_show_name')}}",
+                    type: 'post',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        sponsor_id: sponsor_id
+                    },
+                    success: function(name) {
+                        if(name == 'null'){
+                            $('#name').html('User not found');
+                            //disable select product
+                            $('input[name=no_of_pins]').prop('disabled', true);
+                            $('select[name=select]').prop('disabled', true);                           
+                        }
+                        var obj = JSON.parse(name);
+                        $('#name').html(obj.name);
+                        //enable select product
+                        $('select[name=package]').prop('disabled', false);
+                        //enable select product
+                        $('input[name=no_of_pins]').prop('disabled', false);
+                        //enable select product
+                        $('select[name=select]').prop('disabled', false);
+                    }
+                });
+            });
+        });
+</script>
+
 
 </html>

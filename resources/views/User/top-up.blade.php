@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta name="keywords"
-        content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('user_assets/img/favicon.png') }}" type="image/x-icon">
@@ -35,7 +34,6 @@
             table-layout: fixed;
             width: 100%;
         }
-
     </style>
 </head>
 
@@ -105,11 +103,9 @@
                             <div class="header-search">
                                 <div class="main-search morphsearch-search">
                                     <div class="input-group">
-                                        <span class="input-group-prepend search-close"><i
-                                                class="ti-close input-group-text"></i></span>
+                                        <span class="input-group-prepend search-close"><i class="ti-close input-group-text"></i></span>
                                         <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-append search-btn"><i
-                                                class="ti-search input-group-text"></i></span>
+                                        <span class="input-group-append search-btn"><i class="ti-search input-group-text"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -200,71 +196,82 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Enter User ID:*</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required
-                                                                    placeholder="User ID" style="border-radius:3px;">
+                                                    <form action="" method="POST">
+                                                        <div class="card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Enter Member ID:*</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" required placeholder="Member ID" style="border-radius:3px;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-6 co-md-12 col-sm-12">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-3 col-form-label"
+                                                                        style="padding:0px;">
+                                                                        <button id='show'
+                                                                            type='button'
+                                                                            class="btn waves-effect waves-light btn-inverse"
+                                                                            style="border-radius:5px;margin:0 5px;"><i
+                                                                                class="icofont icofont-check-circled"></i>Show</button>
+                                                                    </label>
+                                                                    <div class="col-sm-9">
+                                                                        <h6 id='name'></h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Name:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" required placeholder="Name" style="border-radius:3px;">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>
+                                                                        Mobile:
+                                                                    </h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" required placeholder="Mobile" style="border-radius:3px;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Select Product To Generate Pin*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <select name="select" class="form-control" required>
+                                                                        <option value="opt1">Select Product</option>
+                                                                        <option value="opt2">Package 500</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>
+                                                                        Select Pin:
+                                                                    </h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <select name="select" class="form-control" required>
+                                                                        <option value="pins">Select Pins</option>
+                                                                        <option value="opt2">XY44dedyttyv</option>
+                                                                    </select>
+                                                                </div>
+
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Name:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required
-                                                                    placeholder="Name" style="border-radius:3px;">
-                                                            </div>
+                                                        <div class="form-group row" style="display:grid;place-items:center;">
+                                                            <button action="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Topup</button>
                                                         </div>
-                                                        
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>
-                                                                    Mobile:
-                                                                </h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required
-                                                                placeholder="Mobile" style="border-radius:3px;">
-                                                        </div>
-                                                    </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Select Product To Generate Pin*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <select name="select" class="form-control" required>
-                                                                    <option value="opt1">Select Product</option>
-                                                                    <option value="opt2">Package 500</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>
-                                                                    Select Pin:
-                                                                </h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <select name="select" class="form-control" required>
-                                                                    <option value="pins">Select Pins</option>
-                                                                    <option value="opt2">XY44dedyttyv</option>
-                                                                </select>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row"
-                                                        style="display:grid;place-items:center;">
-                                                        <button action="submit" class="btn waves-effect waves-light btn-success"
-                                                            style="border-radius:5px;"><i
-                                                                class="icofont icofont-check-circled"></i>Topup</button>
-                                                    </div>
                                                 </div>
                                             </div>
+                                            </form>
                                         </div>
                                         <!--  sale analytics end -->
                                     </div>
