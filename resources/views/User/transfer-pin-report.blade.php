@@ -182,7 +182,7 @@
                                     <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Product </th>
                                     <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Transfer To</th>
                                 </tr>
-                                @foreach ($data as $value)
+                                @foreach ($result as $value)
                                 <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;" align="center">
                                     <td>{{$value -> pin_no}}</td>
                                     <td>{{$value -> transfer_date}}</td>
