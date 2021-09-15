@@ -8,6 +8,7 @@ use Validator;
 use App\Models\kyc;
 use App\Models\pin;
 use App\Models\User;
+use App\Models\popup;
 use App\Models\bank_detail;
 use Illuminate\Http\Request;
 
@@ -50,6 +51,7 @@ class UserController extends Controller
 
   public function dashboard(Request $request) 
   {
+    // return "Hello";
     if ($request->method() == 'POST') {
       
       //validation
@@ -71,7 +73,7 @@ class UserController extends Controller
     
     $id = Session::get('id');
     $result = User::find($id);
-    return view('User/dashboard')->with('data', $result);
+    return view('User/dashboard')->with('data', $result)->with('popup',popup::where('screen','=','member')->get());
   }
 
   public function logout()

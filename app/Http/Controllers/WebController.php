@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\user_parent;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Session;
 class WebController extends Controller
 {
+    public function getUser(Request $request)
+    {
+        $data = User::where('member_id','=',$request->data)->get();
+        foreach($data as $value){}
+        return response()->json(['id'=>$value->id,'name'=>$value->name]);
+    }
     public function index(){
         return view('web.register');
     }
@@ -36,19 +43,28 @@ class WebController extends Controller
             $member_id = 'GF1' . "00" . $mid+1;
         }
         $User = new User();
-        $User->track_id = $member_id;
         $User->member_id = $member_id;
-        $User->sponsor_id = $request->sponsor_id;
-        $User->sponsor_name = $request->sponsor_name;
+        $User->sponsor_id = $request->pid;
         $User->name = $request->name;
         $User->mobile_no = $request->mobile_no;
         $User->status = 'Inactive';
         $User->top_up = "no";
-        $User -> joining_date_from=date('d-m-Y H:i:s');
+        $User -> joining_date_from=date('Y-m-d H:i:s');
         $User->email = $request->email;
         $User->password = md5($request->password);
         $User->save();
-        return redirect('User');
+        if($User->save()){
+            $max = User::max('id');
+            $data = user_parent::where('parent_id','=',$request->pid)->get();
+            if(count($data) > 0){
+                $res = DB::insert("INSERT INTO user_parents (member_id, parent_id) SELECT $max, member_id FROM user_parents WHERE parent_id=$request->pid");
+                // return $res;
+            }else{
+                $res = DB::insert("INSERT INTO user_parents (member_id, parent_id) VALUES($max,$request->pid)");
+                // return $res;
+            }
+            return redirect('User');
+        }
     }
     public function edit($id)
     {

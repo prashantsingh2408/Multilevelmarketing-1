@@ -96,6 +96,7 @@ Route::prefix('Admin')->group(function () {
     Route::get('/volunteer-details', [AdminController::class, 'volunteer_details']);
     Route::get('/pop-up', [PopupController::class, 'index']);
     Route::post('/addPopup', [PopupController::class, 'store']);
+    Route::get('deletepopup/{id}', [PopupController::class, 'destroy']);
     
     Route::post('/blockUser', [AdminController::class, 'blockUser']);
     
@@ -169,6 +170,7 @@ Route::group(['prefix' => 'web'], function () {
     Route::get('/register', [WebController::class, 'index']);
     Route::post('/register', [WebController::class, 'post']);
     Route::post('/update', [WebController::class, 'update']);
+    Route::post('/getUser', [WebController::class, 'getUser']);
     Route::post('/update_by_user', [WebController::class, 'update_by_user']);
     Route::get('/edit_user/{id}', [WebController::class, 'edit']);
     Route::get('/edit_by_user/{id}', [WebController::class, 'edit_by_user']);

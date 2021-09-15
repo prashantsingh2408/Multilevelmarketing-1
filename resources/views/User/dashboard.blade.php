@@ -46,7 +46,7 @@
 </head>
 
 <body>
-    <!-- Pre-loader start -->
+    hello
     <div class="theme-loader">
         <div class="loader-track">
             <div class="preloader-wrapper">

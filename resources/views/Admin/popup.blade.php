@@ -238,9 +238,52 @@
                                                         </div>
                                                     </div>
                                                     </form>
+                                                   
                                                 </div>
                                             </div>
+                                           
                                             <!--  sale analytics end -->
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive-xl" style="padding:0 10px;">
+                                                    <table 
+                                                        style="width:100%;border-collapse:collapse;display:block-inline;"
+                                                        cellspacing="0" cellpadding="4" border="1">
+                                                        <tbody>
+                                                            <tr style="color:White;background-color:#000000;font-weight:bold;"
+                                                                align="center">
+                                                                <th scope="col"
+                                                                    style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                    align="left">SI No</th>
+                                                                <th scope="col"
+                                                                    style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                    align="left">Title</th>
+                                                                <th scope="col"
+                                                                    style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                    align="left">Image</th>
+                                                                <th scope="col"
+                                                                    style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                    align="left">Action</th>
+                                                            </tr>
+                                                            @php $a = 1; @endphp
+                                                            @foreach ($data as $value)
+                                                                <tr class="grd" style="color:#333333;background-color:White;border-color:#8B91A0;" align="center">
+                                                                    <td>{{$a++}}</td>
+                                                                    <td>{{$value->screen}}</td>
+                                                                    <td><img src="../uploads/{{$value->file}}"</td>
+                                                                    <td><a href="deletepopup/{{$value->id}}" class="btn btn-danger">Delete</a></td>
+                                                                </tr>
+                                                            @endforeach
+                                                            <tr class="gridviewPager">
+                                                                <td colspan="17">
+                                                                    <table></table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Page-body end -->

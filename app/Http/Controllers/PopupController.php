@@ -9,7 +9,7 @@ class PopupController extends Controller
 {
     public function index()
     {
-        return view('Admin/popup');
+        return view('Admin/popup')->with('data',popup::get());
     }
 
     public function store(Request $request)
@@ -27,6 +27,18 @@ class PopupController extends Controller
             return redirect('Admin/pop-up');
         }else{
             Session::flash('error', 'Popup Not Created!');
+            return redirect('Admin/pop-up');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $res = popup::destroy($id);
+        if($res){
+            Session::flash('success', 'Popup Deleted!');
+            return redirect('Admin/pop-up');
+        }else{
+            Session::flash('error', 'Popup Not Deleted!');
             return redirect('Admin/pop-up');
         }
     }

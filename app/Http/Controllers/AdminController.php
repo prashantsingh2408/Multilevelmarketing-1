@@ -392,7 +392,7 @@ class AdminController extends Controller
     $id = $this->convert_to_id($req -> post('track_id'));
     // return $id;
     $data = pin_request::where('user_id','=',$id)->join('users','pin_requests.user_id','=','users.id')
-    ->get(['pin_requests.*','users.track_id','users.mobile_no']);
+    ->get(['pin_requests.*','users.member_id','users.mobile_no']);
     $count = count($data);
     return view('Admin/pinsrequest')->with('data',$data)->with('count',$count);
   }
@@ -400,7 +400,7 @@ class AdminController extends Controller
   {
     // return "Hello";
     $data = pin_request::join('users','pin_requests.user_id','=','users.id')
-    ->get(['pin_requests.*','users.track_id','users.mobile_no']);
+    ->get(['pin_requests.*','users.member_id','users.mobile_no']);
     // return $data;
     $count = count($data);
     return view('Admin/pinsrequest')->with('data',$data)->with('count',$count);
@@ -431,7 +431,7 @@ class AdminController extends Controller
   }
   public function getprofile(Request $req)
   {
-    $data = User::where('track_id','=',$req->track_id)->get();
+    $data = User::where('member_id','=',$req->track_id)->get();
     return view('Admin/member-profile')->with('data',$data);
   }
   public function change_my_profile($id)
@@ -489,7 +489,7 @@ class AdminController extends Controller
   {
     $track_id = $req -> post('track_id');
     $name = $req -> post('name');
-    $data = User::where('track_id','=',$track_id)->where('name','=',$name)->get();
+    $data = User::where('member_id','=',$track_id)->where('name','=',$name)->get();
     return view('Admin/manage-member')->with('data',$data);
   }
   public function memberSearch(Request $req)
