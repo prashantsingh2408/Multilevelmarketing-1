@@ -617,10 +617,6 @@ class AdminController extends Controller
   {
     return view('Admin/auto-pool-process');
   }
-  public function wallet_report()
-  {
-    return view('Admin/wallet-report');
-  }
   public function weekly_payment_report()
   {
     return view('Admin/weekly-payment-report');
@@ -645,16 +641,8 @@ class AdminController extends Controller
   {
     return view('Admin/ticket-list');
   }
-  public function news()
-  {
-    return view('Admin/news');
-  }
   public function volunteer_details()
   {
-    return view('Admin/volunteer_details');
-  }
-  public function popup()
-  {
-    return view('Admin/popup');
+    return view('Admin/volunteer-details');
   }
 }

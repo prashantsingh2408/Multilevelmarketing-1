@@ -353,10 +353,9 @@
                 //    console.log(data);
                     $('.details').removeClass('d-none');
                     $.each(data, function(key, val){
-                        alert(key);
-                        alert(val.name);
+                        $('#table tr:last').after('<tr><td>'+val.name+'</td><td>'+val.track_id+'</td><td>'+val.sponsor_name+'</td><td>'+val.sponsor_id+'</td><td>'+val.sponsor_name+'</td><td>'+val.sponsor_id+'</td><td>'+val.status+'</td><td><a class="btn btn-success" target="_blank" href="change-my-profile/'+val.id+'">Edit</a></td></tr>');
                     });
-                    // $('#table tr:last').after('<tr><td>'+data.pan_number+'</td><td><img src="/uploads/'+data.photo+'" height="40%" width="40%"></td><td><a href="../uploads/'+data.pan_file+'" target="_blank">View</a></td><td><a href="../uploads/'+data.adhar_file+'" target="_blank">View</a></td><td><a href="../uploads/'+data.cheque_file+'" target="_blank">View</a></td><td>'+data.remarks+'</td></tr>');
+                    
                 }
             });
             });

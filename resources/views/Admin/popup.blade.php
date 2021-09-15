@@ -131,7 +131,7 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <!-- <img src="{{asset('admin_assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
+                                    <!-- <img src="" class="img-radius" alt="User-Profile-Image"> -->
                                     <span>Welcome, Admin</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -184,6 +184,10 @@
                                             <!--  sale analytics start -->
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="card table-card">
+                                                    <div class="row justify-content-center">
+                                                        <span class="text-success">{{Session::get('success')}}</span>
+                                                        <span class="text-danger">{{Session::get('error')}}</span>
+                                                    </div>
                                                     <div class="card-header">
                                                         <!-- <h5>Dashboard</h5> -->
                                                         <div class="card-header-right" style="padding:0px;">
@@ -197,6 +201,8 @@
                                                             </ul>
                                                         </div>
                                                     </div>
+                                                    <form action="{{url('Admin/addPopup')}}" enctype="multipart/form-data" method="post">
+                                                    @csrf
                                                     <div class="card-block">
                                                         <div class="form-group row">
                                                             <div class="col-xl-6 col-md-12 col-sm-12">
@@ -205,7 +211,7 @@
                                                                         <h6>Enter Title*:</h6>
                                                                     </label>
                                                                     <div class="col-sm-9">
-                                                                        <select name="select" class="form-control"
+                                                                        <select name="title" class="form-control"
                                                                             required>
                                                                             <option>Select</option>
                                                                             <option value="home">Home</option>
@@ -231,6 +237,7 @@
                                                                     class="icofont icofont-check-circled"></i>Submit</button>
                                                         </div>
                                                     </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <!--  sale analytics end -->

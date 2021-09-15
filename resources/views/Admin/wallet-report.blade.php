@@ -201,6 +201,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
+                                                        <form action="{{url('Admin/search_in_wallet')}}" method="post">
+                                                            @csrf
                                                         <div class="form-group row">
                                                             <div class="col-xl-8 co-md-12 col-sm-12">
                                                                 <div class="row">
@@ -208,19 +210,20 @@
                                                                         <h6>Enter Track ID:*</h6>
                                                                     </label>
                                                                     <div class="col-sm-9">
-                                                                        <input type="text" class="form-control" required
+                                                                        <input name="member_id" type="text" class="form-control" required
                                                                             placeholder="Track ID"
                                                                             style="border-radius:3px;">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-4 co-md-12 col-sm-12 text-center">
-                                                                <button class="btn waves-effect waves-light btn-success"
+                                                                <button type="submit" class="btn waves-effect waves-light btn-success"
                                                                     style="border-radius:5px;margin:5px;"><i
                                                                         class="icofont icofont-check-circled"></i>Get
                                                                     Details</button>
                                                             </div>
                                                         </div>
+                                                        </form>
                                                         <div class="form-group row">
                                                             <div class="col-xl-12 col-md-12 col-sm-12">
                                                             </div>
@@ -249,23 +252,18 @@
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">PAN</th>
                                                                     </tr>
-                                                                    <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                        align="center">
-                                                                        <td>1</td>
-                                                                        <td>GF100001</td>
-                                                                        <td>KULDEEP SINGH CHAUHAN</td>
-                                                                        <td>1,950.00</td>
-                                                                        <td></td>
-                                                                    </tr>
+                                                                    @php $a =1; @endphp
+                                                                    @foreach ($data as $value)
                                                                     <tr class="grd"
                                                                         style="color:#333333;background-color:White;border-color:#8B91A0;"
                                                                         align="center">
-                                                                        <td>2</td>
-                                                                        <td>GF100001</td>
-                                                                        <td>KULDEEP SINGH CHAUHAN</td>
-                                                                        <td>1,950.00</td>
-                                                                        <td></td>
+                                                                        <td>{{$a++}}</td>
+                                                                        <td>{{$value -> member_id}}</td>
+                                                                        <td>{{$value -> name}}</td>
+                                                                        <td>{{$value -> balance}}</td>
+                                                                        <td>{{$value -> pan_no}}</td>
                                                                     </tr>
+                                                                    @endforeach
                                                                     <tr class="gridviewPager">
                                                                         <td colspan="17">
                                                                             <table></table>
