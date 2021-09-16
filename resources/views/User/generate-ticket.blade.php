@@ -193,48 +193,50 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Select Status*</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <select name="select" class="form-control" required>
-                                                                    <option value="select">Select</option>
-                                                                    <option value="opened">Opened</option>
-                                                                    <option value="closed">Closed</option>
-                                                                </select>
+                                                    <form action="" method="POST">
+                                                        <div class="card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Select Status*</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <select name="select" class="form-control" required>
+                                                                        <option value="select">Select</option>
+                                                                        <option value="opened">Opened</option>
+                                                                        <option value="closed">Closed</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Enter Title*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" required placeholder="Enter Title">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Subject*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <textarea class="form-control" required placeholder="Enter Description"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Upload Image*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="file" class="form-control" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row" style="display:grid;place-items:center;">
+                                                                <button action="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Generate Ticket</button>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Enter Title*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required placeholder="Enter Title">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Subject*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <textarea class="form-control" required placeholder="Enter Description"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Upload Image*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="file" class="form-control" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row" style="display:grid;place-items:center;">
-                                                            <button class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Generate Ticket</button>
-                                                        </div>
-                                                    </div>
                                                 </div>
+                                                </form>
                                             </div>
                                             <!--  sale analytics end -->
                                         </div>
