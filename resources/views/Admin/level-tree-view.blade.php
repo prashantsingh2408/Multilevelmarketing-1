@@ -11,6 +11,7 @@
         content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('admin_assets/img/favicon.png')}}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
@@ -197,34 +198,36 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Enter Track ID*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required
-                                                                    placeholder="Enter Track ID"
-                                                                    style="border-radius:3px;">
+                                                        <form id="form" value="{{url('Admin/getleveltree')}}">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Enter Track ID*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" id="member_id" name="member_id" class="form-control" required
+                                                                        placeholder="Enter Track ID"
+                                                                        style="border-radius:3px;">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div
-                                                                class="col-xl-12 col-md-12 col-sm-12 d-flex flex-row-reverse">
-                                                                <button class="btn waves-effect waves-light btn-success"
-                                                                    style="border-radius:5px;margin:5px;"
-                                                                    id="get-details"><i
-                                                                        class="icofont icofont-check-circled"></i>Get
-                                                                    Details</button>
+                                                            <div class="form-group row">
+                                                                <div
+                                                                    class="col-xl-12 col-md-12 col-sm-12 d-flex flex-row-reverse">
+                                                                    <button type="submit" class="btn waves-effect waves-light btn-success"
+                                                                        style="border-radius:5px;margin:5px;"
+                                                                        id="get-details"><i
+                                                                            class="icofont icofont-check-circled"></i>Get
+                                                                        Details</button>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row form-group details" style="display:none;">
+                                                        </form>
+                                                        <div class="row form-group details d-none" id="data_div">
                                                             <div class="col-md-12">
                                                                 <div class="card-block">
                                                                     <div class="table-responsive-xl level-1"
                                                                     style="padding:0 10px;display:inline-block;">
                                                                     <table
                                                                         class="table table-responsive table-bordered"
-                                                                        rules="all" id="ContentPlaceHolder1_grd"
+                                                                        rules="all" id="table"
                                                                         style="width:100%;border-collapse:collapse;"
                                                                         cellspacing="0" cellpadding="4" border="1">
                                                                         <tbody>
@@ -246,28 +249,7 @@
                                                                                     style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                                     align="left">Product</th>
                                                                             </tr>
-                                                                            <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                                align="center">
-                                                                                <td>GF100002</td>
-                                                                                <td>UPASANA SINGH</td>
-                                                                                <td>GF100001</td>
-                                                                                <td>7/1/2021 6:52:59 PM</td>
-                                                                                <td>Package 500</td>
-                                                                            </tr>
-                                                                            <tr class="grd"
-                                                                                style="color:#333333;background-color:White;border-color:#8B91A0;"
-                                                                                align="center">
-                                                                                <td>GF100002</td>
-                                                                                <td>UPASANA SINGH</td>
-                                                                                <td>GF100001</td>
-                                                                                <td>7/1/2021 6:52:59 PM</td>
-                                                                                <td>Package 500</td>
-                                                                            </tr>
-                                                                            <tr class="gridviewPager">
-                                                                                <td colspan="17">
-                                                                                    <table></table>
-                                                                                </td>
-                                                                            </tr>
+                                                                           
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -291,420 +273,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="card-block">
-                                                                    <div class="row form-group"
-                                                                        style="display:grid;place-items:center;">
-                                                                        <button type="button" class="btn btn-dark"
-                                                                            id="level-2">Level 2</button>
-                                                                        <div class="title">
-                                                                            <h6>Total Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Non-Active Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Active Members : </h6>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="table-responsive-xl level-2"
-                                                                        style="padding:0 10px;display:none;">
-                                                                        <table
-                                                                            class="table table-responsive table-bordered"
-                                                                            rules="all" id="ContentPlaceHolder1_grd"
-                                                                            style="width:100%;border-collapse:collapse;"
-                                                                            cellspacing="0" cellpadding="4" border="1">
-                                                                            <tbody>
-                                                                                <tr style="color:White;background-color:#000000;font-weight:bold;"
-                                                                                    align="center">
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Member ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Name</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Sponsor ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Joining Date</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Product</th>
-                                                                                </tr>
-                                                                                <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="grd"
-                                                                                    style="color:#333333;background-color:White;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="gridviewPager">
-                                                                                    <td colspan="17">
-                                                                                        <table></table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="card-block">
-                                                                    <div class="row form-group"
-                                                                        style="display:grid;place-items:center;">
-                                                                        <button type="button" class="btn btn-dark"
-                                                                            id="level-3">Level 3</button>
-                                                                        <div class="title">
-                                                                            <h6>Total Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Non-Active Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Active Members : </h6>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="table-responsive-xl level-3"
-                                                                        style="padding:0 10px;display:none;">
-                                                                        <table
-                                                                            class="table table-responsive table-bordered"
-                                                                            rules="all" id="ContentPlaceHolder1_grd"
-                                                                            style="width:100%;border-collapse:collapse;"
-                                                                            cellspacing="0" cellpadding="4" border="1">
-                                                                            <tbody>
-                                                                                <tr style="color:White;background-color:#000000;font-weight:bold;"
-                                                                                    align="center">
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Member ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Name</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Sponsor ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Joining Date</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Product</th>
-                                                                                </tr>
-                                                                                <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="grd"
-                                                                                    style="color:#333333;background-color:White;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="gridviewPager">
-                                                                                    <td colspan="17">
-                                                                                        <table></table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="card-block">
-                                                                    <div class="row form-group"
-                                                                        style="display:grid;place-items:center;">
-                                                                        <button type="button" class="btn btn-dark"
-                                                                            id="level-4">Level 4</button>
-                                                                        <div class="title">
-                                                                            <h6>Total Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Non-Active Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Active Members : </h6>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="table-responsive-xl level-4"
-                                                                        style="padding:0 10px;display:none;">
-                                                                        <table
-                                                                            class="table table-responsive table-bordered"
-                                                                            rules="all" id="ContentPlaceHolder1_grd"
-                                                                            style="width:100%;border-collapse:collapse;"
-                                                                            cellspacing="0" cellpadding="4" border="1">
-                                                                            <tbody>
-                                                                                <tr style="color:White;background-color:#000000;font-weight:bold;"
-                                                                                    align="center">
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Member ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Name</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Sponsor ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Joining Date</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Product</th>
-                                                                                </tr>
-                                                                                <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="grd"
-                                                                                    style="color:#333333;background-color:White;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="gridviewPager">
-                                                                                    <td colspan="17">
-                                                                                        <table></table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="card-block">
-                                                                    <div class="row form-group"
-                                                                        style="display:grid;place-items:center;">
-                                                                        <button type="button" class="btn btn-dark"
-                                                                            id="level-5">Level 5</button>
-                                                                        <div class="title">
-                                                                            <h6>Total Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Non-Active Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Active Members : </h6>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="table-responsive-xl level-5"
-                                                                        style="padding:0 10px;display:none;">
-                                                                        <table
-                                                                            class="table table-responsive table-bordered"
-                                                                            rules="all" id="ContentPlaceHolder1_grd"
-                                                                            style="width:100%;border-collapse:collapse;"
-                                                                            cellspacing="0" cellpadding="4" border="1">
-                                                                            <tbody>
-                                                                                <tr style="color:White;background-color:#000000;font-weight:bold;"
-                                                                                    align="center">
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Member ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Name</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Sponsor ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Joining Date</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Product</th>
-                                                                                </tr>
-                                                                                <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="grd"
-                                                                                    style="color:#333333;background-color:White;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="gridviewPager">
-                                                                                    <td colspan="17">
-                                                                                        <table></table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="card-block">
-                                                                    <div class="row form-group"
-                                                                        style="display:grid;place-items:center;">
-                                                                        <button type="button" class="btn btn-dark"
-                                                                            id="level-6">Level 6</button>
-                                                                        <div class="title">
-                                                                            <h6>Total Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Non-Active Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Active Members : </h6>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="table-responsive-xl level-6"
-                                                                        style="padding:0 10px;display:none;">
-                                                                        <table
-                                                                            class="table table-responsive table-bordered"
-                                                                            rules="all" id="ContentPlaceHolder1_grd"
-                                                                            style="width:100%;border-collapse:collapse;"
-                                                                            cellspacing="0" cellpadding="4" border="1">
-                                                                            <tbody>
-                                                                                <tr style="color:White;background-color:#000000;font-weight:bold;"
-                                                                                    align="center">
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Member ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Name</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Sponsor ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Joining Date</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Product</th>
-                                                                                </tr>
-                                                                                <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="grd"
-                                                                                    style="color:#333333;background-color:White;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="gridviewPager">
-                                                                                    <td colspan="17">
-                                                                                        <table></table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="card-block">
-                                                                    <div class="row form-group"
-                                                                        style="display:grid;place-items:center;">
-                                                                        <button type="button" class="btn btn-dark"
-                                                                            id="level-7">Level 7</button>
-                                                                        <div class="title">
-                                                                            <h6>Total Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Non-Active Members : </h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Active Members : </h6>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="table-responsive-xl level-7"
-                                                                        style="padding:0 10px;display:none;">
-                                                                        <table
-                                                                            class="table table-responsive table-bordered"
-                                                                            rules="all" id="ContentPlaceHolder1_grd"
-                                                                            style="width:100%;border-collapse:collapse;"
-                                                                            cellspacing="0" cellpadding="4" border="1">
-                                                                            <tbody>
-                                                                                <tr style="color:White;background-color:#000000;font-weight:bold;"
-                                                                                    align="center">
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Member ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Name</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Sponsor ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Joining Date</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Product</th>
-                                                                                </tr>
-                                                                                <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="grd"
-                                                                                    style="color:#333333;background-color:White;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="gridviewPager">
-                                                                                    <td colspan="17">
-                                                                                        <table></table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -739,57 +308,35 @@
     <script type="text/javascript" src="{{ asset('admin_assets/js/script.js')}}"></script>
     <script>
     $(document).ready(function() {
-        $("#get-details").click(function() {
-            $(".details").toggle(800);
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $("#level-1").click(function() {
-            $(".level-1").toggle(800);
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $("#level-2").click(function() {
-            $(".level-2").toggle(800);
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $("#level-3").click(function() {
-            $(".level-3").toggle(800);
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $("#level-4").click(function() {
-            $(".level-4").toggle(800);
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $("#level-5").click(function() {
-            $(".level-5").toggle(800);
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $("#level-6").click(function() {
-            $(".level-6").toggle(800);
-        });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $("#level-7").click(function() {
-            $(".level-7").toggle(800);
+        $("#get-details").click(function(e) {
+            var url = $('#form').attr('value');
+            var data = $('#member_id').val();
+            // alert(data);
+            e.preventDefault();
+            $.ajax({
+                url : url,
+                data : {data : data},
+                method : 'POST',
+                dataType : 'JSON',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success : function(data){
+                    $('#data_div').removeClass('d-none');
+                    $.each(data, function(key, val){
+                        if (val.sponsor_id < 1) {
+                        var member_id = '';
+                        }else if (val.sponsor_id < 10) {
+                        var member_id = 'GF10000' + val.sponsor_id;
+                        }else if (val.sponsor_id < 100) {
+                            var member_id = 'GF1000' + val.sponsor_id;
+                        } else {
+                            var member_id = 'GF100' + val.sponsor_id;
+                        }
+                        $('#table tr:last').after('<tr><td>'+val.member_id+'</td><td>'+val.name+'</td><td>'+member_id+'</td><td>'+val.joining_date_from+'</td><td>'+val.product+'</td></tr>');
+                    });
+                }
+            });
         });
     });
     </script>

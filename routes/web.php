@@ -72,6 +72,8 @@ Route::prefix('Admin')->group(function () {
     
     Route::get('/new-registration', [AdminController::class, 'new_registration']);
     Route::get('/level-tree-view', [AdminController::class, 'level_tree_view']);
+    Route::post('/getleveltree', [AdminController::class, 'getleveltree']);
+
     Route::get('/rank-level-tree-view-associate', [AdminController::class, 'rank_level_tree_view_associate']);
     Route::get('/rank-level-tree-view-supervisor', [AdminController::class, 'rank_level_tree_view_supervisor']);
     Route::get('/rank-level-tree-view-manager', [AdminController::class, 'rank_level_tree_view_manager']);

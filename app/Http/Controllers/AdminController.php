@@ -7,6 +7,7 @@ use App\Models\Pin;
 use App\Models\memberlist;
 use App\Models\pin_request;
 use App\Models\User;
+use App\Models\user_parent;
 use App\Models\product;
 use App\Models\kyc;
 use App\Models\topup;
@@ -17,6 +18,18 @@ use Session;
 
 class AdminController extends Controller
 {
+  public function getleveltree(Request $req)
+  {
+    $sid = $req->data;
+    $id = $this->convert_to_id($sid);
+    $data = user_parent::where('parent_id','=', $id)
+            ->join('users','user_parents.parent_id','=','users.id')
+            ->join('products','users.product','=','products.id')
+            ->get();
+            // ->get(['users.name','users.member_id','users.sponsor_id','users.joining_date_from','products.product']);
+    return $data;
+    return response()->json($data);
+  }
   public function getkycdetails(Request $request)
   {
     $track_id = $request->post('track_id');

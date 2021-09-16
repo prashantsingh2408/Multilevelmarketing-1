@@ -57,7 +57,7 @@ class WebController extends Controller
             $max = User::max('id');
             $data = user_parent::where('parent_id','=',$request->pid)->get();
             if(count($data) > 0){
-                $res = DB::insert("INSERT INTO user_parents (member_id, parent_id) SELECT $max, member_id FROM user_parents WHERE parent_id=$request->pid");
+                DB::insert("INSERT INTO user_parents (member_id, parent_id) SELECT $max, member_id FROM user_parents WHERE parent_id=$request->pid");
                 // return $res;
             }else{
                 $res = DB::insert("INSERT INTO user_parents (member_id, parent_id) VALUES($max,$request->pid)");
