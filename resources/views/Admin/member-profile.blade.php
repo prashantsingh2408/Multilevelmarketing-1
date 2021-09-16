@@ -241,36 +241,36 @@ if(isset($data)){
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-6 col-form-label">
                                                                             <h6>
-                                                                                Sponsor Trackid: @if(isset($data)){{$value -> sponsor_id}} @endif
+                                                                                Sponsor Trackid: 
                                                                             </h6>
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> sponsor_id}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-6 col-form-label">
                                                                             <h6>
-                                                                                Sponsor Name: @if(isset($data)){{$value -> sponsor_name}} @endif
+                                                                                Sponsor Name: 
                                                                             </h6>
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> sponsor_name}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group row">
                                                                         <label class="col-sm-6 col-form-label">
                                                                             <h6>
-                                                                                Sponsor Contact: @if(isset($data)){{$value -> mobile_no}} @endif
+                                                                                Sponsor Contact: 
                                                                             </h6>
                                                                         </label>
                                                                         <div class="col-sm-6">
                                                                             <label class="col-sm-6 col-form-label">
-                                                                                <h6></h6>
+                                                                                <h6>@if(isset($data)){{$value -> mobile_no}} @endif</h6>
                                                                             </label>
                                                                         </div>
                                                                     </div>

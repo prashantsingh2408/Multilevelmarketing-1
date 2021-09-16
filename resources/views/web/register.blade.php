@@ -11,7 +11,7 @@
 	<meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
 	<meta name="author" content="Codedthemes" />
 	<!-- Favicon icon -->
-
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="icon" href="{{asset('admin_assets/img/favicon.png')}}" type="image/x-icon">
 	<!-- Google font-->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
@@ -59,7 +59,7 @@
 								</div>
 
 								<div class="form-group form-primary">
-									<input type="text" name="sponsor_id" class="form-control">
+									<input type="text" id="sponsor_id" name="sponsor_id" class="form-control">
 									<span class="form-bar"></span>
 									<label class="float-label">Sponsor ID</label>
 									@error('sponsor_id')
@@ -67,7 +67,8 @@
 									@enderror
 								</div>
 								<div class="form-group form-primary">
-									<input type="text" name="sponsor_name" class="form-control">
+									<input type="hidden" id="pid" name="pid" class="form-control">
+									<input type="text" id="sponsor_name" name="sponsor_name" class="form-control">
 									<span class="form-bar"></span>
 									<label class="float-label">Sponsor Name</label>
 									@error('sponsor_name')
@@ -156,6 +157,28 @@
 	<!-- jquery slimscroll js -->
 	<script type="text/javascript" src="{{asset('admin_assets/js/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 	<script type="text/javascript" src="{{asset('admin_assets/js/common-pages.js')}}"></script>
+	<script>
+		$('document').ready(function() {
+           $('#sponsor_id').change(function(e) {
+             e.preventDefault();
+			 var data = $('#sponsor_id').val();
+			 
+			 $.ajax({
+			   url : 'getUser',
+               method: 'POST',
+			   data : {data : data},
+			   dataType : 'JSON',
+			   headers: {
+			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			    },
+			   success: function (data){
+                    $('#pid').val(data.id);
+                    $('#sponsor_name').val(data.name);
+			   }
+			 });
+		   });
+		});
+	</script>
 </body>
 
 </html>

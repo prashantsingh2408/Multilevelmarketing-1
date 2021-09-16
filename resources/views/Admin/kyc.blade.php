@@ -197,28 +197,32 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
+                                                        <form id="form" value="{{url('Admin/getkycdetails')}}">
+                                                        @csrf
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">
                                                                 <h6>Enter Track ID*:</h6>
                                                             </label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required
+                                                                <input name="track_id" type="text" class="form-control" required
                                                                     placeholder="Enter Track ID"
                                                                     style="border-radius:3px;">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row d-flex flex-row-reverse">
-                                                            <button class="btn waves-effect waves-light btn-success"
-                                                                style="border-radius:5px;margin:5px;"
+                                                            <button id="btnSubmit" class="btn waves-effect waves-light btn-success"
+                                                                style="border-radius:5px;margin:5px;" type="submit"
                                                                 id="get-details"><i
                                                                     class="icofont icofont-check-circled"></i>Get
                                                                 Details</button>
                                                         </div>
-                                                        <div class="table-responsive-xl details"
-                                                            style="padding:0 10px;display:none;">
-                                                            <table class="table table-responsive table-bordered"
+                                                        </form>
+                                                        <div class="row justify-content-center"> <span class="text-danger" id="error_msg"></span></div>
+                                                        <div class="table-responsive-xl details d-none"
+                                                            style="padding:0 10px;">
+                                                            <table id="table" class="table text-center table-responsive table-bordered"
                                                                 rules="all" id="ContentPlaceHolder1_grd"
-                                                                style="width:100%;border-collapse:collapse;"
+                                                                style="width:100%;border-collapse:collapse;display:inline-table;"
                                                                 cellspacing="0" cellpadding="4" border="1">
                                                                 <tbody>
                                                                     <tr style="color:White;background-color:#000000;font-weight:bold;"
@@ -231,7 +235,7 @@
                                                                             align="left">Photo</th>
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Pan</th>
+                                                                            align="left">Pan File</th>
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Aadhar</th>
@@ -241,15 +245,6 @@
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Remark</th>
-                                                                    </tr>
-                                                                    <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                        align="center">
-                                                                        <td>dskfj2838d</td>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -287,8 +282,23 @@
     <script type="text/javascript" src="{{ asset('admin_assets/js/script.js')}}"></script>
     <script>
     $(document).ready(function() {
-        $("#get-details").click(function() {
-            $(".details").toggle(800);
+        $('#btnSubmit').click(function(e) {
+        var url = $('#form').attr('value');
+        e.preventDefault();
+        $.ajax({
+           url : url,
+           method : 'POST',
+           data:$('#form').serialize(),
+           dataType : 'JSON',
+           success : function(data){
+            if(data.status == 'success'){
+                $('.details').removeClass('d-none');
+                $('#table tr:last').after('<tr><td>'+data.pan_number+'</td><td><img src="/uploads/'+data.photo+'" height="40%" width="40%"></td><td><a href="../uploads/'+data.pan_file+'" target="_blank">View</a></td><td><a href="../uploads/'+data.adhar_file+'" target="_blank">View</a></td><td><a href="../uploads/'+data.cheque_file+'" target="_blank">View</a></td><td>'+data.remarks+'</td></tr>');
+            }else{
+                $('#error_msg').html(data.error);
+            }
+            }
+        });
         });
     });
     </script>

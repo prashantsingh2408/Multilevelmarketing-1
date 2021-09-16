@@ -218,6 +218,61 @@
                                                             </div>
                                                         </div>
                                                         <div class="row form-group details" style="display:none;">
+                                                            <div class="col-md-12">
+                                                                <div class="card-block">
+                                                                    <div class="table-responsive-xl level-1"
+                                                                    style="padding:0 10px;display:inline-block;">
+                                                                    <table
+                                                                        class="table table-responsive table-bordered"
+                                                                        rules="all" id="ContentPlaceHolder1_grd"
+                                                                        style="width:100%;border-collapse:collapse;"
+                                                                        cellspacing="0" cellpadding="4" border="1">
+                                                                        <tbody>
+                                                                            <tr style="color:White;background-color:#000000;font-weight:bold;"
+                                                                                align="center">
+                                                                                <th scope="col"
+                                                                                    style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                                    align="left">Member ID</th>
+                                                                                <th scope="col"
+                                                                                    style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                                    align="left">Name</th>
+                                                                                <th scope="col"
+                                                                                    style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                                    align="left">Sponsor ID</th>
+                                                                                <th scope="col"
+                                                                                    style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                                    align="left">Joining Date</th>
+                                                                                <th scope="col"
+                                                                                    style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                                    align="left">Product</th>
+                                                                            </tr>
+                                                                            <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
+                                                                                align="center">
+                                                                                <td>GF100002</td>
+                                                                                <td>UPASANA SINGH</td>
+                                                                                <td>GF100001</td>
+                                                                                <td>7/1/2021 6:52:59 PM</td>
+                                                                                <td>Package 500</td>
+                                                                            </tr>
+                                                                            <tr class="grd"
+                                                                                style="color:#333333;background-color:White;border-color:#8B91A0;"
+                                                                                align="center">
+                                                                                <td>GF100002</td>
+                                                                                <td>UPASANA SINGH</td>
+                                                                                <td>GF100001</td>
+                                                                                <td>7/1/2021 6:52:59 PM</td>
+                                                                                <td>Package 500</td>
+                                                                            </tr>
+                                                                            <tr class="gridviewPager">
+                                                                                <td colspan="17">
+                                                                                    <table></table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                </div>
+                                                            </div>
                                                             <div class="col-sm-12">
                                                                 <div class="card-block">
                                                                     <div class="row form-group"
@@ -233,57 +288,6 @@
                                                                         <div class="title">
                                                                             <h6>Active Members : </h6>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="table-responsive-xl level-1"
-                                                                        style="padding:0 10px;display:none;">
-                                                                        <table
-                                                                            class="table table-responsive table-bordered"
-                                                                            rules="all" id="ContentPlaceHolder1_grd"
-                                                                            style="width:100%;border-collapse:collapse;"
-                                                                            cellspacing="0" cellpadding="4" border="1">
-                                                                            <tbody>
-                                                                                <tr style="color:White;background-color:#000000;font-weight:bold;"
-                                                                                    align="center">
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Member ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Name</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Sponsor ID</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Joining Date</th>
-                                                                                    <th scope="col"
-                                                                                        style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                                        align="left">Product</th>
-                                                                                </tr>
-                                                                                <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="grd"
-                                                                                    style="color:#333333;background-color:White;border-color:#8B91A0;"
-                                                                                    align="center">
-                                                                                    <td>GF100002</td>
-                                                                                    <td>UPASANA SINGH</td>
-                                                                                    <td>GF100001</td>
-                                                                                    <td>7/1/2021 6:52:59 PM</td>
-                                                                                    <td>Package 500</td>
-                                                                                </tr>
-                                                                                <tr class="gridviewPager">
-                                                                                    <td colspan="17">
-                                                                                        <table></table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
                                                                     </div>
                                                                 </div>
                                                             </div>

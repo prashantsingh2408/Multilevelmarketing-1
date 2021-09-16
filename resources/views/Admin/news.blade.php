@@ -185,6 +185,10 @@
                                             <!--  sale analytics start -->
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="card table-card">
+                                                    <div class="row justify-content-center">
+                                                        <span class="text-success">{{Session::get('success')}}</span>
+                                                        <span class="text-danger">{{Session::get('error')}}</span>
+                                                    </div>
                                                     <div class="card-header">
                                                         <!-- <h5>Dashboard</h5> -->
                                                         <div class="card-header-right" style="padding:0px;">
@@ -198,13 +202,15 @@
                                                             </ul>
                                                         </div>
                                                     </div>
+                                                    <form method="post" action="{{url('Admin/postNews')}}">
+                                                    @csrf
                                                     <div class="card-block">
                                                         <div class="form-group row">
                                                             <label class="col-sm-2 col-form-label">
                                                                 <h6>Enter Title*:</h6>
                                                             </label>
                                                             <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required
+                                                                <input name="title" type="text" class="form-control" required
                                                                     placeholder="Enter Title"
                                                                     style="border-radius:3px;">
                                                             </div>
@@ -214,12 +220,21 @@
                                                                 <h6>News*:</h6>
                                                             </label>
                                                             <div class="col-sm-10">
-                                                                <textarea class="form-control" required
+                                                                <textarea name="news" class="form-control" required
                                                                     placeholder="Enter Matter"
                                                                     style="border-radius:3px;"></textarea>
                                                             </div>
                                                         </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">
+                                                                
+                                                            </label>
+                                                            <div class="col-sm-10">
+                                                               <input type="submit" value="Submit" class="btn btn-success">
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                </form>
                                                 </div>
                                             </div>
                                             <!--  sale analytics end -->

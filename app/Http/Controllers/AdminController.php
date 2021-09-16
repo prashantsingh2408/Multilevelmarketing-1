@@ -7,6 +7,8 @@ use App\Models\Pin;
 use App\Models\memberlist;
 use App\Models\pin_request;
 use App\Models\User;
+use App\Models\product;
+use App\Models\kyc;
 use App\Models\topup;
 use App\Models\bank_detail;
 use Illuminate\Http\Request;
@@ -15,6 +17,18 @@ use Session;
 
 class AdminController extends Controller
 {
+  public function getkycdetails(Request $request)
+  {
+    $track_id = $request->post('track_id');
+    $data = kyc::where('member_id','=',$track_id)->get();
+    if(count($data) > 0){
+      foreach ($data as $value){}
+      return response() -> json(['status'=>'success','member_id'=>$value->member_id,'pan_number'=>$value->pan_number,'pan_file'=>$value->pan_file,
+      'adhar_file'=>$value->adhar_file,'photo'=>$value->photo,'cheque_file'=>$value->cheque_file,'remarks'=>$value->remarks]);
+    }else{
+      return response() -> json(['status'=>'error','error'=>'User not Found!']);
+    }
+  }
   public function searchtopup(Request $req)
   {
     $member_id = $req->post('member_id');
@@ -207,7 +221,7 @@ class AdminController extends Controller
 
   public function generatepindirects()
   {
-    return view('Admin/generatepindirects');
+    return view('Admin/generatepindirects')->with('data',product::get());
   }
 
   public function generatepindirects_show_name(Request $request)
@@ -292,7 +306,7 @@ class AdminController extends Controller
     //join Pin and User table with member_id = id
     $Pin = Pin::get();
     $count = count($Pin);
-    return view('Admin/pinsreport', ['Users' => $Pin,'count'=>$count]);
+    return view('Admin/pinsreport', ['Users' => $Pin,'count'=>$count])->with('data',product::get());
   }
   public function pinsreport_post(Request $request)
   {
@@ -378,7 +392,7 @@ class AdminController extends Controller
     $id = $this->convert_to_id($req -> post('track_id'));
     // return $id;
     $data = pin_request::where('user_id','=',$id)->join('users','pin_requests.user_id','=','users.id')
-    ->get(['pin_requests.*','users.track_id','users.mobile_no']);
+    ->get(['pin_requests.*','users.member_id','users.mobile_no']);
     $count = count($data);
     return view('Admin/pinsrequest')->with('data',$data)->with('count',$count);
   }
@@ -386,7 +400,7 @@ class AdminController extends Controller
   {
     // return "Hello";
     $data = pin_request::join('users','pin_requests.user_id','=','users.id')
-    ->get(['pin_requests.*','users.track_id','users.mobile_no']);
+    ->get(['pin_requests.*','users.member_id','users.mobile_no']);
     // return $data;
     $count = count($data);
     return view('Admin/pinsrequest')->with('data',$data)->with('count',$count);
@@ -396,7 +410,7 @@ class AdminController extends Controller
     $data =  $id = Session::get('id');
     $res = User::find($id);
     $result = User::get();
-    return view('Admin/memberslist')->with('data',$result);
+    return view('Admin/memberslist')->with('data',$result)->with('datas',product::get());
   }
   public function get_detail(Request $request)
   {
@@ -417,7 +431,7 @@ class AdminController extends Controller
   }
   public function getprofile(Request $req)
   {
-    $data = User::where('track_id','=',$req->track_id)->get();
+    $data = User::where('member_id','=',$req->track_id)->get();
     return view('Admin/member-profile')->with('data',$data);
   }
   public function change_my_profile($id)
@@ -475,7 +489,7 @@ class AdminController extends Controller
   {
     $track_id = $req -> post('track_id');
     $name = $req -> post('name');
-    $data = User::where('track_id','=',$track_id)->where('name','=',$name)->get();
+    $data = User::where('member_id','=',$track_id)->where('name','=',$name)->get();
     return view('Admin/manage-member')->with('data',$data);
   }
   public function memberSearch(Request $req)
@@ -574,13 +588,10 @@ class AdminController extends Controller
   // {
   //   return view('Admin/auto-pool-tree-views-level7');
   // }
-  public function product_details()
-  {
-    return view('Admin/product-details');
-  }
   public function product_wise_sales()
   {
-    return view('Admin/product-wise-sales');
+    $data = User::join('products','users.product','=','products.id')->get(['users.*','products.product as product_name']);
+    return view('Admin/product-wise-sales')->with('data',$data)->with('count',count($data))->with('package',product::get());
   }
   public function direct_income()
   {
@@ -606,10 +617,6 @@ class AdminController extends Controller
   {
     return view('Admin/auto-pool-process');
   }
-  public function wallet_report()
-  {
-    return view('Admin/wallet-report');
-  }
   public function weekly_payment_report()
   {
     return view('Admin/weekly-payment-report');
@@ -634,16 +641,8 @@ class AdminController extends Controller
   {
     return view('Admin/ticket-list');
   }
-  public function news()
-  {
-    return view('Admin/news');
-  }
   public function volunteer_details()
   {
-    return view('Admin/volunteer_details');
-  }
-  public function popup()
-  {
-    return view('Admin/popup');
+    return view('Admin/volunteer-details');
   }
 }

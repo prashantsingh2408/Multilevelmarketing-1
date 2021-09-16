@@ -15,22 +15,19 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('salutation');
-            $table->string('pic');
-            $table->string('name');
+            $table->string('salutation')->nullable();
+            $table->string('name')->nullable();
             $table->string('pic')->nullable();
             $table->string('email')->nullable();
             $table->string('password')->nullable();
             $table->string('mobile_no')->nullable();
-            $table->string('track_id')->nullable();
             $table->string('member_id')->nullable();
             $table->string('sponsor_id')->nullable();
-            $table->string('sponsor_name')->nullable();
             $table->string('product')->nullable();
-            $table->string('joining_date_from')->nullable();
-            $table->string('joining_date_to')->nullable();
-            $table->string('activation_date_to')->nullable();
-            $table->string('activation_date_from')->nullable();
+            $table->datetime('joining_date_from')->nullable();
+            $table->datetime('joining_date_to')->nullable();
+            $table->datetime('activation_date_to')->nullable();
+            $table->datetime('activation_date_from')->nullable();
             $table->string('top_up')->nullable();
             $table->string('referal_link')->nullable();
             $table->string('status')->nullable();
@@ -45,7 +42,7 @@ class CreateUsersTable extends Migration
             $table->string('nominee_name')->nullable();
             $table->string('relationship')->nullable();
             $table->string('s_name')->nullable();
-            $table->string('dob')->nullable();
+            $table->date('dob')->nullable();
             $table->string('gardian')->nullable();
             $table->timestamps();
         });

@@ -272,8 +272,10 @@
                                                                             required>
                                                                             <option value="product">Select Product
                                                                             </option>
-                                                                            <option value="Package 500">Package 500
+                                                                            @foreach ($datas as $value)
+                                                                            <option value="{{$value->id}}">{{$value->product}}
                                                                             </option>
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>

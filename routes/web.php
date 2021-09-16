@@ -2,7 +2,12 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeLettersController;
 use App\Http\Controllers\TdsController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WalletController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PopupController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 
@@ -53,11 +58,18 @@ Route::prefix('Admin')->group(function () {
     Route::post('/searchMember', [AdminController::class, 'searchMember']);
     Route::post('/memberSearch', [AdminController::class, 'memberSearch']);
     
+    //Route For Welcome Letter Post
+
+    Route::post('/postWelcomeLetter', [WelcomeLettersController::class, 'store']);
+    
+
     Route::post('/update_user_profile', [AdminController::class, 'update_user_profile']);
     Route::get('/manage-member', [AdminController::class, 'manage_member']);
     Route::get('/total-member', [AdminController::class, 'total_member']);
     Route::get('/welcome-letter', [AdminController::class, 'welcome_letter']);
     Route::get('/kyc', [AdminController::class, 'kyc']);
+    Route::post('/getkycdetails', [AdminController::class, 'getkycdetails']);
+    
     Route::get('/new-registration', [AdminController::class, 'new_registration']);
     Route::get('/level-tree-view', [AdminController::class, 'level_tree_view']);
     Route::get('/rank-level-tree-view-associate', [AdminController::class, 'rank_level_tree_view_associate']);
@@ -68,24 +80,41 @@ Route::prefix('Admin')->group(function () {
     Route::get('/rank-level-tree-view-vice-president', [AdminController::class, 'rank_level_tree_view_vice_president']);
     Route::get('/rank-level-tree-view-president', [AdminController::class, 'rank_level_tree_view_president']);
     Route::get('/product-wise-sales', [AdminController::class, 'product_wise_sales']);
-    Route::get('/product-details', [AdminController::class, 'product_details']);
     Route::get('/direct-income', [AdminController::class, 'direct_income']);
     Route::get('/level-income', [AdminController::class, 'level_income']);
     Route::get('/rank-level-income', [AdminController::class, 'rank_level_income']);
     Route::get('/auto-pool-income', [AdminController::class, 'auto_pool_income']);
     Route::get('/rank-level-process', [AdminController::class, 'rank_level_process']);
     Route::get('/auto-pool-process', [AdminController::class, 'auto_pool_process']);
-    Route::get('/wallet-report', [AdminController::class, 'wallet_report']);
     Route::get('/weekly-payment-report', [AdminController::class, 'weekly_payment_report']);
     Route::get('/paid-payment-report', [AdminController::class, 'paid_payment_report']);
     Route::get('/transaction-report', [AdminController::class, 'transaction_report']);
     Route::get('/add-wallet-amount', [AdminController::class, 'add_wallet_amount']);
     Route::get('/deduct-wallet-amount', [AdminController::class, 'deduct_wallet_amount']);
     Route::get('/ticket-list', [AdminController::class, 'ticket_list']);
-    Route::get('/news', [AdminController::class, 'news']);
+   
     Route::get('/volunteer-details', [AdminController::class, 'volunteer_details']);
-    Route::get('/popup', [AdminController::class, 'popup']);
+    Route::get('/pop-up', [PopupController::class, 'index']);
+    Route::post('/addPopup', [PopupController::class, 'store']);
+    Route::get('deletepopup/{id}', [PopupController::class, 'destroy']);
+    
     Route::post('/blockUser', [AdminController::class, 'blockUser']);
+    
+    //Route for Product and
+    Route::get('/product-details', [ProductController::class, 'index']);
+    Route::post('/add_product', [ProductController::class, 'store']);
+    Route::post('/update_product', [ProductController::class, 'update']);
+    Route::get('/delete_product/{id}', [ProductController::class, 'destroy']);
+    Route::POST('/getproduct', [ProductController::class, 'getproduct']);
+    Route::post('/getpackage', [ProductController::class, 'getpackagedata']);
+
+    // Route For Wallert Report
+    Route::get('/wallet-report', [WalletController::class, 'index']);
+    Route::post('/search_in_wallet', [WalletController::class, 'show']);
+    
+    //Route for news
+    Route::get('/news', [NewsController::class, 'index']);
+    Route::post('/postNews', [NewsController::class, 'store']);
     
     Route::get('/logout', [AdminController::class, 'logout']);
 });
@@ -132,6 +161,8 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     Route::get('/transfer-wallet-amount', [UserController::class, 'transfer_wallet_amount']);
     Route::get('/generate-ticket', [UserController::class, 'generate_ticket']);
     Route::get('/ticket-list', [UserController::class, 'ticket_list']);
+   
+    
     Route::get('/logout', [UserController::class, 'logout']);
 
 });
@@ -139,5 +170,8 @@ Route::group(['prefix' => 'web'], function () {
     Route::get('/register', [WebController::class, 'index']);
     Route::post('/register', [WebController::class, 'post']);
     Route::post('/update', [WebController::class, 'update']);
+    Route::post('/getUser', [WebController::class, 'getUser']);
+    Route::post('/update_by_user', [WebController::class, 'update_by_user']);
     Route::get('/edit_user/{id}', [WebController::class, 'edit']);
+    Route::get('/edit_by_user/{id}', [WebController::class, 'edit_by_user']);
 });
