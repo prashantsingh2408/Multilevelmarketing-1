@@ -20,7 +20,6 @@ class CreatePinRequestsTable extends Migration
             $table->string('no_of_pins');
             $table->string('recipt');
             $table->integer('amount');
-            $table->string('user_id');
             $table->timestamps();
         });
     }

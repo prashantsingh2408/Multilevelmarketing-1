@@ -281,7 +281,7 @@
                                                                         <th scope="col">Customer Name</th>
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Track ID</th>
+                                                                            align="left">Member ID</th>
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Sponsor Name</th>
@@ -315,7 +315,7 @@
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
                                                                             <span id="ContentPlaceHolder1_grd_Label2_0">
-                                                                                {{$value -> track_id}}</span>
+                                                                                {{$value -> member_id}}</span>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">

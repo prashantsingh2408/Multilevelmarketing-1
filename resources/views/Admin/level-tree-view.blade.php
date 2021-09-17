@@ -201,12 +201,13 @@
                                                         <form id="form" value="{{url('Admin/getleveltree')}}">
                                                             <div class="form-group row">
                                                                 <label class="col-sm-2 col-form-label">
-                                                                    <h6>Enter Track ID*:</h6>
+                                                                    <h6>Enter Member ID*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" id="member_id" name="member_id" class="form-control" required
-                                                                        placeholder="Enter Track ID"
+                                                                        placeholder="Enter Member ID"
                                                                         style="border-radius:3px;">
+                                                                    <span class="text-danger field_error" id="member_id_error"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -230,7 +231,7 @@
                                                                         rules="all" id="table"
                                                                         style="width:100%;border-collapse:collapse;"
                                                                         cellspacing="0" cellpadding="4" border="1">
-                                                                        <tbody>
+                                                                        <thead>
                                                                             <tr style="color:White;background-color:#000000;font-weight:bold;"
                                                                                 align="center">
                                                                                 <th scope="col"
@@ -250,6 +251,9 @@
                                                                                     align="left">Product</th>
                                                                             </tr>
                                                                            
+                                                                        </thead>
+                                                                        <tbody  id="tbody">
+
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -262,13 +266,13 @@
                                                                         <button type="button" class="btn btn-dark"
                                                                             id="level-1">Level 1</button>
                                                                         <div class="title">
-                                                                            <h6>Total Members : </h6>
+                                                                            <h6>Total Members : <span id="total"></span></h6>
                                                                         </div>
                                                                         <div class="title">
-                                                                            <h6>Non-Active Members : </h6>
+                                                                            <h6>Non-Active Members : <span id="inactive"></span></h6>
                                                                         </div>
                                                                         <div class="title">
-                                                                            <h6>Active Members : </h6>
+                                                                            <h6>Active Members : <span id="active"></span></h6>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -308,33 +312,50 @@
     <script type="text/javascript" src="{{ asset('admin_assets/js/script.js')}}"></script>
     <script>
     $(document).ready(function() {
+       
         $("#get-details").click(function(e) {
             var url = $('#form').attr('value');
             var data = $('#member_id').val();
             // alert(data);
+            $('.field_error').html('');
             e.preventDefault();
             $.ajax({
                 url : url,
-                data : {data : data},
+                data : {member_id : data},
                 method : 'POST',
                 dataType : 'JSON',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success : function(data){
-                    $('#data_div').removeClass('d-none');
-                    $.each(data, function(key, val){
-                        if (val.sponsor_id < 1) {
-                        var member_id = '';
-                        }else if (val.sponsor_id < 10) {
-                        var member_id = 'GF10000' + val.sponsor_id;
-                        }else if (val.sponsor_id < 100) {
-                            var member_id = 'GF1000' + val.sponsor_id;
-                        } else {
-                            var member_id = 'GF100' + val.sponsor_id;
-                        }
-                        $('#table tr:last').after('<tr><td>'+val.member_id+'</td><td>'+val.name+'</td><td>'+member_id+'</td><td>'+val.joining_date_from+'</td><td>'+val.product+'</td></tr>');
-                    });
+                    $('.field_error').html('');
+                    $('#tbody').html('');
+                    if(data.status == 'error'){
+                        $.each(data.error, function(keys, vals){
+                            $('#member_id_error').html(vals);
+                        });
+                        
+                    }else{
+                        $('#total').html(data.total);
+                        $('#active').html(data.active);
+                        $('#inactive').html(data.inactive);
+                        $('#data_div').removeClass('d-none');
+                        $.each(data, function(keys, vals){
+                            $.each(vals, function(key, val){
+                            if (val.sponsor_id < 1) {
+                            var member_id = '';
+                            }else if (val.sponsor_id < 10) {
+                            var member_id = 'GF10000' + val.sponsor_id;
+                            }else if (val.sponsor_id < 100) {
+                                var member_id = 'GF1000' + val.sponsor_id;
+                            } else {
+                                var member_id = 'GF100' + val.sponsor_id;
+                            }
+                            $('#tbody').append('<tr><td>'+val.member_id+'</td><td>'+val.name+'</td><td>'+member_id+'</td><td>'+val.joining_date_from+'</td><td>'+val.product+'</td></tr>');
+                        });
+                        });
+                    }
+                   
                 }
             });
         });

@@ -15,20 +15,37 @@ use App\Models\bank_detail;
 use Illuminate\Http\Request;
 use DB;
 use Session;
-
+use Validator;
 class AdminController extends Controller
 {
   public function getleveltree(Request $req)
   {
-    $sid = $req->data;
-    $id = $this->convert_to_id($sid);
-    $data = user_parent::where('parent_id','=', $id)
-            ->join('users','user_parents.parent_id','=','users.id')
-            ->join('products','users.product','=','products.id')
-            ->get();
-            // ->get(['users.name','users.member_id','users.sponsor_id','users.joining_date_from','products.product']);
-    return $data;
-    return response()->json($data);
+    $valid = Validator::make($req -> all(),[
+      'member_id' => 'required',
+     ]);
+     if (!$valid -> passes()) {
+       return response() -> json(['status'=>'error','error' => $valid -> errors()]);
+     }else{
+      $sid = $req->member_id;
+      $id = $this->convert_to_id($sid);
+      // return $id;
+      $data = User::where('sponsor_id','=',$id)
+              ->join('user_parents','users.id','=','user_parents.member_id')
+              ->join('products','users.product','=','products.id')
+              ->where('user_parents.parent_id','=', $id)
+              ->get(['users.name','users.member_id','users.sponsor_id','users.joining_date_from','products.product']);
+              // return $data;
+      $active = User::where('sponsor_id','=',$id)
+              ->where('status','=','Active')
+              ->join('user_parents','users.id','=','user_parents.member_id')
+              ->where('user_parents.parent_id','=', $id)
+              ->count();
+      $inactive = User::where('sponsor_id','=',$id)->where('status','=','Inactive')
+                  ->join('user_parents','users.id','=','user_parents.member_id')
+                  ->where('user_parents.parent_id','=', $id)
+                  ->count();
+      return response()->json(['data'=>$data,'total'=>count($data),'active'=>$active,'inactive'=>$inactive]);
+     }
   }
   public function getkycdetails(Request $request)
   {
@@ -420,7 +437,17 @@ class AdminController extends Controller
   }
   public function memberslist()
   {
-    $data =  $id = Session::get('id');
+    // $id = Session::get('id');
+    // $res = User::find($id);
+    // $result = User::get();
+    // $data = DB::table("users as child")
+    // ->join("users as parent", function($join){
+    //   $join->on("child.sponsor_id", "=", "parent.id");
+    //   $join->on("products.id", "=", "users.product");
+    // })
+    // ->select("child.*","products.*", "parent.name as parentname")
+    // ->get();
+    $id = Session::get('id');
     $res = User::find($id);
     $result = User::get();
     return view('Admin/memberslist')->with('data',$result)->with('datas',product::get());
@@ -449,7 +476,7 @@ class AdminController extends Controller
   }
   public function change_my_profile($id)
   {
-    $data = User::where('id','=',$id)->join('bank_details','users.id','=','bank_details.user_id')
+    $data = User::where('id','=',$id)->leftjoin('bank_details','users.id','=','bank_details.member_id')
     ->get(['users.*','bank_details.*']);
     // return $data;
     return view('Admin/edit-profile')->with('data', $data);
@@ -482,15 +509,27 @@ class AdminController extends Controller
       'relationship' => $request->relationship,
     ];
     $user_res = User::where('id','=',$id)->update($data);
-    $Bank = new bank_detail;
-    $bank_data = [
-      'bank_name' => $request->bank_name,
-      'account_no' => $request->account_no,
-      'branch_name' => $request->branch_name,
-      'account_type' => $request->accountType,
-      'ifsc' => $request->IFSC,
-    ];
-    $bank_res = bank_detail::where('user_id','=',$id)->update($bank_data);
+    $res = bank_detail::where('member_id','=',$id)->get();
+    if (count($res) > 0) {
+      $bank_data = [
+        'bank_name' => $request->bank_name,
+        'account_no' => $request->account_no,
+        'branch_name' => $request->branch_name,
+        'account_type' => $request->accountType,
+        'ifsc' => $request->IFSC,
+      ];
+      $bank_res = bank_detail::where('member_id','=',$id)->update($bank_data);
+    }else{
+      $Bank = new bank_detail;
+      $Bank->member_id = $id;
+      $Bank->bank_name = $request->bank_name;
+      $Bank->account_no = $request->account_no;
+      $Bank->branch_name = $request->branch_name;
+      $Bank->account_type = $request->accountType;
+      $Bank->ifsc = $request->IFSC;
+      $bank_res = $Bank->save();
+
+    }
     if($user_res && $bank_res){
         Session::flash('success','User updated!');
         return redirect('Admin/manage-member');

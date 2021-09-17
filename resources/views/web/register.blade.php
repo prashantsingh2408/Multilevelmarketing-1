@@ -92,7 +92,7 @@
 								<div class="form-group form-primary">
 									<input type="number" name="mobile_no" class="form-control">
 									<span class="form-bar"></span>
-									<label class="float-label">Mobile mobile_no</label>
+									<label class="float-label">Mobile</label>
 									@error('mobile_no')
 									<div class="alert alert-danger">{{ $message }}</div>
 									@enderror

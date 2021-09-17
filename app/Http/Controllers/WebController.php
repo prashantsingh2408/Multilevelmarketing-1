@@ -49,6 +49,7 @@ class WebController extends Controller
         $User->mobile_no = $request->mobile_no;
         $User->status = 'Inactive';
         $User->top_up = "no";
+        $User->product = 1;
         $User -> joining_date_from=date('Y-m-d H:i:s');
         $User->email = $request->email;
         $User->password = md5($request->password);
@@ -57,11 +58,12 @@ class WebController extends Controller
             $max = User::max('id');
             $data = user_parent::where('parent_id','=',$request->pid)->get();
             if(count($data) > 0){
-                DB::insert("INSERT INTO user_parents (member_id, parent_id) SELECT $max, member_id FROM user_parents WHERE parent_id=$request->pid");
-                // return $res;
+                $rr = DB::insert("INSERT INTO user_parents (member_id, parent_id) VALUES($max,$request->pid)");
+                if($rr){
+                    DB::insert("INSERT INTO user_parents (member_id, parent_id) SELECT $max, member_id FROM user_parents WHERE parent_id=$request->pid");
+                }
             }else{
-                $res = DB::insert("INSERT INTO user_parents (member_id, parent_id) VALUES($max,$request->pid)");
-                // return $res;
+                DB::insert("INSERT INTO user_parents (member_id, parent_id) VALUES($max,$request->pid)");
             }
             return redirect('User');
         }
