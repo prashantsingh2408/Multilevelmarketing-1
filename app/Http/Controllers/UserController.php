@@ -8,8 +8,11 @@ use Validator;
 use App\Models\kyc;
 use App\Models\pin;
 use App\Models\User;
-use App\Models\popup;
 use App\Models\bank_detail;
+use App\Models\generate_ticket;
+use App\Models\pin_request;
+use App\Models\ticket_list;
+use App\Models\welcome_letters;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -18,7 +21,8 @@ class UserController extends Controller
    * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
-   */
+   */ 
+  //Login Section
   public function index()
   {
     return view('User.login');
@@ -48,39 +52,40 @@ class UserController extends Controller
       return redirect('User');
     }
   }
+//End Login Section
 
-  public function dashboard(Request $request) 
+///Dashboard Section
+  public function dashboard(Request $request)
   {
-    // return "Hello";
     if ($request->method() == 'POST') {
-      
+
       //validation
-      $validator = Validator::make($request->all(), [ 
+      $validator = Validator::make($request->all(), [
         'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
       ]);
       //save file
       $image = $request->file('file');
-      $input['picname'] = time().'.'.$image->getClientOriginalExtension();
+      $input['picname'] = time() . '.' . $image->getClientOriginalExtension();
       $destinationPath = public_path('/images');
       $image->move($destinationPath, $input['picname']);
 
       $user = User::find($request->session()->get('USER_ID'));
       $user->pic = $input['picname'];
       $user->save();
-      //save data
-      
+
     }
-    
+
     $id = Session::get('id');
     $result = User::find($id);
-    return view('User/dashboard')->with('data', $result)->with('popup',popup::where('screen','=','member')->get());
+    return view('User/dashboard')->with('data', $result);
   }
-
+// End Dashboard Section
   public function logout()
   {
     Session::forget('user', false);
     return view('User/login');
   }
+
 
 
   public function profile()
@@ -89,6 +94,7 @@ class UserController extends Controller
     $result = User::find($id);
     return view('User/profile', ['result' => $result]);
   }
+
 
   public function change_my_profile(Request $request)
   {
@@ -120,13 +126,15 @@ class UserController extends Controller
     return view('User/change-my-profile', ['result' => $result]);
   }
 
-    public function new_registration()
+
+  public function new_registration()
   {
     $id = Session::get('id');
     $res = User::find($id);
-    $result = User::where('sponsor_id','=',$res->member_id)->get();
+    $result = User::where('sponsor_id', '=', $res->member_id)->get();
     return view('User/new-registration')->with('User', $result);
   }
+
 
   public function change_password()
   {
@@ -152,11 +160,8 @@ class UserController extends Controller
 
   public function bank_details(Request $request)
   {
-
     if ($request->method() == 'POST') {
-        $user_id = Session::get('id');
-
-      //updateOrCreate
+      $user_id = Session::get('id');
       $bank_detail = bank_detail::updateOrCreate(
         ['id' => $user_id],
         [
@@ -165,20 +170,18 @@ class UserController extends Controller
           'ifsc' => $request->ifsc_code,
           'account_number' => $request->account_no,
           'account_type' => $request->account_type,
-        ],  
+        ],
       );
 
       if ($bank_detail) {
-          Session::flash('success', 'Bank Details Added Successfully');
-          return redirect('User/bank-details');
+        Session::flash('success', 'Bank Details Added Successfully');
+        return redirect('User/bank-details');
       }
     }
-
     $id = Session::get('id');
     $result = User::find($id);
     return view('User/bank-details', ['result' => $result]);
   }
-
   public function kyc(Request $request)
   {
     if ($request->method() == 'POST') {
@@ -220,14 +223,16 @@ class UserController extends Controller
   }
   public function welcome_letter()
   {
-    
-    return view('User/welcome-letter');
+    $id = Session::get('id');
+    $result = welcome_letters::where('member_id', $id)->get();
+    // dd($result);
+    return view('User/welcome-letter', ['result' => $result]);
   }
   public function transferpin()
   {
     return view('User/transferpin');
   }
-   public function transferpin_show_name(Request $request)
+  public function transferpin_show_name(Request $request)
   {
     $sponsor_id = $request->sponsor_id;
 
@@ -243,38 +248,37 @@ class UserController extends Controller
 
   public function transfer_pin(Request $req)
   {
-     //if post
+    //if post
     if ($req->method() == 'POST') {
-        $sponsor_id = $req->member_id;
+      $sponsor_id = $req->member_id;
 
-        //convert 'GF100000' to '1'
-        $sponsor_id = $this->convert_to_id($sponsor_id);
+      //convert 'GF100000' to '1'
+      $sponsor_id = $this->convert_to_id($sponsor_id);
 
-        //if current user pin are enough to transfer to $sponsor_id user
-        //current user form session 
-        $user_id = Session::get('id');
-        //no of pin $user_id have
-        $no_of_pin = Pin::where('member_id', $user_id)->count();
+      //if current user pin are enough to transfer to $sponsor_id user
+      //current user form session 
+      $user_id = Session::get('id');
+      //no of pin $user_id have
+      $no_of_pin = Pin::where('member_id', $user_id)->count();
 
-        //pin to trasfer
-        $pin_to_transfer = $req->pin_to_transfer;
+      //pin to trasfer
+      $pin_to_transfer = $req->pin_to_transfer;
 
-        //if no of pin is less than pin to transfer
-        if ($no_of_pin < $pin_to_transfer) {
-            Session::flash('error', 'No of pin is less than pin to transfer');
-            return redirect('User/transferpin');
-        }
-        else{
-            //if no of pin is greater or equal to than pin to transfer
-            //update 'trasfer_pin' column to $sponser_id where member_id = $user_id
-            $pin = Pin::where('member_id', $user_id)
-                      ->update(['transfer_id' => $sponsor_id]);
-                      // ->limit($pin_to_transfer);
-            
-        }
-        //insert users table where id = $sponsor_id
-        Session::flash('success', "Pin transfer successfully");
-        return view('User/transfer-pin');  
+      //if no of pin is less than pin to transfer
+      if ($no_of_pin < $pin_to_transfer) {
+        Session::flash('error', 'No of pin is less than pin to transfer');
+        return redirect('User/transferpin');
+      } else {
+        //if no of pin is greater or equal to than pin to transfer
+        //update 'trasfer_pin' column to $sponser_id where member_id = $user_id
+        $pin = Pin::where('member_id', $user_id)
+          ->update(['transfer_id' => $sponsor_id]);
+        // ->limit($pin_to_transfer);
+
+      }
+      //insert users table where id = $sponsor_id
+      Session::flash('success', "Pin transfer successfully");
+      return view('User/transfer-pin');
     }
     return view('User/transfer-pin');
   }
@@ -285,12 +289,21 @@ class UserController extends Controller
     $sponsor_id = ltrim($sponsor_id, '0');
     return $sponsor_id;
   }
-  public function pins_request()
+  public function pins_request(Request $request)
   {
+    if ($request->method() == 'POST') {
+      $res =  new pin_request;
+      $res->user_id = Session::get('id');
+      $res->product = $request->product;
+      $res->no_of_pins = $request->no_of_pin;
+      $res->recipt = $request->recipt;
+      $res->amount = $request->amount;
+      $res->save();
+    }
     $id = Session::get('id');
-    $result = User::find($id);
+    $result = pin_request::find($id);
     return view('User/pins-request', ['result' => $result]);
-  }
+}
   public function pins_report()
   {
     $mid = Session::get('id');
@@ -385,10 +398,32 @@ class UserController extends Controller
   }
   public function generate_ticket()
   {
-    return view('User/generate-ticket');
-  } 
-  public function ticket_list()
+    {
+        $res =  new generate_ticket();
+        $res->status = $request->status;
+        $res->title = $request->title;
+        $res->subject = $request->subject;
+        $res->image_upload = $request->image_upload;
+        $res->save();
+      }
+    $id = Session::get('id');
+    $result = generate_ticket::find($id);
+    return view('User/generate-ticket', ['result' => $result]);
+}
+
+  public function ticket_list() 
   {
-    return view('User/ticket-list');
+     {
+        $res->sr_no = $request->sr_no;
+        $res->date = $request->date;
+        $res->ticket_id = $request->ticket_id;
+        $res->title = $request->title;
+        $res->status = $request->status;
+        $res->show_detail = $request->show_detail;
+        $res->save();
+  }
+    $id = Session::get('id');
+    $result = ticket_list::find($id);
+    return view('User/ticket-list', ['result' => $result]);
   }
 }

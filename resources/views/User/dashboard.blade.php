@@ -46,7 +46,6 @@
 </head>
 
 <body>
-    hello
     <div class="theme-loader">
         <div class="loader-track">
             <div class="preloader-wrapper">
@@ -238,7 +237,9 @@
                                                                                 </li>
                                                                                 <li class="list-group-item">
                                                                                     <h6><b>Pan:</b></h6>
-                                                                                    <h6 class="pull-right"></h6>
+                                                                                    <h6 class="pull-right">
+                                                                                    {{$data -> pan ?? 'not found' }} 
+                                                                                    </h6>
                                                                                 </li>
                                                                                 <li class="list-group-item">
                                                                                     <h6><b>Status:</b></h6>
@@ -321,7 +322,7 @@
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td style="padding: 10px !important;">
-                                                                                            <textarea style="width:100%;height:135px;"></textarea>
+                                                                                            <textarea style="width:100%;height:135px;"> {{$data -> sponsor_id ?? 'not found' }} </textarea>
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -337,7 +338,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">E-Wallet</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> e_wallet ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -347,7 +348,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Received Amount</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> recevied_amount ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -357,7 +358,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Due Amount</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> due_amount ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -367,7 +368,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Direct Team</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> direct_team ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -379,7 +380,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Available Pin</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> available_pin ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -389,7 +390,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Direct Income</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> direct_income ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -399,7 +400,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Level Income</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> level_income ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -409,7 +410,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Rank Level Income</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> rank_level_income ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -421,7 +422,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Auto Pool Income</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> auto_pool_income ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -431,7 +432,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Total Team</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> total_team ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -441,7 +442,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Daily Joining Members</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> daily_joining_members ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -451,7 +452,7 @@
                                                                     <div class="card-block">
                                                                         <div class="text-left">
                                                                             <p class="m-0">Daily Active Member</p>
-                                                                            <h4 class="m-0">489</h4>
+                                                                            <h4 class="m-0">{{$data -> daily_active_member ?? '0' }}</h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
