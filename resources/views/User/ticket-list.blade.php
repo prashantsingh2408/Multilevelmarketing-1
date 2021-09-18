@@ -202,18 +202,20 @@
                                     <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Ticket ID</th>
                                     <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Title</th>
                                     <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Status</th>
+                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Subject</th>
                                     <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Show Details</th>
                                   </tr>
                                   <!-- <tr><p>No Records Found</p></tr> -->
+                                  @foreach($tickets as $result)
                                   <tr class="gridviewPager">
                                     <td colspan="">
-                                    {{$result -> sr_no}}
+                                     {{ $loop->iteration  }}
                                     </td>
                                     <td colspan="">
-                                    {{$result -> date}}
+                                    {{$result ->created_at}}
                                     </td>
                                     <td colspan="">
-                                    {{$result -> ticket_id}}
+                                    {{$result -> id}}
                                     </td>
                                     <td colspan="">
                                     {{$result -> title}}
@@ -222,9 +224,17 @@
                                     {{$result -> status}}
                                     </td>
                                     <td colspan="">
+                                      {{ $result -> subject}}
+                                    </td>
+                                    <!-- <img> show -->
+                                    <td>
+                                      <img src="{{url('/uploads')}}/{{$result -> image_upload}}" width="100px" height="100px" style="border-radius:50%;"/>
+                                    </td>
+                                    <td colspan="">
                                     {{$result -> show_details}}
                                     </td>
                                   </tr>
+                                  @endforeach
                                 </tbody>
                               </table>
                             </div>

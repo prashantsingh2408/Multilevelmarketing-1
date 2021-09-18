@@ -396,16 +396,25 @@ class UserController extends Controller
     {
         return view('User/transfer-wallet-amount');
     }
-    public function generate_ticket(Request $request)
-    {
-        if ($request->method() == 'POST' && isset($res-> status) ) {
-            $res =  new generate_ticket();
-            $res->status = $request->status;
-            $res->title = $request->title;
-            $res->subject = $request->subject;
-            $res->image_upload = $request->image_upload;
-            $res->save();           
+    public function generate_ticket(Request $res)
+    {   
+        if ($res->method() == 'POST' && isset($res-> status) ) {
+            //store file
+            $file = $res->file('image_upload');
+         
+            $file_name = $file->getClientOriginalName();
+            $file->move('uploads', $file_name);
+            //store file
+            
+            $generate_ticket =  new generate_ticket();
+
+            $generate_ticket->status = $res->status;
+            $generate_ticket->title = $res->title;
+            $generate_ticket->subject = $res->subject;
+            $generate_ticket->image_upload = $file_name;
+            $generate_ticket->save();           
             Session::flash('success', "Ticket Generated Successfully");
+            return redirect()->back();
         }
         $id = Session::get('id');
         $result = generate_ticket::find($id);
@@ -416,18 +425,19 @@ class UserController extends Controller
     {
    
         if($request->method() =='POST'){
-          dd($request);
-        $res = new ticket_list();
-        $res -> sr_no = $request-> sr_no;
-        $res-> date = $request -> date;
-        $res -> ticket_id = $request -> ticket_id;        
-        $res -> title= $request-> title;
-        $res -> status = $request -> status;
-        $res -> show_detail = $request -> show_detail;
+         
+        $ticket_list = new ticket_list();
+
+        $ticket_list -> sr_no = $request-> sr_no;
+        $ticket_list-> date = $request -> date;
+        $ticket_list -> ticket_id = $request -> ticket_id;      
+        $ticket_list -> title= $request-> title;
+        $ticket_list -> status = $request -> status;
+        $ticket_list -> show_detail = $request -> show_detail;
       }
         $id = Session::get('id');
      
-        $result = generate_ticket::find($id);
-        return view('User/ticket-list', ['result' => $result]);
+        $result = generate_ticket::all();
+        return view('User/ticket-list', ['tickets' => $result]);
     }
 }

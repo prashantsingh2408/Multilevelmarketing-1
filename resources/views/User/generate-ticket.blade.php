@@ -209,7 +209,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <form action="{{url('User/generate-ticket')}}" method="POST">
+                                                    <form action="{{url('User/generate-ticket')}}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                         <div class="card-block">
                                                             <div class="form-group row">
