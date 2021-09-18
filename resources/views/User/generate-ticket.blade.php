@@ -187,6 +187,9 @@
                                     </div>
                                     <!-- alert success msg -->
                                     @endif
+                                    @php
+                                    Session::forget('success');
+                                    @endphp
                             
                                     
                                     <div class="page-body">
