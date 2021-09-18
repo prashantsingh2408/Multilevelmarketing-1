@@ -303,7 +303,7 @@ class UserController extends Controller
         $result = pin_request::find($id);
         return view('User/pins-request', ['result' => $result]);
     }
-    
+
     public function pins_report()
     {
         $mid = Session::get('id');
@@ -398,13 +398,13 @@ class UserController extends Controller
     }
     public function generate_ticket(Request $request)
     {
-        if ($request->method() == 'POST') {
+        if ($request->method() == 'POST' && isset($res-> status) ) {
             $res =  new generate_ticket();
             $res->status = $request->status;
             $res->title = $request->title;
             $res->subject = $request->subject;
             $res->image_upload = $request->image_upload;
-            $res->save();
+            $res->save();           
             Session::flash('success', "Ticket Generated Successfully");
         }
         $id = Session::get('id');
@@ -414,7 +414,9 @@ class UserController extends Controller
 
     public function ticket_list(Request $request)
     {
+   
         if($request->method() =='POST'){
+          dd($request);
         $res = new ticket_list();
         $res -> sr_no = $request-> sr_no;
         $res-> date = $request -> date;
@@ -424,7 +426,8 @@ class UserController extends Controller
         $res -> show_detail = $request -> show_detail;
       }
         $id = Session::get('id');
-        $result = ticket_list::find($id);
+     
+        $result = generate_ticket::find($id);
         return view('User/ticket-list', ['result' => $result]);
     }
 }
