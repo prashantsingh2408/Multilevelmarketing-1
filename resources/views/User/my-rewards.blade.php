@@ -189,27 +189,43 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
-                                                        <div class="row" style="padding:10px;">
-                                                            <label class="col-sm-12 col-form-label">
-                                                                <h6>Sorry,No Records Available</h6>
-                                                            </label>
-                                                        
+                                                        <div class="table-responsive-xl" style="padding:0 10px;">
+                                                            <table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
+                                                                <tbody>
+                                                                    <tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sr.No</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Date</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Reward</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Description</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Alloted Reward</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Show Details</th>
+                                                                    </tr>
+                                                                    <!-- <tr><p>No Records Found</p></tr> -->
+
+                                                                    <tr class="gridviewPager">
+                                                                        <td colspan="17">
+                                                                            <table></table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--  sale analytics end -->
                                         </div>
+                                        <!--  sale analytics end -->
                                     </div>
-                                    <!-- Page-body end -->
                                 </div>
-                                <div id="styleSelector"> </div>
+                                <!-- Page-body end -->
                             </div>
+                            <div id="styleSelector"> </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Required Jquery -->
     <script type="text/javascript" src="{{asset('user_assets/js/jquery/jquery.min.js')}}"></script>
@@ -229,13 +245,14 @@
     <script src="{{asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
 
     <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
-		<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
-		<script>
-		let button = document.querySelector("#export");
-		button.addEventListener("click", e => {
-			let table1 = document.querySelector("#TABLE");
-			TableToExcel.convert(table1);
-		});
-		</script>
+    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+    <script>
+        let button = document.querySelector("#export");
+        button.addEventListener("click", e => {
+            let table1 = document.querySelector("#TABLE");
+            TableToExcel.convert(table1);
+        });
+    </script>
 </body>
+
 </html>

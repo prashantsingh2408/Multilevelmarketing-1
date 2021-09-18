@@ -286,6 +286,8 @@ class UserController extends Controller
         $sponsor_id = ltrim($sponsor_id, '0');
         return $sponsor_id;
     }
+
+
     public function pins_request(Request $request)
     {
         if ($request->method() == 'POST') {
@@ -301,6 +303,7 @@ class UserController extends Controller
         $result = pin_request::find($id);
         return view('User/pins-request', ['result' => $result]);
     }
+    
     public function pins_report()
     {
         $mid = Session::get('id');
@@ -411,15 +414,15 @@ class UserController extends Controller
 
     public function ticket_list(Request $request)
     {
-        if ($request->method() == 'POST') {
-            $res->sr_no = $request->sr_no;
-            $res->date = $request->date;
-            $res->ticket_id = $request->ticket_id;
-            $res->title = $request->title;
-            $res->status = $request->status;
-            $res->show_detail = $request->show_detail;
-            $res->save();
-        }
+        if($request->method() =='POST'){
+        $res = new ticket_list();
+        $res -> sr_no = $request-> sr_no;
+        $res-> date = $request -> date;
+        $res -> ticket_id = $request -> ticket_id;        
+        $res -> title= $request-> title;
+        $res -> status = $request -> status;
+        $res -> show_detail = $request -> show_detail;
+      }
         $id = Session::get('id');
         $result = ticket_list::find($id);
         return view('User/ticket-list', ['result' => $result]);
