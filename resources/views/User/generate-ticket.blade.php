@@ -176,6 +176,19 @@
                             <div class="main-body">
                                 <div class="page-wrapper">
                                     <!-- Page-body start -->
+                                    <!-- alert success msg -->
+                                    @if(Session::has('success'))
+                                    <div class="alert alert-success alert-dismissible" role="alert" id="alert-success">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4><i class="icon fa fa-check"></i> Success!</h4>
+                                        <p>
+                                            Your ticket has been successfully created.
+                                        </p>
+                                    </div>
+                                    <!-- alert success msg -->
+                                    @endif
+                            
+                                    
                                     <div class="page-body">
                                         <div class="row">
                                             <!--  sale analytics start -->
@@ -201,8 +214,8 @@
                                                                     <h6>Select Status*</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <select name="select" class="form-control" required>
-                                                                        <option value="select">Select</option>
+                                                                    <select name="status" class="form-control" required>
+                                                                        <option value="">Select</option>
                                                                         <option name="open"  value="opened">Opened</option>
                                                                         <option name="close" value="closed">Closed</option>
                                                                     </select>
@@ -270,6 +283,17 @@
     <script src="{{ asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
 
     <script type="text/javascript" src="{{ asset('user_assets/js/script.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            //disappear alert after some time
+            setTimeout(function() {
+                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 2000);
+        });
+
+    </script>
 </body>
 
 </html>
