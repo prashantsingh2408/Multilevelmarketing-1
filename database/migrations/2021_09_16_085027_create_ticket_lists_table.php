@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePinRequestsTable extends Migration
+class CreateTicketListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreatePinRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pin_requests', function (Blueprint $table) {
+        Schema::create('ticket_lists', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('product');
-            $table->string('no_of_pins');
-            $table->string('recipt');
-            $table->integer('amount');
+            $table->string('sr_no');
+            $table->string('date');
+            $table->string('ticket_id');
+            $table->string('title');
+            $table->string('status');
+            $table->string('show_detail');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreatePinRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pin_requests');
+        Schema::dropIfExists('ticket_lists');
     }
 }

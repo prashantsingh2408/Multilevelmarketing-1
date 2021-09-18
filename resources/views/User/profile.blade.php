@@ -201,8 +201,6 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    
-
                                                     <div class="card-block">
                                                     <form action="" method="POST">
                                                        

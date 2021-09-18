@@ -193,7 +193,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <form action="{{ url('User/pin-request') }}" method="POST">
+                                                    <form action="{{url('User/pins-request')}}" method="POST">
                                                     @csrf
                                                         <div class="card-block">
                                                             <div class="form-group row">
@@ -201,18 +201,18 @@
                                                                     <h6>Select Product To Generate Pin*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <select name="select" class="form-control" required>
+                                                                    <select name="product" class="form-control" required>
                                                                         <option value="opt1">Select Product</option>
-                                                                        <option value="opt2">Package 500</option>
+                                                                        <option value="package500">Package 500</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <label class="col-sm-2 col-form-label">
+                                                                <label class="col-sm-2 col-form-label" >
                                                                     <h6>Enter Number Of Pins To Generate*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" class="form-control" required placeholder="Enter Number Of Pins To Generate">
+                                                                    <input id="no_of_pin" name="no_of_pin" onchange="update_amount(this)" type="text" class="form-control" required placeholder="Enter Number Of Pins To Generate">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -220,7 +220,7 @@
                                                                     <h6>Receipt*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="file" class="form-control" required>
+                                                                    <input type="file" name="recipt" class="form-control" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -228,7 +228,7 @@
                                                                     <h6>Amount*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" class="form-control" required placeholder="Rs.">
+                                                                    <input  id="amount" type="text" name="amount" class="form-control" required placeholder="Rs.">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row" style="display:grid;place-items:center;">
@@ -271,35 +271,11 @@
     <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
 </body>
 <script>
-    $(document).ready(function() {
-            $('#show').click(function() {
-                sponsor_id = $('#sponsor_id').val();
-                $.ajax({
-                    url: "{{url('Admin/generatepindirects_show_name')}}",
-                    type: 'post',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        sponsor_id: sponsor_id
-                    },
-                    success: function(name) {
-                        if(name == 'null'){
-                            $('#name').html('User not found');
-                            //disable select product
-                            $('input[name=no_of_pins]').prop('disabled', true);
-                            $('select[name=select]').prop('disabled', true);                           
-                        }
-                        var obj = JSON.parse(name);
-                        $('#name').html(obj.name);
-                        //enable select product
-                        $('select[name=package]').prop('disabled', false);
-                        //enable select product
-                        $('input[name=no_of_pins]').prop('disabled', false);
-                        //enable select product
-                        $('select[name=select]').prop('disabled', false);
-                    }
-                });
-            });
-        });
+function update_amount() {
+  var x = document.getElementById("no_of_pin").value;
+    amount=x*500;
+  document.getElementById("amount").value = amount;
+}
 </script>
 
 

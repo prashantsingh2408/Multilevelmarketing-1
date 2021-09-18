@@ -197,14 +197,14 @@
                                 <table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
                                   <tbody>
                                     <tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
-                                      <th scope="col">Sr. No</th>
+                                      <th scope="col">Sr. No</th> 
                                       <th scope="col">Date</th>
                                       <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Ticket ID</th>
                                       <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Title</th>
                                       <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Status</th>
                                       <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Show Details</th>
                                     </tr>
-																		<tr><p>No Records Found</p></tr>
+																		<!-- <tr><p>No Records Found</p></tr> -->
                                     
 																		<tr class="gridviewPager">
 																			<td colspan="17"><table></table></td>
