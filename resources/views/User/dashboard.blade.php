@@ -46,7 +46,21 @@
 </head>
 
 <body>
-    hello
+    <!-- Start Modal -->
+    <div class="modal hide fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="offer"></h5>
+              <button id="closeBtn" >Close</button>
+            </div>
+            <div class="modal-body">
+                <img id="image" height="100%" width="100%">
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- End Modal -->
     <div class="theme-loader">
         <div class="loader-track">
             <div class="preloader-wrapper">
@@ -491,6 +505,30 @@
     <script src="{{asset('user_assets/js/vertical/vertical-layout.min.js') ?? 'not found' }} "></script>
 
     <script type="text/javascript" src="{{asset('user_assets/js/script.js') ?? 'not found' }} "></script>
+    <script type="text/javascript">
+        $('document').ready(function() {
+            $(window).on('load', function(e) {
+                e.preventDefault();
+                $.ajax({
+                   url : "getpopup",
+                   method : 'GET',
+                   dataType : 'json',
+                   success : function(result) {
+                      if(result.status == 'success') {
+                          $.each(result.data, function(key, value) {
+                             $('#offer').html(value.title);
+                             $('#image').attr('src','../uploads/'+value.file);
+                             $('#myModal').modal('show');
+                             $('#closeBtn').click(function(){
+                                $('#myModal').modal('hide');
+                             });
+                          });
+                      }
+                   }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

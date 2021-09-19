@@ -38,6 +38,21 @@
 </head>
 
 <body>
+    <!-- Start Modal -->
+    <div class="modal hide fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="offer"></h5>
+              <button id="closeBtn" >Close</button>
+            </div>
+            <div class="modal-body">
+                <img id="image" height="100%" width="100%">
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- End Modal -->
     <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="loader-track">
@@ -431,24 +446,48 @@
                 </div>
             </div>
         </div>
-        <!-- Required Jquery -->
-        <script type="text/javascript" src="{{ asset('admin_assets/js/jquery/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('admin_assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('admin_assetsassets/js/popper.js/popper.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('admin_assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
-        <!-- waves js -->
-        <script src="{{ asset('admin_assets/pages/waves/js/waves.min.js') }}"></script>
-        <!-- jquery slimscroll js -->
-        <script type="text/javascript" src="{{ asset('admin_assets/js/jquery-slimscroll/jquery.slimscroll.js') }}">
+         <!-- Required Jquery -->
+    <script type="text/javascript" src="{{asset('user_assets/js/jquery/jquery.min.js') ?? 'not found' }} "></script>
+    <script type="text/javascript" src="{{asset('user_assets/js/jquery-ui/jquery-ui.min.js') ?? 'not found' }} "></script>
+    <script type="text/javascript" src="{{asset('user_assets/js/popper.js/popper.min.js') ?? 'not found' }} "></script>
+    <script type="text/javascript" src="{{asset('user_assets/js/bootstrap/js/bootstrap.min.js') ?? 'not found' }} "></script>
+    <!-- waves js -->
+    <script src="{{asset('user_assets/pages/waves/js/waves.min.js') ?? 'not found' }} "></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{{asset('user_assets/js/jquery-slimscroll/jquery.slimscroll.js') ?? 'not found' }} "></script>
+
+    <!-- slimscroll js -->
+    <script src="{{asset('user_assets/js/jquery.mCustomScrollbar.concat.min.js') ?? 'not found' }} "></script>
+
+    <!-- menu js -->
+    <script src="{{asset('user_assets/js/pcoded.min.js') ?? 'not found' }} "></script>
+    <script src="{{asset('user_assets/js/vertical/vertical-layout.min.js') ?? 'not found' }} "></script>
+
+    <script type="text/javascript" src="{{asset('user_assets/js/script.js') ?? 'not found' }} "></script>
+        <script type="text/javascript">
+            $('document').ready(function() {
+                $(window).on('load', function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                       url : "getpopupadmin",
+                       method : 'GET',
+                       dataType : 'json',
+                       success : function(result) {
+                          if(result.status == 'success') {
+                              $.each(result.data, function(key, value) {
+                                 $('#offer').html(value.title);
+                                 $('#image').attr('src','../uploads/'+value.file);
+                                 $('#myModal').modal('show');
+                                 $('#closeBtn').click(function(){
+                                    $('#myModal').modal('hide');
+                                 });
+                              });
+                          }
+                       }
+                    });
+                });
+            });
         </script>
-
-        <!-- slimscroll js -->
-        <script src="{{ asset('admin_assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-
-        <!-- menu js -->
-        <script src="{{ asset('admin_assets/js/pcoded.min.js') }}"></script>
-        <script src="{{ asset('admin_assets/js/vertical/vertical-layout.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('admin_assets/js/script.js') }}"></script>
 </body>
 
 </html>
