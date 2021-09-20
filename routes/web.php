@@ -157,7 +157,7 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     Route::get('/cash-wallet', [UserController::class, 'cash_wallet']);
     Route::get('/payout-report', [UserController::class, 'payout_report']);
     Route::get('/transfer-wallet-amount', [UserController::class, 'transfer_wallet_amount']);
-    Route::any('/generate-ticket', [UserController::class, 'generate_ticket']);
+    Route::any('/generate-ticket', [UserController::class, 'generate_ticket'])->name('generate_ticket');
     Route::get('/ticket-list', [UserController::class, 'ticket_list']); 
     Route::get('/logout', [UserController::class, 'logout']);
 

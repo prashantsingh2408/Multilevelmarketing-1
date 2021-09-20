@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
-use App\Models\Pin;
-use App\Models\memberlist;
-use App\Models\pin_request;
-use App\Models\User;
-use App\Models\user_parent;
-use App\Models\product;
-use App\Models\kyc;
-use App\Models\topup;
-use App\Models\bank_detail;
-use Illuminate\Http\Request;
 use DB;
 use Session;
 use Validator;
+use App\Models\kyc;
+use App\Models\pin;
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\topup;
+use App\Models\product;
+use App\Models\memberlist;
+use App\Models\bank_detail;
+use App\Models\pin_request;
+use App\Models\user_parent;
+use Illuminate\Http\Request;
+
 class AdminController extends Controller
 {
   public function getleveltree(Request $req)
@@ -257,17 +258,26 @@ class AdminController extends Controller
   public function generatepindirects_show_name(Request $request)
   {
     $sponsor_id = $request->sponsor_id;
-
     //convert 'GF100000' to '1'
     $sponsor_id = $this->convert_to_id($sponsor_id);
-
-    $Name = User::select('name')
+    $name = User::select('name')
       ->where('id', $sponsor_id)
       ->first();
-    if($Name == null) {
+    
+    $data= pin::select('mobile_no','product','pin_no')
+        ->where('id', $sponsor_id)->first();
+    $mobile = $data->mobile_no;
+    $product = $data->product;
+    $pin_no = $data->pin_no;
+    
+    //fetch all pins
+    $data = pin::select('pin')
+                ->where('memeber_id', $sponsor_id)->get();
+
+    if($name == null) {
       return json_encode(null);
     }
-    return json_encode($Name);
+    return json_encode([$name->name,$mobile,$product,$pin_no]);
   }
 
   public function generatepindirects_issue(Request $req)

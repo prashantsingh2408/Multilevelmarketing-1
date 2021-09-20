@@ -322,7 +322,8 @@ class UserController extends Controller
     }
     public function transfer_pin_report()
     {
-        return view('User/transfer-pin-report');
+
+        return view('User/transfer-pin-report',['result' => Pin::all() ]);
     }
     public function top_up()
     {
