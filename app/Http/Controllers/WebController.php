@@ -33,14 +33,16 @@ class WebController extends Controller
 
         $mid = User::max('id');
         // return $mid+1;
-        if($mid < 10){
+        if($mid < 9){
         $member_id = 'GF1' . "0000" . $mid+1;
         }
-        elseif($mid < 100){
+        elseif($mid < 99){
             $member_id = 'GF1' . "000" . $mid+1;
         } 
-        else{
+        elseif($mid < 999){
             $member_id = 'GF1' . "00" . $mid+1;
+        }else{
+            $member_id = 'GF1' . "0" . $mid+1;
         }
         $User = new User();
         $User->member_id = $member_id;

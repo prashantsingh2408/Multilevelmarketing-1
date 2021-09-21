@@ -26,7 +26,7 @@ Route::get('/', function () {
     return view('Admin/login');
 });
 Route::prefix('Admin')->group(function () {
-
+    Route::get('/getpopupadmin', [PopupController::class, 'getpopupadmin']);
     Route::get('/', [AdminController::class, 'index']);
     Route::post('/auth', [AdminController::class, 'auth']);
     Route::get('/dashboard', [AdminController::class, 'dashboard']);
@@ -113,6 +113,12 @@ Route::prefix('Admin')->group(function () {
     //Route for news
     Route::get('/news', [NewsController::class, 'index']);
     Route::post('/postNews', [NewsController::class, 'store']);
+
+    
+    //Route for admin setup
+    
+    Route::get('/admin_setup', [AdminController::class, 'admin_setup']);
+    Route::post('/add_setup', [AdminController::class, 'add_setup']);
     Route::get('/logout', [AdminController::class, 'logout']);
 });
 
@@ -157,8 +163,13 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     Route::get('/cash-wallet', [UserController::class, 'cash_wallet']);
     Route::get('/payout-report', [UserController::class, 'payout_report']);
     Route::get('/transfer-wallet-amount', [UserController::class, 'transfer_wallet_amount']);
+
     Route::any('/generate-ticket', [UserController::class, 'generate_ticket'])->name('generate_ticket');
     Route::get('/ticket-list', [UserController::class, 'ticket_list']); 
+
+    Route::get('/generate-ticket', [UserController::class, 'generate_ticket']);
+    Route::get('/ticket-list', [UserController::class, 'ticket_list']);
+    Route::get('/getpopup', [PopupController::class, 'getpopup']);
     Route::get('/logout', [UserController::class, 'logout']);
 
 });

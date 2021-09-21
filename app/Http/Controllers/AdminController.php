@@ -14,13 +14,75 @@ use App\Models\product;
 use App\Models\memberlist;
 use App\Models\bank_detail;
 use App\Models\pin_request;
+use App\Models\adminsetup;
+use App\Models\User;
 use App\Models\user_parent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Session;
+use Validator;
 
 class AdminController extends Controller
 {
-  public function getleveltree(Request $req)
+  public function admin_setup(Request $req)
   {
+     return view('Admin/admin_setup')->with('User',adminsetup::get());
+  }
+  public function add_setup(Request $req)
+  {
+    $count = adminsetup::get();
+    foreach ($count as $da){}
+    if(count($count)== 1){
+      $data = [
+        'tds_deduction_with_pan'=>$req -> post('tds_deduction'),
+        'admin_charge_with_pan' =>$req -> post('admin_charge'),
+        'payout_limit'=>$req -> post('payout_limit'),
+        'tds_deduction_without_pan'=>$req -> post('tds_deductionwp'),
+        'admin_charge_without_pan'=>$req -> post('admin_chargewp'),
+      ];
+      $result = adminsetup::where('id','=',$da->id)->update($data);
+    }else{
+      $res = new adminsetup;
+      $res->tds_deduction_with_pan=$req -> post('tds_deduction');
+      $res->admin_charge_with_pan =$req -> post('admin_charge');
+      $res->payout_limit=$req -> post('payout_limit');
+      $res->tds_deduction_without_pan=$req -> post('tds_deductionwp');
+      $res->admin_charge_without_pan=$req -> post('admin_chargewp');
+      $result = $res -> save();
+    }
+    if($result){
+      Session::flash('success', 'Setup Added!');
+      return redirect('Admin/admin_setup');
+    }else{
+      Session::flash('error', 'Setup Not Added!');
+      return redirect('Admin/admin_setup');
+    }
+  }
+  public function getleveltree(Request $req)
+  {  
+    //  function get_all_child($user_id, $conn)
+    // {
+    //     $under=[];
+    //     $sql="select * from user_profiles where sponsor_id=$user_id order by placement";
+    //     if($res = $conn->query($sql))
+    //     {
+    //         if($res->num_rows)
+    //         {
+    //             while($row = $res->fetch_assoc())
+    //             {
+    //                 $under[]=$row;
+    //             }
+    //         }
+    //     }
+        
+    //     return $under;
+    // }
+    // $sid = $req->member_id;
+    // $id = $this->convert_to_id($sid);
+    // $res = DB::select("select member_id from user_parents where parent_id=$id");
+    // return $res;
+    // exit;
     $valid = Validator::make($req -> all(),[
       'member_id' => 'required',
      ]);
@@ -30,22 +92,37 @@ class AdminController extends Controller
       $sid = $req->member_id;
       $id = $this->convert_to_id($sid);
       // return $id;
-      $data = User::where('sponsor_id','=',$id)
-              ->join('user_parents','users.id','=','user_parents.member_id')
-              ->join('products','users.product','=','products.id')
-              ->where('user_parents.parent_id','=', $id)
-              ->get(['users.name','users.member_id','users.sponsor_id','users.joining_date_from','products.product']);
-              // return $data;
-      $active = User::where('sponsor_id','=',$id)
-              ->where('status','=','Active')
+     // return $data;
+      function get_all_child($id)
+      {
+          // return $id;
+          $under=[];
+          $sql= User::where('sponsor_id','=',$id)
+          ->join('user_parents','users.id','=','user_parents.member_id')
+          ->join('products','users.product','=','products.id')
+          ->where('user_parents.parent_id','=', $id)
+          ->get(['users.name','users.member_id','users.sponsor_id','users.joining_date_from','products.product']);
+          $active = User::where('sponsor_id','=',$id)
+          ->where('status','=','Active')
+          ->join('user_parents','users.id','=','user_parents.member_id')
+          ->where('user_parents.parent_id','=', $id)
+          ->count();
+          $inactive = User::where('sponsor_id','=',$id)->where('status','=','Inactive')
               ->join('user_parents','users.id','=','user_parents.member_id')
               ->where('user_parents.parent_id','=', $id)
               ->count();
-      $inactive = User::where('sponsor_id','=',$id)->where('status','=','Inactive')
-                  ->join('user_parents','users.id','=','user_parents.member_id')
-                  ->where('user_parents.parent_id','=', $id)
-                  ->count();
-      return response()->json(['data'=>$data,'total'=>count($data),'active'=>$active,'inactive'=>$inactive]);
+          // return $sql;
+          if($sql)
+          {
+            foreach($sql as $val){
+              $under[]=$val;
+            }
+              
+          }
+          return response()->json(['data'=>$under,'total'=>count($under),'active'=>$active,'inactive'=>$inactive]);
+      }
+      $role = get_all_child($id);
+      return $role;
      }
   }
   public function getkycdetails(Request $request)

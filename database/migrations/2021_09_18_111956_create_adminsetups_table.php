@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePopupsTable extends Migration
+class CreateAdminsetupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreatePopupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('popups', function (Blueprint $table) {
+        Schema::create('adminsetups', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('screen');
-            $table->string('file');
+            $table->double('tds_deduction_with_pan');
+            $table->double('admin_charge_with_pan');
+            $table->double('payout_limit');
+            $table->double('admin_charge_without_pan');
+            $table->double('tds_deduction_without_pan');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreatePopupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('popups');
+        Schema::dropIfExists('adminsetups');
     }
 }

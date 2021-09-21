@@ -35,6 +35,13 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+                    <li class=" ">
+                        <a href="admin_setup" class="waves-effect waves-dark">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext">Admin Setup</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
