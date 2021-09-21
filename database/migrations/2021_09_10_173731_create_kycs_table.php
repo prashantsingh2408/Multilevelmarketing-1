@@ -15,7 +15,7 @@ class CreateKycsTable extends Migration
     {
         Schema::create('kycs', function (Blueprint $table) {
             $table->id();
-            $table->string('member_id');
+            $table->string('member_id')->nullable();
             $table->string('pan_number');
             $table->string('pan_file');
             $table->string('adhar_file');

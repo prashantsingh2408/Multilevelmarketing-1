@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <head>
     <title>Golden Life Foundation </title>
     <meta charset="utf-8">
@@ -10,7 +11,7 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
-      <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{asset('user_assets/img/favicon.png')}}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
@@ -28,6 +29,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/jquery.mCustomScrollbar.css')}}">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('user_assets/css/style.css')}}">
+    <style>
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -121,7 +128,7 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                
+
                                     <span>Welcome, User</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -140,7 +147,7 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-									@include('User/sidebar')
+                    @include('User/sidebar')
                     <div class="pcoded-content">
                         <!-- Page-header start -->
                         <div class="page-header">
@@ -148,16 +155,16 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-8">
                                         <div class="page-header-title">
-                                            <h5 class="m-b-10">Transfer Pin Report</h5>
+                                            <h5 class="m-b-10">Transfer_Pin_Report</h5>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <ul class="breadcrumb">
                                             <li class="breadcrumb-item">
-                                                <a href="index.php"> <i class="fa fa-home"></i> </a>
+                                                <a href="index"> <i class="fa fa-home"></i> </a>
                                             </li>
-                                            <li class="breadcrumb-item">Pin Management</li>
-                                            <li class="breadcrumb-item"><a href="#">Transfer Pin Report</a>
+                                            <li class="breadcrumb-item">Transfer_Pin_Report</li>
+                                            <li class="breadcrumb-item"><a href="#">Transfer_Pin_Report</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -165,64 +172,47 @@
                             </div>
                         </div>
                         <!-- Page-header end -->
-                        <div class="pcoded-inner-content">
-                            <!-- Main-body start -->
-                            <div class="main-body">
-                                <div class="page-wrapper">
-                                    <!-- Page-body start -->
-                                    <div class="page-body">
-                                        <div class="row">
-                                            <!--  sale analytics start -->
-                                            <div class="col-xl-12 col-md-12">
-                                                <div class="card table-card">
-                                                    <div class="card-header">
-                                                        <!-- <h5>Dashboard</h5> -->
-                                                        <div class="card-header-right" style="padding:0px;">
-                                                            <ul class="list-unstyled card-option">
-                                                                <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                                                <li><i class="fa fa-window-maximize full-card"></i></li>
-                                                                <li><i class="fa fa-minus minimize-card"></i></li>
-                                                                <li><i class="fa fa-refresh reload-card"></i></li>
-                                                                <li><i class="fa fa-trash close-card"></i></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-block">
-																											<div class="row" style="padding:10px;">
-																												<label class="col-sm-12 col-form-label"><h6>No Pins Available</h6></label>
-																												<!-- <table class="table table-hover table-bordered" style="text-align:center;" id="TABLE">
-																													<thead class="thead-dark">
-																														<tr>
-																															<th scope="col"><strong id="tabth">TDS</strong></th>
-																															<th scope="col"><strong id="tabth">Maintenance</strong></th>
-																															<th scope="col"><strong id="tabth">PAN</strong></th>
-																														</tr>
-																													</thead>
-																													<tbody>
-																														<tr>
-																															<td>Mark</td>
-																															<td>Otto</td>
-																															<td>@mdo</td>
-																														</tr>
-																														<tr>
-																													</tbody>
-																												</table> -->
-																											</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--  sale analytics end -->
-                                        </div>
-                                    </div>
-                                    <!-- Page-body end -->
-                                </div>
-                                <div id="styleSelector"> </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="table-responsive-xl" style="padding:0 10px;">
+                        <table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
+                            <tbody>
+                                <tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
+                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Pin Number</th>
+                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Transfer Date</th>
+                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Product </th>
+                                    <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Transfer To</th>
+                                </tr>
+                                @foreach ($result as $value)
+                                <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;" align="center">
+                                    <td>{{$value -> pin_no}}</td>
+                                    <td>{{$value -> transfer_date}}</td>
+                                    <td>{{$value -> product}}</td>
+                                    <td>{{$value -> transfer_to}}</td>
+                                </tr>
+                                @endforeach
+                                <tr class="gridviewPager">
+                                    <td colspan="17">
+                                        <table></table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+        <!--  sale analytics end -->
+    </div>
+    </div>
+    <!-- Page-body end -->
+    </div>
+    <div id="styleSelector"> </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     <!-- Required Jquery -->
     <script type="text/javascript" src="{{asset('user_assets/js/jquery/jquery.min.js')}}"></script>
@@ -242,13 +232,14 @@
     <script src="{{asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
 
     <script type="text/javascript" src="{{asset('user_assets/js/script.js')}}"></script>
-		<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
-		<script>
-		let button = document.querySelector("#export");
-		button.addEventListener("click", e => {
-			let table1 = document.querySelector("#TABLE");
-			TableToExcel.convert(table1);
-		});
-		</script>
+    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+    <script>
+        let button = document.querySelector("#export");
+        button.addEventListener("click", e => {
+            let table1 = document.querySelector("#TABLE");
+            TableToExcel.convert(table1);
+        });
+    </script>
 </body>
+
 </html>
