@@ -76,6 +76,7 @@ class UserController extends Controller
 
         $id = Session::get('id');
         $result = User::find($id);
+        
         return view('User/dashboard')->with('data', $result);
     }
     // End Dashboard Section
