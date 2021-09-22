@@ -20,6 +20,19 @@ use Session;
 use Validator;
 class AdminController extends Controller
 {
+  public function assignepin($id)
+  {
+    $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $pin = substr(str_shuffle($data), 0, 10);
+    $res = User::where('id','=',$id)->update(['pin'=>$pin]);
+    if($res){
+      Session::flash('success', 'E-PIN Generated Successfully!E-PIN -'.$pin);
+      return redirect('Admin/new-registration');
+    }else{
+      Session::flash('error', 'E-PIN Not Generated!');
+      return redirect('Admin/new-registration');
+    }
+  }
   public function admin_setup(Request $req)
   {
      return view('Admin/admin_setup')->with('User',adminsetup::get());
@@ -55,70 +68,20 @@ class AdminController extends Controller
     }
   }
   public function getleveltree(Request $req)
-  {  
-    //  function get_all_child($user_id, $conn)
-    // {
-    //     $under=[];
-    //     $sql="select * from user_profiles where sponsor_id=$user_id order by placement";
-    //     if($res = $conn->query($sql))
-    //     {
-    //         if($res->num_rows)
-    //         {
-    //             while($row = $res->fetch_assoc())
-    //             {
-    //                 $under[]=$row;
-    //             }
-    //         }
-    //     }
-        
-    //     return $under;
-    // }
-    // $sid = $req->member_id;
-    // $id = $this->convert_to_id($sid);
-    // $res = DB::select("select member_id from user_parents where parent_id=$id");
-    // return $res;
-    // exit;
-    $valid = Validator::make($req -> all(),[
-      'member_id' => 'required',
-     ]);
-     if (!$valid -> passes()) {
-       return response() -> json(['status'=>'error','error' => $valid -> errors()]);
-     }else{
+  {    
       $sid = $req->member_id;
       $id = $this->convert_to_id($sid);
       // return $id;
-     // return $data;
-      function get_all_child($id)
+      function getCategoryTree($id)
       {
-          // return $id;
-          $under=[];
-          $sql= User::where('sponsor_id','=',$id)
-          ->join('user_parents','users.id','=','user_parents.member_id')
+          $sql=user_parent::where('parent_id','=',$id)
+          ->join('users','users.id','=','user_parents.member_id')
           ->join('products','users.product','=','products.id')
-          ->where('user_parents.parent_id','=', $id)
-          ->get(['users.name','users.member_id','users.sponsor_id','users.joining_date_from','products.product']);
-          $active = User::where('sponsor_id','=',$id)
-          ->where('status','=','Active')
-          ->join('user_parents','users.id','=','user_parents.member_id')
-          ->where('user_parents.parent_id','=', $id)
-          ->count();
-          $inactive = User::where('sponsor_id','=',$id)->where('status','=','Inactive')
-              ->join('user_parents','users.id','=','user_parents.member_id')
-              ->where('user_parents.parent_id','=', $id)
-              ->count();
-          // return $sql;
-          if($sql)
-          {
-            foreach($sql as $val){
-              $under[]=$val;
-            }
-              
-          }
-          return response()->json(['data'=>$under,'total'=>count($under),'active'=>$active,'inactive'=>$inactive]);
+          ->get(['users.id','users.name','users.member_id','users.sponsor_id','users.joining_date_from','products.product']);
+          return $sql;
       }
-      $role = get_all_child($id);
-      return $role;
-     }
+      $role = getCategoryTree($id);
+      return view("Admin/level-tree-view")->with('data',$role);
   }
   public function getkycdetails(Request $request)
   {
@@ -238,7 +201,8 @@ class AdminController extends Controller
       $data = Pin::where('member_id','=',$member_id)->where('member_name','=',$name)->where('approvel_status','=',$approval)->where('issue_date','<=',$to)->where('issue_date','>=',$from)->get();
     }
     $count = count($data);
-    return view('Admin/pinsreport', ['Users' => $data,'count'=>$count]);
+    // return $data;
+    return view('Admin/pinsreport', ['Users' => $data,'count'=>$count,'data'=>product::get()]);
   }
   public function index()
   {
@@ -281,7 +245,7 @@ class AdminController extends Controller
         case 'POST':
           $admin = new admin();
           $admin->name = $request->name;
-          $admin->password = $request->password;
+          $admin->password = md5($request->password);
           $admin->role = $request->role;
           $admin->address = $request->address;
           $admin->email = $request->email;
@@ -399,7 +363,7 @@ class AdminController extends Controller
   {
     $pin_array = array();
     for ($i = 0; $i < $no_of_pins; $i++) {
-      $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz{}[]$!/+';
+      $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       $pin_array[$i] =  substr(str_shuffle($data), 0, 10);
     }
     return $pin_array;
@@ -650,8 +614,9 @@ class AdminController extends Controller
   }
   public function new_registration()
   {
-
-    return view('Admin/new-registration', ['User' => User::all()]);
+    $data = User::join('users as user','users.sponsor_id','=','user.id')
+            ->get(['users.*','user.name as parent']);
+    return view('Admin/new-registration', ['User' => $data]);
   }
   public function level_tree_view()
   {

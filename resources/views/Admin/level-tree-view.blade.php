@@ -198,7 +198,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
-                                                        <form id="form" value="{{url('Admin/getleveltree')}}">
+                                                        <form method="post" action="{{url('Admin/getleveltree')}}">
+                                                            @csrf
                                                             <div class="form-group row">
                                                                 <label class="col-sm-2 col-form-label">
                                                                     <h6>Enter Member ID*:</h6>
@@ -215,13 +216,40 @@
                                                                     class="col-xl-12 col-md-12 col-sm-12 d-flex flex-row-reverse">
                                                                     <button type="submit" class="btn waves-effect waves-light btn-success"
                                                                         style="border-radius:5px;margin:5px;"
-                                                                        id="get-details"><i
+                                                                        id="get-de"><i
                                                                             class="icofont icofont-check-circled"></i>Get
                                                                         Details</button>
                                                                 </div>
                                                             </div>
                                                         </form>
-                                                        <div class="row form-group details d-none" id="data_div">
+                                                        @if(isset($data))
+                                                        @foreach($data as $value)
+                                                        <?php
+                                                        if ($value->sponsor_id < 10) {
+                                                            $sponsor_id = 'GF10000' . $value->sponsor_id;
+                                                        }else if ($value->sponsor_id < 100) {
+                                                            $sponsor_id = 'GF1000' . $value->sponsor_id;
+                                                        } else {
+                                                            $sponsor_id = 'GF100' . $value->sponsor_id;
+                                                        }
+                                                        ?>
+                                                        <div class="row form-group details" id="data_div">
+                                                            <div class="col-sm-12">
+                                                                <div class="card-block" id="level">
+                                                                    <div class="row form-group" style="display:grid;place-items:center;">
+                                                                        <button type="button" class="btn btn-dark">Level 1</button>
+                                                                        <div class="title">
+                                                                            <h6>Total Members : <span id="total">{{$value->total}}</span></h6>
+                                                                        </div>
+                                                                        <div class="title">
+                                                                            <h6>Non-Active Members : <span id="inactive">{{$value->active}}</span></h6>
+                                                                        </div>
+                                                                        <div class="title">
+                                                                            <h6>Active Members : <span id="active">{{$value->inactive}}</span></h6>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <div class="col-md-12">
                                                                 <div class="card-block">
                                                                     <div class="table-responsive-xl level-1"
@@ -253,32 +281,32 @@
                                                                            
                                                                         </thead>
                                                                         <tbody  id="tbody">
-
+                                                                            <tr style="font-weight:bold;"
+                                                                            align="center">
+                                                                            <th scope="col"
+                                                                                style="font-family:verdana;font-size:12px;"
+                                                                                align="left">{{$value->member_id}}</th>
+                                                                            <th scope="col"
+                                                                                style="font-family:verdana;font-size:12px;"
+                                                                                align="left">{{$value->name}}</th>
+                                                                            <th scope="col"
+                                                                                style="font-family:verdana;font-size:12px;"
+                                                                                align="left">{{$sponsor_id}}</th>
+                                                                            <th scope="col"
+                                                                                style="font-family:verdana;font-size:12px;"
+                                                                                align="left">{{$value->joining_date_from}}</th>
+                                                                            <th scope="col"
+                                                                                style="font-family:verdana;font-size:12px;"
+                                                                                align="left">{{$value->product}}</th>
+                                                                        </tr>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-sm-12">
-                                                                <div class="card-block">
-                                                                    <div class="row form-group"
-                                                                        style="display:grid;place-items:center;">
-                                                                        <button type="button" class="btn btn-dark"
-                                                                            id="level-1">Level 1</button>
-                                                                        <div class="title">
-                                                                            <h6>Total Members : <span id="total"></span></h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Non-Active Members : <span id="inactive"></span></h6>
-                                                                        </div>
-                                                                        <div class="title">
-                                                                            <h6>Active Members : <span id="active"></span></h6>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            
                                                         </div>
+                                                        @endforeach
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -311,55 +339,65 @@
     <script src="{{ asset('admin_assets/js/vertical/vertical-layout.min.js')}}"></script>
     <script type="text/javascript" src="{{ asset('admin_assets/js/script.js')}}"></script>
     <script>
-    $(document).ready(function() {
+    // $(document).ready(function() {
        
-        $("#get-details").click(function(e) {
-            var url = $('#form').attr('value');
-            var data = $('#member_id').val();
-            // alert(data);
-            $('.field_error').html('');
-            e.preventDefault();
-            $.ajax({
-                url : url,
-                data : {member_id : data},
-                method : 'POST',
-                dataType : 'JSON',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success : function(data){
-                    $('.field_error').html('');
-                    $('#tbody').html('');
-                    if(data.status == 'error'){
-                        $.each(data.error, function(keys, vals){
-                            $('#member_id_error').html(vals);
-                        });
+    //     $("#get-details").click(function(e) {
+    //         var url = $('#form').attr('value');
+    //         var data = $('#member_id').val();
+    //         // alert(data);
+    //         $('.field_error').html('');
+    //         e.preventDefault();
+    //         $.ajax({
+    //             url : url,
+    //             data : {member_id : data},
+    //             method : 'POST',
+    //             dataType : 'JSON',
+    //             headers: {
+    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //             },
+    //             success : function(data){
+    //                 // console.log(data);
+    //                 $('.field_error').html('');
+    //                 $('#tbody').html('');
+    //                 if(data.status == 'error'){
+    //                     $.each(data.error, function(keys, vals){
+    //                         $('#member_id_error').html(vals);
+    //                     });
                         
-                    }else{
-                        $('#total').html(data.total);
-                        $('#active').html(data.active);
-                        $('#inactive').html(data.inactive);
-                        $('#data_div').removeClass('d-none');
-                        $.each(data, function(keys, vals){
-                            $.each(vals, function(key, val){
-                            if (val.sponsor_id < 1) {
-                            var member_id = '';
-                            }else if (val.sponsor_id < 10) {
-                            var member_id = 'GF10000' + val.sponsor_id;
-                            }else if (val.sponsor_id < 100) {
-                                var member_id = 'GF1000' + val.sponsor_id;
-                            } else {
-                                var member_id = 'GF100' + val.sponsor_id;
-                            }
-                            $('#tbody').append('<tr><td>'+val.member_id+'</td><td>'+val.name+'</td><td>'+member_id+'</td><td>'+val.joining_date_from+'</td><td>'+val.product+'</td></tr>');
-                        });
-                        });
-                    }
+    //                 }else{
+    //                     $('#data_div').removeClass('d-none');
+    //                         $.each(data, function(key, val){
+    //                          $('#level').html('<div class="row form-group"style="display:grid;place-items:center;"><button type="button" class="btn btn-dark">Level 1</button><div class="title"><h6>Total Members : <span id="total">'+val.total+'</span></h6></div><div class="title"><h6>Non-Active Members : <span id="inactive">'+val.inactive+'</span></h6></div><div class="title"><h6>Active Members : <span id="active">'+val.active+'</span></h6></div></div>');
+    //                         if (val.sponsor_id < 1) {
+    //                         var member_id = '';
+    //                         }else if (val.sponsor_id < 10) {
+    //                         var member_id = 'GF10000' + val.sponsor_id;
+    //                         }else if (val.sponsor_id < 100) {
+    //                             var member_id = 'GF1000' + val.sponsor_id;
+    //                         } else {
+    //                             var member_id = 'GF100' + val.sponsor_id;
+    //                         }
+    //                         $('#tbody').append('<tr><td>'+val.member_id+'</td><td>'+val.name+'</td><td>'+member_id+'</td><td>'+val.joining_date_from+'</td><td>'+val.product+'</td></tr>');
+    //                             $.each(val.children, function(keys, vals) {
+    //                                 $('#level').html('<div class="row form-group"style="display:grid;place-items:center;"><button type="button" class="btn btn-dark">Level 1</button><div class="title"><h6>Total Members : <span id="total">'+vals.total+'</span></h6></div><div class="title"><h6>Non-Active Members : <span id="inactive">'+vals.inactive+'</span></h6></div><div class="title"><h6>Active Members : <span id="active">'+vals.active+'</span></h6></div></div>');
+    //                                 if (vals.sponsor_id < 1) {
+    //                                 var member_id = '';
+    //                                 }else if (vals.sponsor_id < 10) {
+    //                                 var member_id = 'GF10000' + vals.sponsor_id;
+    //                                 }else if (vals.sponsor_id < 100) {
+    //                                     var member_id = 'GF1000' + vals.sponsor_id;
+    //                                 } else {
+    //                                     var member_id = 'GF100' + vals.sponsor_id;
+    //                                 }
+    //                                 $('#tbody').append('<tr><td>'+vals.member_id+'</td><td>'+vals.name+'</td><td>'+member_id+'</td><td>'+vals.joining_date_from+'</td><td>'+vals.product+'</td></tr>');
+    //                             });
+    //                     });
+    //                 }
                    
-                }
-            });
-        });
-    });
+    //             }
+    //         });
+    //     });
+    // });
     </script>
 </body>
 

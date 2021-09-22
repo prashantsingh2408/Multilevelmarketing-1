@@ -14,11 +14,39 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+  public function activate($id)
+  {
+    $data = [
+      'status' => 'Active',
+   ];
+   $res = User::where('id','=',$id)->update($data);
+   if($res){
+     Session::flash('success', 'User Activated!');
+     return redirect('User/dashboard');
+   }else{
+     Session::flash('error', 'User not Activated!');
+     return redirect('User/dashboard');
+   }
+  }
   /**
    * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
    */
+  public function paynow($id)
+  {
+    $data = [
+       'top_up' => 'yes',
+    ];
+    $res = User::where('id','=',$id)->update($data);
+    if($res){
+      Session::flash('success', 'Payment done successfully!');
+      return redirect('User/dashboard');
+    }else{
+      Session::flash('error', 'Payment not done!');
+      return redirect('User/dashboard');
+    }
+  }
   public function index()
   {
     return view('User.login');

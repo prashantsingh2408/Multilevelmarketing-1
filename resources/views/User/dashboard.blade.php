@@ -200,6 +200,10 @@
                                 <div class="page-wrapper">
                                     <!-- Page-body start -->
                                     <div class="page-body">
+                                        <div class="row justify-content-center">
+                                               <span class="text-danger">{{Session::get('error')}}</span>
+                                               <span class="text-success">{{Session::get('success')}}</span>
+                                        </div>
                                         <div class="row">
                                             <!--  sale analytics start -->
                                             <div class="col-xl-12 col-md-12">
@@ -239,30 +243,43 @@
                                                                             </div>
                                                                             <ul class="list-group list-group-unbordered">
                                                                                 <li class="list-group-item">
-                                                                                    <h6><b>Name:</b></h6>
+                                                                                    <h6>Name:</h6>
                                                                                     <h6 class="pull-right">
-                                                                                        {{$data -> name ?? 'not found' }} 
+                                                                                        <b>{{$data -> name ?? 'not found' }}</b> 
                                                                                     </h6>
                                                                                 </li>
                                                                                 <li class="list-group-item">
-                                                                                    <h6><b>User ID:</b></h6>
+                                                                                    <h6>User ID:</h6>
                                                                                     <h6 class="pull-right">
-                                                                                        {{$data -> member_id ?? 'not found' }} 
+                                                                                        <b>{{$data -> member_id ?? 'not found' }}</b>
                                                                                     </h6>
                                                                                 </li>
                                                                                 <li class="list-group-item">
-                                                                                    <h6><b>Pan:</b></h6>
-                                                                                    <h6 class="pull-right"></h6>
+                                                                                    <h6>Pan:</h6>
+                                                                                    <h6 class="pull-right">
+                                                                                        <b>{{$data -> pan_no ?? 'not found' }}</b>
+                                                                                    </h6>
                                                                                 </li>
                                                                                 <li class="list-group-item">
-                                                                                    <h6><b>Status:</b></h6>
+                                                                                    <h6>Status:</h6>
                                                                                     <h6 class="pull-right">
-                                                                                        {{$data -> status ?? 'not found' }} 
+                                                                                        <b>{{$data -> status ?? 'not found' }}</b> 
                                                                                     </h6>
+                                                                                </li>
+                                                                                <li class="list-group-item">
+                                                                                    @if($data -> top_up == 'no')
+                                                                                    <a class="btn btn-success" href="{{url('User/paynow')}}/{{$data -> id}}">Pay Now</a>
+                                                                                    @endif
+                                                                                </li>
+                                                                                <li class="list-group-item">
+                                                                                   @if ($data -> status == 'Inactive')
+                                                                                        @if($data -> pin != '')
+                                                                                            Your E-PIN is generated!<a class="btn btn-success" href="{{url('User/activate')}}/{{$data -> id}}">Activate Account</a>
+                                                                                        @endif
+                                                                                   @endif
                                                                                 </li>
                                                                             </ul>
-                                                                            <a href="#" class="btn btn-danger btn-block"><b>Click
-                                                                                    To View Plan</b></a>
+                                                                            <a href="#" class="btn btn-danger btn-block"><b>Click To View Plan</b></a>
                                                                         </div>
                                                                         <!-- /.box-body -->
                                                                     </div>
@@ -277,9 +294,7 @@
                                                                             <div class="row form-group">
                                                                                 <div class="col-xl-5 col-md-5 col-sm-5">
                                                                                     <div class="title">
-                                                                                        <h6><u>Joining Date:
-                                                                                            </u>{{$data -> joining_date_from ?? 'not found' }} 
-                                                                                            <h6>
+                                                                                        <span class="font-weight-bold">Joining Date:</span>{{$data -> joining_date_from ?? 'not found' }} 
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-xl-9 col-md-9 col-sm-9">
@@ -288,10 +303,7 @@
                                                                             <div class="row form-group">
                                                                                 <div class="col-xl-5 col-md-5 col-sm-5">
                                                                                     <div class="title">
-                                                                                        <h6><u>Activation
-                                                                                                Date:
-                                                                                            </u>{{$data -> activation_date_from ?? 'not found' }} 
-                                                                                        </h6>
+                                                                                        <span class="font-weight-bold">Activation Date:</span>{{$data -> activation_date_from ?? 'not found' }} 
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-xl-9 col-md-9 col-sm-9">
@@ -300,10 +312,7 @@
                                                                             <div class="row form-group">
                                                                                 <div class="col-xl-5 col-md-5 col-sm-5">
                                                                                     <div class="title">
-                                                                                        <h6><u>Referral Link:
-                                                                                            </u>
-                                                                                            {{$data -> referal_link ?? 'not found' }} 
-                                                                                        </h6>
+                                                                                        <span class="font-weight-bold">Referral Link:</span>{{$data -> referal_link ?? 'not found' }} 
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-xl-9 col-md-9 col-sm-9">
@@ -312,9 +321,14 @@
                                                                             <div class="row form-group">
                                                                                 <div class="col-xl-5 col-md-5 col-sm-5">
                                                                                     <div class="title">
-                                                                                        <h6><u>Sponsor ID: </u>
-                                                                                            {{$data -> sponsor_id ?? 'not found' }} 
-                                                                                        </h6>
+                                                                                        <span class="font-weight-bold">Sponsor ID:</span>
+                                                                                            @if($data -> sponsor_id < 10)
+                                                                                                {{ 'GF1'."0000".$data -> sponsor_id }}
+                                                                                            @elseif($data -> sponsor_id < 100)
+                                                                                                {{ 'GF1'."000".$data -> sponsor_id }}
+                                                                                            @else
+                                                                                                {{ 'GF1'."00".$data -> sponsor_id }}
+                                                                                            @endif 
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-xl-9 col-md-9 col-sm-9">
