@@ -176,6 +176,22 @@
                             <div class="main-body">
                                 <div class="page-wrapper">
                                     <!-- Page-body start -->
+                                    <!-- alert success msg -->
+                                    @if(Session::has('success'))
+                                    <div class="alert alert-success alert-dismissible" role="alert" id="alert-success">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4><i class="icon fa fa-check"></i> Success!</h4>
+                                        <p>
+                                            Your ticket has been successfully created.
+                                        </p>
+                                    </div>
+                                    <!-- alert success msg -->
+                                    @endif
+                                    @php
+                                    Session::forget('success');
+                                    @endphp
+                            
+                                    
                                     <div class="page-body">
                                         <div class="row">
                                             <!--  sale analytics start -->
@@ -193,48 +209,51 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="card-block">
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Select Status*</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <select name="select" class="form-control" required>
-                                                                    <option value="select">Select</option>
-                                                                    <option value="opened">Opened</option>
-                                                                    <option value="closed">Closed</option>
-                                                                </select>
+                                                    <form action="{{url('User/generate-ticket')}}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                        <div class="card-block">
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Select Status*</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <select name="status" class="form-control" required>
+                                                                        <option value="">Select</option>
+                                                                        <option name="open"  value="opened">Opened</option>
+                                                                        <option name="close" value="closed">Closed</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Enter Title*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input name="title" type="text" class="form-control" required placeholder="Enter Title">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Subject*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <textarea name="subject" class="form-control" required placeholder="Enter Description"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label class="col-sm-2 col-form-label">
+                                                                    <h6>Upload Image*:</h6>
+                                                                </label>
+                                                                <div class="col-sm-10">
+                                                                    <input name="image_upload" type="file" class="form-control" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row" style="display:grid;place-items:center;">
+                                                                <button action="submit" class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Generate Ticket</button>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Enter Title*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" required placeholder="Enter Title">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Subject*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <textarea class="form-control" required placeholder="Enter Description"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">
-                                                                <h6>Upload Image*:</h6>
-                                                            </label>
-                                                            <div class="col-sm-10">
-                                                                <input type="file" class="form-control" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row" style="display:grid;place-items:center;">
-                                                            <button class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Generate Ticket</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                   </div>
+                                                </form>
                                             </div>
                                             <!--  sale analytics end -->
                                         </div>
@@ -267,6 +286,17 @@
     <script src="{{ asset('user_assets/js/vertical/vertical-layout.min.js')}}"></script>
 
     <script type="text/javascript" src="{{ asset('user_assets/js/script.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            //disappear alert after some time
+            setTimeout(function() {
+                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 2000);
+        });
+
+    </script>
 </body>
 
 </html>

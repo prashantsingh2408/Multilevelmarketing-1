@@ -21,7 +21,7 @@ use App\Http\Controllers\WebController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//------------ADMIN SECTION-----------//
 Route::get('/', function () {
     return view('Admin/login');
 });
@@ -61,15 +61,12 @@ Route::prefix('Admin')->group(function () {
     //Route For Welcome Letter Post
 
     Route::post('/postWelcomeLetter', [WelcomeLettersController::class, 'store']);
-    
-
     Route::post('/update_user_profile', [AdminController::class, 'update_user_profile']);
     Route::get('/manage-member', [AdminController::class, 'manage_member']);
     Route::get('/total-member', [AdminController::class, 'total_member']);
     Route::get('/welcome-letter', [AdminController::class, 'welcome_letter']);
     Route::get('/kyc', [AdminController::class, 'kyc']);
     Route::post('/getkycdetails', [AdminController::class, 'getkycdetails']);
-    
     Route::get('/new-registration', [AdminController::class, 'new_registration']);
     Route::get('/level-tree-view', [AdminController::class, 'level_tree_view']);
     Route::POST('/getleveltree', [AdminController::class, 'getleveltree']);
@@ -94,13 +91,15 @@ Route::prefix('Admin')->group(function () {
     Route::get('/add-wallet-amount', [AdminController::class, 'add_wallet_amount']);
     Route::get('/deduct-wallet-amount', [AdminController::class, 'deduct_wallet_amount']);
     Route::get('/ticket-list', [AdminController::class, 'ticket_list']);
+
+
+
     Route::get('/assignepin/{id}', [AdminController::class, 'assignepin']);
     Route::get('/volunteer-details', [AdminController::class, 'volunteer_details']);
     Route::POST('/sortpins', [AdminController::class, 'sortpins']);
     Route::get('/pop-up', [PopupController::class, 'index']);
     Route::post('/addPopup', [PopupController::class, 'store']);
     Route::get('deletepopup/{id}', [PopupController::class, 'destroy']);
-    
     Route::post('/blockUser', [AdminController::class, 'blockUser']);
     
     //Route for Product and
@@ -118,6 +117,7 @@ Route::prefix('Admin')->group(function () {
     //Route for news
     Route::get('/news', [NewsController::class, 'index']);
     Route::post('/postNews', [NewsController::class, 'store']);
+
     
     //Route for admin setup
     
@@ -125,6 +125,9 @@ Route::prefix('Admin')->group(function () {
     Route::post('/add_setup', [AdminController::class, 'add_setup']);
     Route::get('/logout', [AdminController::class, 'logout']);
 });
+
+//-------------USER SECTION-----------///
+
 Route::get('/User', [UserController::class, 'index']);
 Route::post('User/auth', [UserController::class, 'auth']);
 Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
@@ -140,12 +143,10 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     Route::post('/kyc', [UserController::class, 'kyc']);
     Route::get('/welcome-letter', [UserController::class, 'welcome_letter']);
     Route::any('/transfer-pin', [UserController::class, 'transfer_pin']);
-
-
     Route::post('/transferpin_show_name', [UserController::class, 'transferpin_show_name']);
     Route::post('/pin_transfer', [UserController::class, 'pin_transfer']);
     Route::post('/transfer_post', [UserController::class, 'transfer_post']);
-    Route::get('/pins-request', [UserController::class, 'pins_request']);
+    Route::any('/pins-request', [UserController::class, 'pins_request']);
     Route::get('/pins-report', [UserController::class, 'pins_report']);
     Route::get('/transfer-pin-report', [UserController::class, 'transfer_pin_report']);
     Route::get('/top-up', [UserController::class, 'top_up']);
@@ -166,6 +167,10 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     Route::get('/cash-wallet', [UserController::class, 'cash_wallet']);
     Route::get('/payout-report', [UserController::class, 'payout_report']);
     Route::get('/transfer-wallet-amount', [UserController::class, 'transfer_wallet_amount']);
+
+    Route::any('/generate-ticket', [UserController::class, 'generate_ticket'])->name('generate_ticket');
+    Route::get('/ticket-list', [UserController::class, 'ticket_list']); 
+
     Route::get('/generate-ticket', [UserController::class, 'generate_ticket']);
     Route::get('/ticket-list', [UserController::class, 'ticket_list']);
     Route::get('/paynow/{id}', [UserController::class, 'paynow']);
@@ -175,6 +180,9 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
     
 
 });
+
+
+///--------------WEB SECTION----------///
 Route::group(['prefix' => 'web'], function () {
     Route::get('/register', [WebController::class, 'index']);
     Route::post('/register', [WebController::class, 'post']);

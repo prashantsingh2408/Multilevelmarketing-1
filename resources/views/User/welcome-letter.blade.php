@@ -260,11 +260,15 @@
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
+
                                                                                 <td style="font-size: 18px " align="center ">
                                                                                     Dear
-                                                                                    <span style="font-weight: bold ">KULDEEP
-                                                                                        SINGH
-                                                                                        CHAUHAN</span>,<br>
+                                                                                    <span style="font-weight: bold ">
+                                                                                     @if(isset($result->member_name))
+                                                                                        {{$result->member_name ?? 'not found'}}
+                                                                                        @else
+                                                                                        
+                                                                                        @endif</span>,<br>
                                                                                     <p>
                                                                                     </p>
                                                                                 </td>
@@ -279,12 +283,17 @@
                                                                                                         <tbody>
                                                                                                             <tr>
                                                                                                                 <td id="form-tab-col ">
-                                                                                                                    MEMBER
-                                                                                                                    ID:
+                                                                                                                    Member
+                                                                                                                    Id:
                                                                                                                 </td>
-
                                                                                                                 <td id="form-tab-col ">
-                                                                                                                    GF100001
+                                                                                                                    @if(isset($result->member_id))
+                                                                                                                    {{$result->member_id ?? 'not found'}}
+                                                                                                                    @else
+                                                                                                                    
+                                                                                                                    @endif
+
+
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
@@ -292,10 +301,13 @@
                                                                                                                     Member
                                                                                                                     Name:
                                                                                                                 </td>
+
                                                                                                                 <td id="form-tab-col ">
-                                                                                                                    KULDEEP
-                                                                                                                    SINGH
-                                                                                                                    CHAUHAN
+                                                                                                                    @if(isset($result->member_name))
+                                                                                                                    {{$result->member_name ?? 'not found'}}
+                                                                                                                    @else
+                                                                                                                   
+                                                                                                                    @endif
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
@@ -303,6 +315,11 @@
                                                                                                                     Address:
                                                                                                                 </td>
                                                                                                                 <td id="form-tab-col ">
+                                                                                                                    @if(isset($result->address))
+                                                                                                                    {{$result->address ?? 'not found'}}
+                                                                                                                    @else
+                                                                                                                    
+                                                                                                                    @endif
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
@@ -310,6 +327,11 @@
                                                                                                                     City:
                                                                                                                 </td>
                                                                                                                 <td id="form-tab-col ">
+                                                                                                                    @if(isset($result->city))
+                                                                                                                    {{$result->city ?? 'not found'}}
+                                                                                                                    @else
+                                                                                                                  
+                                                                                                                    @endif
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
@@ -317,6 +339,11 @@
                                                                                                                     District:
                                                                                                                 </td>
                                                                                                                 <td id="form-tab-col ">
+                                                                                                                    @if(isset($result->district))
+                                                                                                                    {{$result->district ?? 'not found'}}
+                                                                                                                    @else
+                                                                                                                   
+                                                                                                                    @endif
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
@@ -324,6 +351,11 @@
                                                                                                                     State:
                                                                                                                 </td>
                                                                                                                 <td id="form-tab-col ">
+                                                                                                                    @if(isset($result->state))
+                                                                                                                    {{$result->state ?? 'not found'}}
+                                                                                                                    @else
+                                                                                                                   
+                                                                                                                    @endif
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
@@ -332,6 +364,11 @@
                                                                                                                     By:
                                                                                                                 </td>
                                                                                                                 <td id="form-tab-col ">
+                                                                                                                    @if(isset($result->sponsored_by))
+                                                                                                                    {{$result->sponsored_by ?? 'not found'}}
+                                                                                                                    @else
+                                                                                                                    
+                                                                                                                    @endif
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
@@ -341,6 +378,11 @@
                                                                                                                     Joining:
                                                                                                                 </td>
                                                                                                                 <td id="form-tab-col ">
+                                                                                                                    @if(isset($result->doj))
+                                                                                                                    {{$result->doj ?? 'not found'}}
+                                                                                                                    @else
+                                                                                                                   
+                                                                                                                    @endif
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                             <tr>
@@ -348,6 +390,11 @@
                                                                                                                     Membership:
                                                                                                                 </td>
                                                                                                                 <td id="form-tab-col ">
+                                                                                                                    @if(isset($result->membership))
+                                                                                                                    {{$result->membership ?? 'not found'}}
+                                                                                                                    @else
+                                                                                                                    '
+                                                                                                                    @endif
                                                                                                                 </td>
                                                                                                             </tr>
                                                                                                         </tbody>

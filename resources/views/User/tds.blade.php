@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <head>
     <title>Golden Life Foundation </title>
     <meta charset="utf-8">
@@ -10,7 +11,7 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
-      <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
@@ -28,11 +29,11 @@
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-		<style>
-			.col-md-2{
-				padding:0px 7px !important;
-			}
-		</style>
+    <style>
+        .col-md-2 {
+            padding: 0px 7px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -145,7 +146,7 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-									@include('User/sidebar')
+                    @include('User/sidebar')
                     <div class="pcoded-content">
                         <!-- Page-header start -->
                         <div class="page-header">
@@ -193,49 +194,55 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
-																											<div class="form-group row">
-																													<label class="col-sm-2 col-form-label"><h6>TDS(in %)*:</h6></label>
-																													<div class="col-sm-10">
-																															<input type="text" class="form-control" required placeholder="Enter The TDS" style="border-radius:3px;">
-																													</div>
-																											</div>
-																											<div class="form-group row">
-																													<label class="col-sm-2 col-form-label"><h6>Maintenance(in %)*:</h6></label>
-																													<div class="col-sm-10">
-																															<input type="text" class="form-control" required placeholder="Enter The Maintenance" style="border-radius:3px;">
-																													</div>
-																											</div>
-																											<div class="form-group row">
-																													<label class="col-sm-2 col-form-label"><h6>With Pan*</h6></label>
-																													<div class="col-sm-10">
-																															<select name="select" class="form-control" required>
-																																	<option value="opt1">YES</option>
-																																	<option value="opt2">NO</option>
-																															</select>
-																													</div>
-																											</div>
-																											<div class="form-group row" style="display:grid;place-items:center;">
-																												<button class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Submit</button>
-																											</div>
-																											<div class="row" style="padding:10px;">
-																												<table class="table table-hover table-bordered" style="text-align:center;">
-																													<thead class="thead-dark">
-																														<tr>
-																															<th scope="col"><strong id="tabth">TDS</strong></th>
-																															<th scope="col"><strong id="tabth">Maintenance</strong></th>
-																															<th scope="col"><strong id="tabth">PAN</strong></th>
-																														</tr>
-																													</thead>
-																													<tbody>
-																														<tr>
-																															<td>Mark</td>
-																															<td>Otto</td>
-																															<td>@mdo</td>
-																														</tr>
-																														<tr>
-																													</tbody>
-																												</table>
-																											</div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">
+                                                                <h6>TDS(in %)*:</h6>
+                                                            </label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" required placeholder="Enter The TDS" style="border-radius:3px;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">
+                                                                <h6>Maintenance(in %)*:</h6>
+                                                            </label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control" required placeholder="Enter The Maintenance" style="border-radius:3px;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">
+                                                                <h6>With Pan*</h6>
+                                                            </label>
+                                                            <div class="col-sm-10">
+                                                                <select name="select" class="form-control" required>
+                                                                    <option value="opt1">YES</option>
+                                                                    <option value="opt2">NO</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row" style="display:grid;place-items:center;">
+                                                            <button class="btn waves-effect waves-light btn-success" style="border-radius:5px;"><i class="icofont icofont-check-circled"></i>Submit</button>
+                                                        </div>
+                                                        <div class="row" style="padding:10px;">
+                                                            <table class="table table-hover table-bordered" style="text-align:center;">
+                                                                <thead class="thead-dark">
+                                                                    <tr>
+                                                                        <th scope="col"><strong id="tabth">TDS</strong></th>
+                                                                        <th scope="col"><strong id="tabth">Maintenance</strong></th>
+                                                                        <th scope="col"><strong id="tabth">PAN</strong></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>Mark</td>
+                                                                        <td>Otto</td>
+                                                                        <td>@mdo</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -271,4 +278,5 @@
 
     <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
+
 </html>

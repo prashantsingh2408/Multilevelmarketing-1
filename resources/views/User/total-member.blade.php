@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <head>
     <title>Golden Life Foundation </title>
     <meta charset="utf-8">
@@ -10,7 +11,7 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Codedthemes" />
     <!-- Favicon icon -->
-      <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <!-- waves.css -->
@@ -29,10 +30,10 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <style>
-      table {
-      table-layout: fixed;
-      width: 100%;   
-      }
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -146,7 +147,7 @@
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-									@include('User/sidebar')
+                    @include('User/sidebar')
                     <div class="pcoded-content">
                         <!-- Page-header start -->
                         <div class="page-header">
@@ -194,80 +195,93 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-block">
-																											<div class="form-group row">
-																													<label class="col-sm-2 col-form-label"><h6>Select Product*</h6></label>
-																													<div class="col-sm-10">
-																															<select name="select" class="form-control" required>
-																																	<option value="opt1">Select Any</option>
-																																	<option value="opt2">Package 500</option>
-																															</select>
-																													</div>
-																											</div>
-																											<div class="form-group row">
-																												<div class="col-xl-8 co-md-12 col-sm-12">
-																													<div class="form-group row">
-																														<label class="col-sm-2 col-form-label"><h6>From:*</h6></label>
-																														<div class="col-sm-4">
-																																<input type="date" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
-																														</div>
-																														<label class="col-sm-2 col-form-label"><h6>To:*</h6></label>
-																														<div class="col-sm-4">
-																																<input type="date" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
-																														</div>
-																													</div>
-																												</div>
-																												<div class="col-xl-4 co-md-12 col-sm-12 text-center">
-																													<button class="btn waves-effect waves-light btn-success" style="border-radius:5px;margin:5px;"><i class="icofont icofont-check-circled"></i>Search</button>
-																												</div>
-																											</div>
-																											<div class="form-group row">
-																												<div class="col-xl-12 col-md-12 col-sm-12">
-																												</div>
-																											</div>
-																											<div class="table-responsive-xl" style="padding:0 10px;">
-																												<div class="row" style="flex-wrap:inherit;">
-																													<div class="col-sm-4" style="padding:0px"><h6>Total Users: 0</h6></div>
-																													<div class="col-sm-8" style="display:flex;justify-content:flex-end;padding:0px;"><h6>Total Active Users: 0</h6></div>
-																												</div>
-																												<table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
-																													<tbody>
-																														<tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Track ID</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Name</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor ID</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor Name</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Parent ID</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Parent Name</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Product Name</th>
-																															<th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">D.O.J.</th>
-																														</tr>
-																														<tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;" align="center">
-																															<td>GF100001</td>
-																															<td>Q3</td>
-																															<td>GF100001</td>
-																															<td>C1</td>
-																															<td>GF100001</td>
-																															<td>C1</td>
-																															<td>Package 500</td>
-																															<td>02 Jul 2021</td>
-																														</tr>
-																														<tr class="grd" style="color:#333333;background-color:White;border-color:#8B91A0;" align="center">
-																															<td>GF100001</td>
-																															<td>Q3</td>
-																															<td>GF100001</td>
-																															<td>C1</td>
-																															<td>GF100001</td>
-																															<td>C1</td>
-																															<td>Package 500</td>
-																															<td>02 Jul 2021</td>
-																														</tr>
-																														<tr class="gridviewPager">
-																															<td colspan="17"><table>
-																															</tbody></table></td>
-																														</tr>
-																													</tbody>
-																												</table>
-																											</div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2 col-form-label">
+                                                                <h6>Select Product*</h6>
+                                                            </label>
+                                                            <div class="col-sm-10">
+                                                                <select name="select" class="form-control" required>
+                                                                    <option value="opt1">Select Any</option>
+                                                                    <option value="opt2">Package 500</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-xl-8 co-md-12 col-sm-12">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-2 col-form-label">
+                                                                        <h6>From:*</h6>
+                                                                    </label>
+                                                                    <div class="col-sm-4">
+                                                                        <input type="date" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
+                                                                    </div>
+                                                                    <label class="col-sm-2 col-form-label">
+                                                                        <h6>To:*</h6>
+                                                                    </label>
+                                                                    <div class="col-sm-4">
+                                                                        <input type="date" class="form-control" required placeholder="TrackID" style="border-radius:3px;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-4 co-md-12 col-sm-12 text-center">
+                                                                <button class="btn waves-effect waves-light btn-success" style="border-radius:5px;margin:5px;"><i class="icofont icofont-check-circled"></i>Search</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-xl-12 col-md-12 col-sm-12">
+                                                            </div>
+                                                        </div>
+                                                        <div class="table-responsive-xl" style="padding:0 10px;">
+                                                            <div class="row" style="flex-wrap:inherit;">
+                                                                <div class="col-sm-4" style="padding:0px">
+                                                                    <h6>Total Users: 0</h6>
+                                                                </div>
+                                                                <div class="col-sm-8" style="display:flex;justify-content:flex-end;padding:0px;">
+                                                                    <h6>Total Active Users: 0</h6>
+                                                                </div>
+                                                            </div>
+                                                            <table class="table table-responsive table-bordered" rules="all" id="ContentPlaceHolder1_grd" style="width:100%;border-collapse:collapse;" cellspacing="0" cellpadding="4" border="1">
+                                                                <tbody>
+                                                                    <tr style="color:White;background-color:#000000;font-weight:bold;" align="center">
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Track ID</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Name</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor ID</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Sponsor Name</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Parent ID</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Parent Name</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">Product Name</th>
+                                                                        <th scope="col" style="color:White;background-color:#000000;font-family:verdana;font-size:12px;" align="left">D.O.J.</th>
+                                                                    </tr>
+                                                                    <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;" align="center">
+                                                                        <td>GF100001</td>
+                                                                        <td>Q3</td>
+                                                                        <td>GF100001</td>
+                                                                        <td>C1</td>
+                                                                        <td>GF100001</td>
+                                                                        <td>C1</td>
+                                                                        <td>Package 500</td>
+                                                                        <td>02 Jul 2021</td>
+                                                                    </tr>
+                                                                    <tr class="grd" style="color:#333333;background-color:White;border-color:#8B91A0;" align="center">
+                                                                        <td>GF100001</td>
+                                                                        <td>Q3</td>
+                                                                        <td>GF100001</td>
+                                                                        <td>C1</td>
+                                                                        <td>GF100001</td>
+                                                                        <td>C1</td>
+                                                                        <td>Package 500</td>
+                                                                        <td>02 Jul 2021</td>
+                                                                    </tr>
+                                                                    <tr class="gridviewPager">
+                                                                        <td colspan="17">
+                                                                            <table>
+                                                                </tbody>
+                                                            </table>
+                                                            </td>
+                                                            </tr>
+                                                            </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -302,6 +316,7 @@
     <script src="assets/js/vertical/vertical-layout.min.js"></script>
 
     <script type="text/javascript" src="assets/js/script.js"></script>
-		<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
 </body>
+
 </html>

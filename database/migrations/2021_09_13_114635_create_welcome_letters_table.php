@@ -22,7 +22,7 @@ class CreateWelcomeLettersTable extends Migration
             $table->string('distict'); 
             $table->string('state'); 
             $table->string('sponsored_by'); 
-            $table->string('DOJ'); 
+            $table->string('doj'); 
             $table->string('membership'); 
             $table->timestamps();
         });
