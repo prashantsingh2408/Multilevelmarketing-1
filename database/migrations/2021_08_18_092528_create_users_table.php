@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->datetime('activation_date_to')->nullable();
             $table->datetime('activation_date_from')->nullable();
             $table->string('top_up')->nullable();
+            $table->string('pin')->nullable();
             $table->string('referal_link')->nullable();
             $table->string('status')->nullable();
             $table->string('gender')->nullable();

@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -59,6 +60,8 @@ class UserController extends Controller
     {
         if ($request->method() == 'POST') {
 
+
+ 
       //validation
             $validator = Validator::make($request->all(), [
         'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -76,6 +79,7 @@ class UserController extends Controller
 
         $id = Session::get('id');
         $result = User::find($id);
+        
         return view('User/dashboard')->with('data', $result);
     }
     // End Dashboard Section

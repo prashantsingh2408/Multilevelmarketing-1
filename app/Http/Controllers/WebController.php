@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\user_parent;
+use App\Models\Income;
+use App\Models\level;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -22,8 +24,8 @@ class WebController extends Controller
     public function post(Request $request){
         // return $request;
         $request->validate([
-            'sponsor_id' => 'required',
-            'sponsor_name' => 'required',
+            // 'sponsor_id' => 'required',
+            // 'sponsor_name' => 'required',
             'name' => 'required',
             'mobile_no' => 'required',
             'email' => 'required',
@@ -46,7 +48,7 @@ class WebController extends Controller
         }
         $User = new User();
         $User->member_id = $member_id;
-        $User->sponsor_id = $request->pid;
+        $User->sponsor_id = ($request->pid != '') ? $request->pid : '0';
         $User->name = $request->name;
         $User->mobile_no = $request->mobile_no;
         $User->status = 'Inactive';
@@ -55,19 +57,46 @@ class WebController extends Controller
         $User -> joining_date_from=date('Y-m-d H:i:s');
         $User->email = $request->email;
         $User->password = md5($request->password);
+        $count = User::where('sponsor_id','=',$request->pid)->count();
+        // return $count;
+        if($count <= 2){
         $User->save();
         if($User->save()){
             $max = User::max('id');
-            $data = user_parent::where('parent_id','=',$request->pid)->get();
-            if(count($data) > 0){
-                $rr = DB::insert("INSERT INTO user_parents (member_id, parent_id) VALUES($max,$request->pid)");
-                if($rr){
-                    DB::insert("INSERT INTO user_parents (member_id, parent_id) SELECT $max, member_id FROM user_parents WHERE parent_id=$request->pid");
+            
+            if($request->pid){
+                $data = user_parent::where('member_id','=',$request->pid)->get();
+            }
+            if(isset($data)){
+                if(count($data) > 0){
+                    $rr = DB::insert("INSERT INTO user_parents (member_id, parent_id) VALUES($max,$request->pid)");
+                    if($rr){
+                        DB::insert("INSERT INTO user_parents (member_id, parent_id) SELECT $max, parent_id FROM user_parents WHERE member_id=$request->pid");
+                    }
+                }
+                $level1 = user_parent::where('parent_id', $request->pid)->get();
+                $max = User::max('id');
+                if(count($level1) == 3){
+                    $income = new Income; 
+                    $income -> member_id  = $request->pid; 
+                    $income -> income_by  = $max; 
+                    $income -> donation   = 90;
+                    $income -> income_type = 'Direct';
+                    $income -> net_amount = 810;
+                    $income -> save(); 
+                    $level = new level;
+                    $level -> member_id = $request->pid;
+                    $level -> level = 'Asscociate';
+                    $level->save();
                 }
             }else{
-                DB::insert("INSERT INTO user_parents (member_id, parent_id) VALUES($max,$request->pid)");
+                DB::insert("INSERT INTO user_parents (member_id, parent_id) VALUES($max,0)");
             }
             return redirect('User');
+        }
+        }else{
+            Session::flash('error','This sponsor has already three child!');
+            return redirect('web/register');
         }
     }
     public function edit($id)

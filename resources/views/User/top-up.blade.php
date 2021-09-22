@@ -203,21 +203,16 @@
                                                                     <h6>Enter Member ID:*</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input id='sponsor_id' type="text" class="form-control" required placeholder="Member ID" style="border-radius:3px;">
+                                                                    <input type="text" class="form-control" required placeholder="Member ID" style="border-radius:3px;">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xl-6 co-md-12 col-sm-12">
                                                                 <div class="form-group row">
-                                                                    <label class="col-sm-3 col-form-label"
-                                                                        style="padding:0px;">
-                                                                        <button id='show'
-                                                                            type='button'
-                                                                            class="btn waves-effect waves-light btn-inverse"
-                                                                            style="border-radius:5px;margin:0 5px;"><i
-                                                                                class="icofont icofont-check-circled"></i>Show</button>
+                                                                    <label class="col-sm-3 col-form-label" style="padding:0px;">
+                                                                        <button id='show' type='button' class="btn waves-effect waves-light btn-inverse" style="border-radius:5px;margin:0 5px;"><i class="icofont icofont-check-circled"></i>Show</button>
                                                                     </label>
                                                                     <div class="col-sm-9">
-                                                                        <!-- <h6 id='name'></h6> -->
+                                                                        <h6 id='name'></h6>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -226,7 +221,7 @@
                                                                     <h6>Name:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input id='name' type="text" class="form-control" required placeholder="Name" style="border-radius:3px;">
+                                                                    <input type="text" class="form-control" required placeholder="Name" style="border-radius:3px;">
                                                                 </div>
                                                             </div>
 
@@ -237,7 +232,7 @@
                                                                     </h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <input id='mobile' type="text" class="form-control" required placeholder="Mobile" style="border-radius:3px;">
+                                                                    <input type="text" class="form-control" required placeholder="Mobile" style="border-radius:3px;">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -245,7 +240,7 @@
                                                                     <h6>Select Product To Generate Pin*:</h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <select id='product' name="select" class="form-control" required>
+                                                                    <select name="select" class="form-control" required>
                                                                         <option value="opt1">Select Product</option>
                                                                         <option value="opt2">Package 500</option>
                                                                     </select>
@@ -258,9 +253,9 @@
                                                                     </h6>
                                                                 </label>
                                                                 <div class="col-sm-10">
-                                                                    <select id='pins' name="select" class="form-control" required>
-                                                                        <option  value="pins">Select Pins</option>
-                                                                        <option value="opt2">dfsfsd</option>
+                                                                    <select name="select" class="form-control" required>
+                                                                        <option value="pins">Select Pins</option>
+                                                                        <option value="opt2">XY44dedyttyv</option>
                                                                     </select>
                                                                 </div>
 
@@ -305,45 +300,6 @@
 
     <script type="text/javascript" src="{{ asset('user_assets/js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
-
-        <script type="text/javascript" src="{{ asset('admin_assets/js/script.js')}}"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <script>
-        $(document).ready(function() {
-            $('#show').click(function() {
-              
-                sponsor_id = $('#sponsor_id').val();
-             
-                $.ajax({
-                    url: "{{url('Admin/generatepindirects_show_name')}}",
-                    type: 'post',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        sponsor_id: sponsor_id
-                    },
-                    success: function(data) {
-                        //json decode
-                        var data = JSON.parse(data);
-                        name = data[0];
-                        mobile = data[1];
-                        product = data[2];
-                        pin_no = data[3];
-                        $('#name').val(name);
-                        $('#mobile').val(mobile);
-                        $('#product').val(product);
-                        $("#product").prop("selectedIndex", 1);
-                        $("#pins").prop("selectedIndex", 1);
-                        //enable select product
-                        $('select[name=package]').prop('disabled', false);
-                    }
-                });
-            });
-        });
-
-        $(".btn-inverse").click(function() {
-            $("#TABLE").toggle();
-        });
-    </script>
 </body>
 
 </html>
