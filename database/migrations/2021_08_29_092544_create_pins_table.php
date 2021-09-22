@@ -32,11 +32,10 @@ class CreatePinsTable extends Migration
             $table->dateTime('to')->nullable();
             $table->string('total_record')->nullable();
             $table->string('mobile_no')->nullable();
-            $table->string('date')->nullable();
+            $table->date('date')->nullable();
             $table->string('reciept')->nullable();
             $table->string('amount')->nullable();
             $table->softDeletes();  
-        
             $table->timestamps();
         });
     }

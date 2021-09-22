@@ -185,7 +185,7 @@
                                             <div class="col-xl-12 col-md-12">
                                                 <div class="card table-card">
                                                     <div class="row justify-content-center">
-                                                        <span class="text-success">{{Session::get('message')}}</span>
+                                                        <span class="text-success">{{Session::get('success')}}</span>
                                                         <span class="text-danger">{{Session::get('error')}}</span>
                                                     </div>
                                                     <div class="card-header">
@@ -229,9 +229,12 @@
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
                                                                             align="left">Payment Status</th>
+                                                                            <th scope="col"
+                                                                            style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
+                                                                            align="left">Status</th>
                                                                         <th scope="col"
                                                                             style="color:White;background-color:#000000;font-family:verdana;font-size:12px;"
-                                                                            align="left">Edit</th>
+                                                                            align="left">Assign E-PIN</th>
                                                                     </tr>
                                                                     @foreach($User as $item)
                                                                     <tr style="color:#333333;background-color:#F7F6F3;border-color:#8B91A0;"
@@ -242,19 +245,18 @@
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
                                                                             <span id="ContentPlaceHolder1_grd_Label2_0">
-                                                                                {{-- @if($item->sponsor_id < 10)
-                                                                                {{ 'GF' . $item->sponsor_id . "00000" }}
-                                                                                @elseif($item->sponsor_id < 100)
-                                                                                    {{ 'GF' . $item->sponsor_id . "0000" }}
-                                                                                    @else
-                                                                                    {{ 'GF' . $item->sponsor_id . "000" }}
-                                                                                    @endif
-                                                                                    {{ 'GF' . $item->sponsor_id . "00000" }}
-                                                                                    --}} {{$item->sponsor_id}} </span>
+                                                                                 @if($item->sponsor_id < 10)
+                                                                                    {{ 'GF1'."0000".$item->sponsor_id }}
+                                                                                 @elseif($item->sponsor_id < 100)
+                                                                                    {{ 'GF1'."000".$item->sponsor_id }}
+                                                                                 @else
+                                                                                    {{ 'GF1'."00".$item->sponsor_id }}
+                                                                                 @endif
+                                                                            </span>
                                                                         </td>
                                                                         <td>
                                                                             <a target="_blank"
-                                                                                href="editprofileadmin.aspx?id=GF100000">{{ $item->sponsor_name}}</a>
+                                                                                href="editprofileadmin.aspx?id=GF100000">{{ $item->parent}}</a>
                                                                         </td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
@@ -267,9 +269,9 @@
                                                                             align="left">{{$item->email}}</td>
                                                                         <td style="font-size:12px;height:30px;"
                                                                             align="left">
-                                                                            @if($item->top_up == 'Unpaid')
+                                                                            @if($item->top_up == 'no')
                                                                             Unpaid
-                                                                            @elseif($item->top_up == 'Paid')
+                                                                            @elseif($item->top_up == 'yes')
                                                                             Paid
                                                                             @endif
                                                                         </td>
@@ -282,6 +284,17 @@
                                                                                 @else
                                                                                     <a class="btn btn-primary disabled" href="../web/edit_user/{{$item->id}}">Activated</a>
                                                                                 @endif
+                                                                            @endif
+                                                                        </td>
+                                                                        <td style="font-size:12px;height:30px;" align="left">
+                                                                            @if($item->top_up == 'no')
+                                                                            
+                                                                            @elseif($item->top_up == 'yes')
+                                                                               @if ($item->pin != '' )
+                                                                                 E-PIN Assigned
+                                                                               @else 
+                                                                                 <a class="btn btn-primary btn-sm" href="{{url('Admin/assignepin')}}/{{$item->id}}">Assign E-PIN</a>
+                                                                               @endif
                                                                             @endif
                                                                         </td>
                                                                     </tr>

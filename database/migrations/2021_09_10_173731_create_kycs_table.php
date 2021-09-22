@@ -16,12 +16,13 @@ class CreateKycsTable extends Migration
         Schema::create('kycs', function (Blueprint $table) {
             $table->id();
             $table->string('member_id')->nullable();
-            $table->string('pan_number');
-            $table->string('pan_file');
-            $table->string('adhar_file');
-            $table->string('photo');
-            $table->string('cheque_file');
-            $table->string('remarks');
+
+            $table->string('pan_number')->nullable();
+            $table->string('pan_file')->nullable();
+            $table->string('adhar_file')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('cheque_file')->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

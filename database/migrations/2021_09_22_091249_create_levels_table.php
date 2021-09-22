@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncomesTable extends Migration
+class CreateLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateIncomesTable extends Migration
      */
     public function up()
     {
-        Schema::create('incomes', function (Blueprint $table) {
+        Schema::create('levels', function (Blueprint $table) {
             $table->id();
-            $table->string('member_id', 50);
-            $table->string('income_by', 50);
-            $table->string('donation', 50);
-            $table->string('net_amount', 50);
-            $table->string('income_type', 50);
+            $table->string('member_id',50);
+            $table->string('level',50);
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateIncomesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incomes');
+        Schema::dropIfExists('levels');
     }
 }

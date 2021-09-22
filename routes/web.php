@@ -69,7 +69,7 @@ Route::prefix('Admin')->group(function () {
     Route::post('/getkycdetails', [AdminController::class, 'getkycdetails']);
     Route::get('/new-registration', [AdminController::class, 'new_registration']);
     Route::get('/level-tree-view', [AdminController::class, 'level_tree_view']);
-    Route::post('/getleveltree', [AdminController::class, 'getleveltree']);
+    Route::POST('/getleveltree', [AdminController::class, 'getleveltree']);
 
     Route::get('/rank-level-tree-view-associate', [AdminController::class, 'rank_level_tree_view_associate']);
     Route::get('/rank-level-tree-view-supervisor', [AdminController::class, 'rank_level_tree_view_supervisor']);
@@ -92,7 +92,11 @@ Route::prefix('Admin')->group(function () {
     Route::get('/deduct-wallet-amount', [AdminController::class, 'deduct_wallet_amount']);
     Route::get('/ticket-list', [AdminController::class, 'ticket_list']);
 
+
+
+    Route::get('/assignepin/{id}', [AdminController::class, 'assignepin']);
     Route::get('/volunteer-details', [AdminController::class, 'volunteer_details']);
+    Route::POST('/sortpins', [AdminController::class, 'sortpins']);
     Route::get('/pop-up', [PopupController::class, 'index']);
     Route::post('/addPopup', [PopupController::class, 'store']);
     Route::get('deletepopup/{id}', [PopupController::class, 'destroy']);
@@ -169,8 +173,11 @@ Route::group(['prefix' => 'User', 'middleware' => ['user']], function () {
 
     Route::get('/generate-ticket', [UserController::class, 'generate_ticket']);
     Route::get('/ticket-list', [UserController::class, 'ticket_list']);
+    Route::get('/paynow/{id}', [UserController::class, 'paynow']);
     Route::get('/getpopup', [PopupController::class, 'getpopup']);
     Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('/activate/{id}', [UserController::class, 'activate']);
+    
 
 });
 

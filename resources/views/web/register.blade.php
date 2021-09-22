@@ -50,6 +50,7 @@
 								<div class="row m-b-20">
 									<div class="col-md-12">
 										<h3 class="text-center">Register</h3>
+										<span class="text-danger">{{Session::get('error')}}</span>
 									</div>
 								</div>
 								<div class="row m-b-20">
